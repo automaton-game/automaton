@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { JuegoComponent } from './juego/juego.component';
 import { FilaComponent } from './juego/fila/fila.component';
 import { CeldaComponent } from './juego/celda/celda.component';
+import { ErrorModule } from '../errorModule/error.module';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,10 @@ import { CeldaComponent } from './juego/celda/celda.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'juego', component: JuegoComponent },
     ]),
+    ErrorModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
