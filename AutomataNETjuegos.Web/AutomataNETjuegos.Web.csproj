@@ -34,6 +34,7 @@
     <None Remove="ClientApp\src\app\juego\modelos\robot.ts" />
     <None Remove="ClientApp\src\app\juego\modelos\tablero.ts" />
     <None Remove="ClientApp\src\errorModule\apiError.ts" />
+    <None Remove="ClientApp\src\errorModule\apiErrors.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,12 +45,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\errorModule\apiErrors.ts" />
     <TypeScriptCompile Include="ClientApp\src\errorModule\errorsHandler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\casillero.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\filaTablero.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\tablero.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\robot.ts" />
     <TypeScriptCompile Include="ClientApp\src\errorModule\apiError.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\errorModule\apiErrors.js">
+      <DependentUpon>apiErrors.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\src\errorModule\apiErrors.js.map">
+      <DependentUpon>apiErrors.js</DependentUpon>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
