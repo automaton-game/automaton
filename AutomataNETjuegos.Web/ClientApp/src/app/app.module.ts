@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { JuegoComponent } from './juego/juego.component';
 import { FilaComponent } from './juego/fila/fila.component';
 import { CeldaComponent } from './juego/celda/celda.component';
-import { ErrorModule } from '../errorModule/error.module';
+import { ErrorModule } from './errorModule/error.module';
 
 @NgModule({
   declarations: [

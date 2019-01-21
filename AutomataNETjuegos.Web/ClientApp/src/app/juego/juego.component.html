@@ -1,3 +1,5 @@
+<app-error-component></app-error-component>
+
 <h1>Juego</h1>
 
 <div *ngIf="!filas">
@@ -8,7 +10,7 @@
         <li class="list-group-item" *ngFor="let error of errores">{{error}}</li>
       </ul>
     </div>
-    
+
   </div>
 
   <div class="panel panel-default">
@@ -22,17 +24,17 @@
   </div>
 </div>
 
-  <div *ngIf="filas">
-    <div *ngFor="let fila of filas">
-      <juego-fila-component [datosFila]="fila"></juego-fila-component>
-    </div>
-    <div style="clear:both">
-      <fieldset>
-        <label>Turno:</label><input type="range" class="custom-range" id="customRange1" min="0" max="{{max}}" [(ngModel)]="actual" (change)="actualizarTablero()">
-        <p>Valor actual: <b>{{actual}}</b></p>
-      </fieldset>
-    </div>
+<div *ngIf="filas">
+  <div *ngFor="let fila of filas">
+    <juego-fila-component [datosFila]="fila"></juego-fila-component>
   </div>
+  <div style="clear:both">
+    <fieldset>
+      <label>Turno:</label><input type="range" class="custom-range" id="customRange1" min="0" max="{{max}}" [(ngModel)]="actual" (change)="actualizarTablero()">
+      <p>Valor actual: <b>{{actual}}</b></p>
+    </fieldset>
+  </div>
+</div>
 
 
 

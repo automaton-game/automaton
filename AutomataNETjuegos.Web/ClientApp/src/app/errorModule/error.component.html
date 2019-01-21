@@ -1,0 +1,8 @@
+<div *ngIf="errores" class="panel panel-danger">
+  <div class="panel-heading">Se produjeron errores:</div>
+  <div class="panel-body">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let error of errores">{{error}}</li>
+    </ul>
+  </div>
+</div>
