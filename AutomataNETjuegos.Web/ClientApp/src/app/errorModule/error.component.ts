@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiErrors } from './apiErrors';
-import { ApiError } from './apiError';
 import { ErrorsService } from './errors.service';
 
 @Component({
@@ -15,19 +14,21 @@ export class ErrorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.errorService.currentMessage.subscribe((error: Error) => {
+    this.errorService.currentMessage.subscribe((error: ApiErrors | Error ) => {
       if (!error) {
         this.errores = null;
         return;
-      }
+      } 
 
-      if (error instanceof ApiErrors) {
-        this.errores = error.ApiError.map(m => m.message);
-      } else if (error instanceof ApiError) {
-        this.errores = [error.message];
+      if (this.instanceOfApiErrors(error) && error.errores) {
+          this.errores = error.errores;
       } else {
         this.errores = [error.message];
       }
     });
+  }
+
+  private instanceOfApiErrors(object: any): object is ApiErrors {
+    return 'errores' in object;
   }
 }

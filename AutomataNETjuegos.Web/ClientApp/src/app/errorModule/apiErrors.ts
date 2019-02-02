@@ -1,7 +1,3 @@
-import { ApiError } from "./apiError";
-
-export class ApiErrors extends Error {
-  constructor(public ApiError: ApiError[]) {
-    super();
-  }
+export interface ApiErrors extends Error {
+  errores: Array<string>;
 }

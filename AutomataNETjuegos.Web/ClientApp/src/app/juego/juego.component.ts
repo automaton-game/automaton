@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Tablero } from './modelos/tablero';
 import { FilaTablero } from './modelos/filaTablero';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ApiError } from '../errorModule/apiError';
 
 @Component({
   selector: 'app-juego-component',
@@ -19,8 +18,6 @@ export class JuegoComponent implements OnInit {
 
   public logica1: string;
   public logica2: string;
-
-  public errores: string[];
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
     
@@ -39,7 +36,7 @@ export class JuegoComponent implements OnInit {
         this.tableros = result;
         this.actualizarTablero();
         
-      }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
+      });
   }
 
   ngOnInit(): void {

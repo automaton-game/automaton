@@ -1,18 +1,8 @@
-<app-error-component></app-error-component>
-
 <h1>Juego</h1>
 
+<app-error-component></app-error-component>
+
 <div *ngIf="!filas">
-  <div *ngIf="errores" class="panel panel-danger">
-    <div class="panel-heading">Se produjeron errores:</div>
-    <div class="panel-body">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let error of errores">{{error}}</li>
-      </ul>
-    </div>
-
-  </div>
-
   <div class="panel panel-default">
     <div class="panel-heading"><label>Logica de robot 1</label></div>
     <div class="panel-body">

@@ -28,14 +28,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\errorModule\apiErrors.ts" />
+    <None Remove="ClientApp\src\app\errorModule\errorHttpClient.interceptor.ts" />
     <None Remove="ClientApp\src\app\errorModule\errors.service.ts" />
     <None Remove="ClientApp\src\app\ErrorsHandler.ts" />
     <None Remove="ClientApp\src\app\juego\modelos\casillero.ts" />
     <None Remove="ClientApp\src\app\juego\modelos\filaTablero.ts" />
     <None Remove="ClientApp\src\app\juego\modelos\robot.ts" />
     <None Remove="ClientApp\src\app\juego\modelos\tablero.ts" />
-    <None Remove="ClientApp\src\app\errorModule\apiError.ts" />
-    <None Remove="ClientApp\src\app\errorModule\apiErrors.ts" />
     <None Remove="ClientApp\src\app\errorModule\error.module.ts" />
   </ItemGroup>
 
@@ -47,15 +47,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\errorModule\apiErrors.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\errorModule\error.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\errorModule\errors.handler.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\errorModule\errors.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\errorModule\errorHttpClient.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\casillero.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\filaTablero.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\tablero.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\robot.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\errorModule\apiError.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\errorModule\apiErrors.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
