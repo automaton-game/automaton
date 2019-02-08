@@ -38,6 +38,7 @@ import { JuegoManualComponent } from './juegoManual/juegoManual.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'juego', component: JuegoComponent },
       { path: 'juegoManual', component: JuegoManualComponent },
+      { path: 'juegoManual/:id', component: JuegoManualComponent },
     ]),
   ],
   providers: [],

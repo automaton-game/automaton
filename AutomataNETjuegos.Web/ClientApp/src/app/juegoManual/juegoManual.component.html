@@ -1,5 +1,3 @@
-<h1>Juego {{idTablero}}</h1>
-
 <div *ngIf="errores" class="panel panel-danger">
   <div class="panel-heading">Se produjeron errores:</div>
   <div class="panel-body">
@@ -29,7 +27,7 @@
 </div>
 
 <div *ngIf="juegoManualResponse">
-  <div class="col-md-12" style="border: solid 1px black;">
+  <div class="col-md-12" >
     <tablero-component [juegoResponse]="juegoManualResponse"></tablero-component>
   </div>
   <div class="col-md-6">
@@ -50,7 +48,7 @@
       <div class="panel-heading"><label>Jugador actual</label></div>
       <div class="panel-body">
         <div>
-          <select [(ngModel)]="idJugador" (ngModelChange)="verificarTurnoJugadorActual()" size="2">
+          <select [(ngModel)]="idJugador" (ngModelChange)="verificarTurnoJugadorActual()" size="2" style="overflow:hidden; ">
             <option *ngFor="let jugador of juegoManualResponse.jugadores; index as i;" value="{{jugador}}">Jugador {{i+1}}</option>
           </select>
         </div>
