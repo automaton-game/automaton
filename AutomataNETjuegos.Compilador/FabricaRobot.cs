@@ -15,11 +15,17 @@ namespace AutomataNETjuegos.Compilador
     public class FabricaRobot : IFabricaRobot
     {
         private readonly ITempFileManager tempFileManager;
+        private readonly IDomainFactory domainFactory;
+        private readonly IMetadataFactory metadataFactory;
 
         public FabricaRobot(
-            ITempFileManager tempFileManager)
+            ITempFileManager tempFileManager,
+            IDomainFactory domainFactory,
+            IMetadataFactory metadataFactory)
         {
             this.tempFileManager = tempFileManager;
+            this.domainFactory = domainFactory;
+            this.metadataFactory = metadataFactory;
         }
 
         public IRobot ObtenerRobot(Type tipo)
@@ -29,18 +35,11 @@ namespace AutomataNETjuegos.Compilador
 
         public IRobot ObtenerRobot(string t)
         {
-
-            SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(t);
-
+            var syntaxTree = CSharpSyntaxTree.ParseText(t);
             string assemblyName = Path.GetRandomFileName();
-            MetadataReference[] references = new MetadataReference[]
-            {
-                MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(IRobot).GetTypeInfo().Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(System.Runtime.AssemblyTargetedPatchBandAttribute).GetTypeInfo().Assembly.Location)
-            };
+            var references = metadataFactory.GetReferences();
 
-            CSharpCompilation compilation = CSharpCompilation.Create(
+            var compilation = CSharpCompilation.Create(
                 assemblyName,
                 syntaxTrees: new[] { syntaxTree },
                 references: references,
@@ -60,9 +59,10 @@ namespace AutomataNETjuegos.Compilador
             }
             else
             {
-                var assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(tempFile);
+                var assembly = domainFactory.Load(tempFile);
                 var type = assembly.ExportedTypes.FirstOrDefault(tipo =>
                     tipo.IsClass && tipo.IsPublic && tipo.IsVisible && typeof(IRobot).IsAssignableFrom(tipo));
+                
                 return ObtenerRobot(type);
             }
         }
