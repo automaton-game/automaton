@@ -46,8 +46,10 @@ namespace AutomataNETjuegos.Web.Controllers
 
             var id = registroJuegosManuales.Guardar(juego);
 
-            var tablero = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
-            return new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = new[] { tablero }, idTablero = id };
+            var tableroModel = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
+            var tableros = registroJuegosManuales.GuardarTablero(id, tableroModel);
+
+            return new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = id };
         }
 
         [HttpGet("[action]")]

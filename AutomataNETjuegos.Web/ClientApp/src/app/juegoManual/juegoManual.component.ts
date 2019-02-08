@@ -3,7 +3,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JuegoManualResponse } from './modelos/juegoManualResponse';
 import { AccionRobot } from './modelos/accionRobot';
 import { timer } from 'rxjs/observable/timer';
+import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-juegoManual-component',
@@ -19,7 +21,11 @@ export class JuegoManualComponent implements OnInit {
   public idTablero: string;
   public idJugador: string;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(
+    private http: HttpClient,
+    @Inject('BASE_URL') private baseUrl: string,
+    private route: ActivatedRoute,
+    private router: Router,) {
   }
 
   crearTablero() {
@@ -28,6 +34,7 @@ export class JuegoManualComponent implements OnInit {
         this.juegoManualResponse = result;
         this.idTablero = result.idTablero;
         this.idJugador = result.jugadores[0];
+        this.router.navigate(['.', this.idTablero], { relativeTo: this.route });
       }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
   }
 
@@ -72,5 +79,12 @@ export class JuegoManualComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(s => {
+      const idTablero = s.get('id');
+      if (idTablero && idTablero != this.idTablero) {
+        this.idTablero = idTablero;
+        this.obtenerTablero();
+      }
+    });
   }
 }
