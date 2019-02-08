@@ -57,10 +57,12 @@ namespace AutomataNETjuegos.Web
             services.AddTransient<IFabricaTablero, FabricaTablero>();
             services.AddTransient<IFabricaRobot, FabricaRobot>();
             services.AddScoped<ITempFileManager, TempFileManager>();
+            services.AddScoped<IDomainFactory, DomainFactory>();
             services.AddLogging(ConfigureLogging);
 
             services.AddSingleton<IRegistroRobots, RegistroRobots>();
             services.AddSingleton<IRegistroJuegosManuales, RegistroJuegosManuales>();
+            services.AddSingleton<IMetadataFactory, MetadataFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
