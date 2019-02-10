@@ -5,7 +5,6 @@ using AutoMapper;
 using AutomataNETjuegos.Robots;
 using AutomataNETjuegos.Web.Models;
 using Tablero = AutomataNETjuegos.Contratos.Entorno.Tablero;
-using AutomataNETjuegos.Compilador.Excepciones;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using AutomataNETjuegos.Web.Logica;
