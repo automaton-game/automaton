@@ -15,8 +15,6 @@ export class JuegoComponent implements OnInit {
   public logica1: string;
   public ganador: string;
 
-  public errores: string[];
-
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
     
   }
@@ -107,3 +105,5 @@ namespace AutomataNETjuegos.Robots
     this.logica1 = logica;
   }
 }
+
+

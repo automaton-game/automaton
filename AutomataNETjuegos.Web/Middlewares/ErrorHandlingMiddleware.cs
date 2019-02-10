@@ -44,21 +44,21 @@ namespace AutomataNETjuegos.Web.Middlewares
         {
             context.Response.ContentType = "application/json";
 
-            IList<ErrorModel> errors;
+            ErrorModel errors;
             HttpStatusCode code = HttpStatusCode.InternalServerError; // 500 if unexpected
 
             if (ex is ExcepcionCompilacion)
             {
-                errors = ((ExcepcionCompilacion)ex).ErroresCompilacion.Select(mapper.Map<string, ErrorModel>).ToArray();
+                errors = mapper.Map<ExcepcionCompilacion, ErrorModel>((ExcepcionCompilacion)ex);
                 code = HttpStatusCode.BadRequest;
             } else
             {
-                errors = new[] { mapper.Map<Exception, ErrorModel>(ex) };
+                errors = mapper.Map<Exception, ErrorModel>(ex);
             }
 
             var serializerSettings = new JsonSerializerSettings();
             serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            var result = JsonConvert.SerializeObject(new { errors }, serializerSettings);
+            var result = JsonConvert.SerializeObject(errors, serializerSettings);
 
             context.Response.StatusCode = (int)code;
             await context.Response.WriteAsync(result);

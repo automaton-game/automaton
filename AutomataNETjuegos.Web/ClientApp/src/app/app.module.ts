@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -14,6 +14,7 @@ import { FilaComponent } from './juego/fila/fila.component';
 import { CeldaComponent } from './juego/celda/celda.component';
 import { TableroComponent } from './juego/tablero/tablero.component';
 import { JuegoManualComponent } from './juegoManual/juegoManual.component';
+import { ErrorModule } from './errorModule/error.module';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,10 @@ import { JuegoManualComponent } from './juegoManual/juegoManual.component';
       { path: 'juegoManual', component: JuegoManualComponent },
       { path: 'juegoManual/:id', component: JuegoManualComponent },
     ]),
+    ErrorModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
