@@ -8,6 +8,7 @@ using AutomataNETjuegos.Web.MappingProfiles;
 using AutomataNETjuegos.Web.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
@@ -56,6 +57,8 @@ namespace AutomataNETjuegos.Web
             services.AddTransient<IJuego2v2, Juego2v2>();
             services.AddTransient<IFabricaTablero, FabricaTablero>();
             services.AddTransient<IFabricaRobot, FabricaRobot>();
+            services.AddTransient<ErrorHandlingMiddleware>();
+
             services.AddScoped<ITempFileManager, TempFileManager>();
             services.AddScoped<IDomainFactory, DomainFactory>();
             services.AddLogging(ConfigureLogging);

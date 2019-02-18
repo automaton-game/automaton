@@ -12,18 +12,16 @@ using Newtonsoft.Json.Serialization;
 
 namespace AutomataNETjuegos.Web.Middlewares
 {
-    public class ErrorHandlingMiddleware
+    public class ErrorHandlingMiddleware : IMiddleware
     {
-        private readonly RequestDelegate next;
         private readonly IMapper mapper;
 
-        public ErrorHandlingMiddleware(RequestDelegate next, IMapper mapper)
+        public ErrorHandlingMiddleware(IMapper mapper)
         {
-            this.next = next;
             this.mapper = mapper;
         }
 
-        public async Task Invoke(HttpContext context /* other dependencies */)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try
             {
