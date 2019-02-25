@@ -29,8 +29,9 @@ export class JuegoManualComponent implements OnInit {
   }
 
   crearTablero() {
-    this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/CrearTablero', {} )
+    const susc = this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/CrearTablero', {} )
       .subscribe(result => {
+        susc.unsubscribe();
         this.juegoManualResponse = result;
         this.idTablero = result.idTablero;
         this.idJugador = result.jugadores[0];
@@ -39,43 +40,52 @@ export class JuegoManualComponent implements OnInit {
   }
 
   obtenerTablero() {
-    this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/ObtenerTablero?idTablero=' + this.idTablero)
+    const susc = this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/ObtenerTablero?idTablero=' + this.idTablero)
       .subscribe(result => {
+        susc.unsubscribe();
         this.juegoManualResponse = result;
         if (!this.idJugador) {
           this.idJugador = result.jugadores[0];
-          this.verificarTurnoJugadorActual();
         }
+
+        this.cambioJugador();
+        
       }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
   }
   
   accionarTablero(accionRobot: AccionRobot) {
-    this.http.post<JuegoManualResponse>(this.baseUrl + 'api/Tablero/AccionarTablero', { idTablero: this.idTablero, idJugador: this.idJugador, accionRobot: accionRobot  })
+    const susc = this.http.post<JuegoManualResponse>(this.baseUrl + 'api/Tablero/AccionarTablero', { idTablero: this.idTablero, idJugador: this.idJugador, accionRobot: accionRobot  })
       .subscribe(result => {
+        susc.unsubscribe();
         this.juegoManualResponse = result;
-        this.verificarTurnoJugadorActual();
+        this.iniciarTimerRefresco();
       }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
   }
 
  
 
-  public verificarTurnoJugadorActual() {
+  public cambioJugador() {
     const miTurno = this.juegoManualResponse.jugadorTurnoActual == this.idJugador;
-    this.frenarRefresco();
-    if (!miTurno) {
-      this.suscripcionRefresco = this.iniciarTimerRefresco();
+    if (miTurno) {
+      this.frenarTimer();
+    } else {
+      this.iniciarTimerRefresco();
     }
   }
 
-  private frenarRefresco() {
+  private frenarTimer() {
     if (this.suscripcionRefresco) {
       this.suscripcionRefresco.unsubscribe();
     }
   }
 
   private iniciarTimerRefresco() {
-    const suscripcionRefresco = timer(3000, 3000).subscribe(count => { this.obtenerTablero(); });
-    return suscripcionRefresco;
+    if (this.suscripcionRefresco && !this.suscripcionRefresco.closed) {
+      return;
+    }
+    this.suscripcionRefresco = timer(3000, 1000).subscribe(count => {
+      this.obtenerTablero();
+    });
   }
 
   ngOnInit(): void {
