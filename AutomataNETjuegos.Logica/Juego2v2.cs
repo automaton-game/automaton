@@ -110,8 +110,25 @@ namespace AutomataNETjuegos.Logica
         private AccionRobotDto EjecutarAccionRobot(RobotJuegoDto robotJuego)
         {
             var robot = robotJuego.Robot;
-            var accion = robot.GetAccionRobot();
+            // Valido que el robot enemigo no tenga mayoria de casilleros
+            var murallas = Tablero.Filas.SelectMany(s => s.Casilleros.Select(c => c.Muralla)).Where(m => m != null);
+            var gruposDeMurallas = murallas.GroupBy(m => m);
+            var cantidadPorGrupo = gruposDeMurallas.ToDictionary(g => g.Key, g => g.Count());
+            if (cantidadPorGrupo.Any())
+            {
+                var maxCantidadMurallas = cantidadPorGrupo.OrderByDescending(o => o.Value).First();
+                var maxSlotsDisponibles = Tablero.Filas.Count * Tablero.Filas.Count;
+                var cantidadRobots = gruposDeMurallas.Count();
+                var cantidadNecesariaParaGanar = (maxSlotsDisponibles / cantidadRobots) + 1;
+                if (maxCantidadMurallas.Value >= cantidadNecesariaParaGanar)
+                {
+                    var jugadorGanador = accionesRobot.Where(f => f.Robot == maxCantidadMurallas.Key).Select(s => s.Usuario).First();
+                    throw new Exception($"El jugador {jugadorGanador} ya completo la mayoría de casilleros ({maxCantidadMurallas.Value})");
+                }
+            }
 
+            // Valido que el robor devuelva alguna acción
+            var accion = robot.GetAccionRobot();
             if (accion == null)
             {
                 throw new Exception("El robot no devolvió ninguna accion");
@@ -149,8 +166,6 @@ namespace AutomataNETjuegos.Logica
 
             return accion;
         }
-
-        
 
         private Casillero ObtenerPosicion(IRobot robot)
         {
