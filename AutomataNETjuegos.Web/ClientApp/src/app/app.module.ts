@@ -33,9 +33,10 @@ import { JuegoManualComponent } from './juegoManual/juegoManual.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'juego', pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'juego', component: JuegoComponent },
       { path: 'juegoManual', component: JuegoManualComponent },
       { path: 'juegoManual/:id', component: JuegoManualComponent },
