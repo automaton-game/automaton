@@ -12,10 +12,6 @@ namespace AutomataNETjuegos.Logica
 
         ICollection<string> Robots { get; }
 
-        void AgregarRobot(Type robotType);
-
-        Type AgregarRobot(string robotCode);
-
         void AgregarRobot(IRobot robot);
 
         string JugarTurno();

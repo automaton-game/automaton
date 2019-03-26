@@ -30,7 +30,7 @@ namespace AutomataNETjuegos.Compilador
 
         public IRobot ObtenerRobot(Type tipo)
         {
-            return (IRobot)Activator.CreateInstance(tipo); ;
+            return (IRobot)Activator.CreateInstance(tipo);
         }
 
         public IRobot ObtenerRobot(string t)

@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomataNETjuegos.Web", "Au
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomataNETjuegos.Robots", "AutomataNETjuegos.Robots\AutomataNETjuegos.Robots.csproj", "{E33F178A-EC44-4804-8F34-D4A0C6A993BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomataNETjuegos.Compilador", "AutomataNETjuegos.Compilador\AutomataNETjuegos.Compilador.csproj", "{5E8D9AE9-92F4-409C-B7E1-A88A72A6C927}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomataNETjuegos.Compilador", "AutomataNETjuegos.Compilador\AutomataNETjuegos.Compilador.csproj", "{5E8D9AE9-92F4-409C-B7E1-A88A72A6C927}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomataNETjuegos.Compilador.Tests", "AutomataNETjuegos.Compilador.Tests\AutomataNETjuegos.Compilador.Tests.csproj", "{8E325B02-024A-40B1-80B3-3C2766B9D0F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomataNETjuegos.Compilador.Tests", "AutomataNETjuegos.Compilador.Tests\AutomataNETjuegos.Compilador.Tests.csproj", "{8E325B02-024A-40B1-80B3-3C2766B9D0F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomataNETjuegos.PruebaEnConsola", "AutomataNETjuegos.PruebaEnConsola\AutomataNETjuegos.PruebaEnConsola.csproj", "{3D9CE8EB-4F35-4B79-8EB6-62B5801462B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8E325B02-024A-40B1-80B3-3C2766B9D0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E325B02-024A-40B1-80B3-3C2766B9D0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E325B02-024A-40B1-80B3-3C2766B9D0F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D9CE8EB-4F35-4B79-8EB6-62B5801462B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D9CE8EB-4F35-4B79-8EB6-62B5801462B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D9CE8EB-4F35-4B79-8EB6-62B5801462B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D9CE8EB-4F35-4B79-8EB6-62B5801462B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,42 +11,26 @@ namespace AutomataNETjuegos.Logica
     public class Juego2v2 : IJuego2v2
     {
         private readonly IFabricaTablero fabricaTablero;
-        private readonly IFabricaRobot fabricaRobot;
 
         private ICollection<IRobot> robots => accionesRobot.Select(s => s.Robot).ToArray();
         private IList<RobotJuegoDto> accionesRobot = new List<RobotJuegoDto>();
 
         public Juego2v2(
-            IFabricaTablero fabricaTablero,
-            IFabricaRobot fabricaRobot
-            )
+            IFabricaTablero fabricaTablero)
         {
             this.fabricaTablero = fabricaTablero;
-            this.fabricaRobot = fabricaRobot;
         }
 
         public ICollection<string> Robots => accionesRobot.Select(r => r.Usuario).ToArray();
 
         public Tablero Tablero { get; private set; }
 
-        public void AgregarRobot(Type robotType)
-        {
-            var r = fabricaRobot.ObtenerRobot(robotType);
-            this.AgregarRobot(r.GetType().Name, r);
-        }
 
-        public Type AgregarRobot(string robotCode)
-        {
-            var r = fabricaRobot.ObtenerRobot(robotCode);
-            var tipo = r.GetType();
-            this.AgregarRobot(tipo.Name, r);
-            return tipo;
-        }
 
         public void AgregarRobot(IRobot robot)
         {
-            var hash = robot.GetHashCode().ToString();
-            this.AgregarRobot(hash, robot);
+            var typeName = robot.GetType().Name;
+            this.AgregarRobot(typeName, robot);
         }
 
         private void AgregarRobot(string usuario, IRobot robot)
