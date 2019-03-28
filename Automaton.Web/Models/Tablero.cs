@@ -1,0 +1,9 @@
+﻿using System.Collections.Generic;
+
+namespace Automaton.Web.Models
+{
+    public class Tablero
+    {
+        public IList<FilaTablero> Filas { get;set; }
+    }
+}

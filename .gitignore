@@ -2,17 +2,17 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/AutomataNETjuegos.Contratos/bin/Debug/netstandard1.0
+/Automaton.Contratos/bin/Debug/netstandard1.0
 *.cache
 *.pdb
-/AutomataNETjuegos.Contratos/obj/Debug/netstandard1.0
-/AutomataNETjuegos.Contratos/obj/Debug/netstandard2.0
-/AutomataNETjuegos.Contratos/obj/Release/netstandard1.0
+/Automaton.Contratos/obj/Debug/netstandard1.0
+/Automaton.Contratos/obj/Debug/netstandard2.0
+/Automaton.Contratos/obj/Release/netstandard1.0
 *.props
-/AutomataNETjuegos.Contratos/obj
-/AutomataNETjuegos.JugadorManual/obj/Release/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
-/AutomataNETjuegos.JugadorManual/obj/Release/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
-/AutomataNETjuegos.JugadorManual/obj/Release/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+/Automaton.Contratos/obj
+/Automaton.JugadorManual/obj/Release/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+/Automaton.JugadorManual/obj/Release/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+/Automaton.JugadorManual/obj/Release/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
 bin/
 Bin/
 obj/
