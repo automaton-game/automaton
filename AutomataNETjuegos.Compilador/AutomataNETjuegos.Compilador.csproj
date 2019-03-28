@@ -17,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutomataNETjuegos.Contratos\AutomataNETjuegos.Contratos.csproj" />
     <ProjectReference Include="..\AutomataNETjuegos.Logica\AutomataNETjuegos.Logica.csproj" />
-    <ProjectReference Include="..\AutomataNETjuegos.Robots\AutomataNETjuegos.Robots.csproj" />
   </ItemGroup>
 
 </Project>

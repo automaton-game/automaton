@@ -20,3 +20,5 @@ Obj/
 .vs/
 .git/
 *.user
+*.nuspec
+*.nupkg

@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutomataNETjuegos.Compilador\AutomataNETjuegos.Compilador.csproj" />
-    <ProjectReference Include="..\AutomataNETjuegos.Logica\AutomataNETjuegos.Logica.csproj" />
+    <PackageReference Include="Automaton.Logica" Version="1.0.4" />
   </ItemGroup>
 
 </Project>

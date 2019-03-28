@@ -1,3 +1,5 @@
+using AutomataNETjuegos.Logica;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using Xunit;
@@ -6,11 +8,12 @@ namespace AutomataNETjuegos.Compilador.Tests
 {
     public class FabricaRobotTest
     {
+        IFabricaRobot fabrica;
+
         [Fact]
         public void FabricarRobotBase()
         {
-            var mock = new Mock<ITempFileManager>();
-            var fabrica = new FabricaRobot(mock.Object);
+            fabrica = new FabricaRobot(new TempFileManager(new Mock<ILogger<TempFileManager>>().Object), new DomainFactory(new Mock<ILogger<DomainFactory>>().Object), new MetadataFactory());
 
             var text = @"
                 using AutomataNETjuegos.Contratos.Entorno;
@@ -38,8 +41,7 @@ namespace AutomataNETjuegos.Compilador.Tests
         [Fact]
         public void FabricarRobotCompleto()
         {
-            var mock = new Mock<ITempFileManager>();
-            var fabrica = new FabricaRobot(mock.Object);
+            fabrica = new FabricaRobot(new TempFileManager(new Mock<ILogger<TempFileManager>>().Object), new DomainFactory(new Mock<ILogger<DomainFactory>>().Object), new MetadataFactory());
 
             var text = @"
                 using AutomataNETjuegos.Contratos.Entorno;

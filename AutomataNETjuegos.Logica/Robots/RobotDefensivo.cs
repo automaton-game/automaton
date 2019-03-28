@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using AutomataNETjuegos.Contratos.Entorno;
+﻿using AutomataNETjuegos.Contratos.Entorno;
 using AutomataNETjuegos.Contratos.Helpers;
 using AutomataNETjuegos.Contratos.Robots;
+using System;
+using System.Collections.Generic;
 
-namespace AutomataNETjuegos.PruebaEnConsola
+namespace AutomataNETjuegos.Logica.Robots
 {
-    public class RobotUsuario : IRobot
+    public class RobotDefensivo : IRobot
     {
-        public Tablero Tablero
-        {
-            get;
-            set;
-        }
+        public Tablero Tablero { get; set; }
 
         public AccionRobotDto GetAccionRobot()
         {
             var casillero = this.GetPosition(Tablero);
             if (casillero.Muralla == null && casillero.Robots.Count == 1)
             {
-                return new AccionConstruirDto()
-                { };
+                return new AccionConstruirDto() { };
             }
 
             var direcciones = new List<DireccionEnum>();
+
             var direccion = GenerarDireccionAleatoria(direcciones);
             var movimiento = EvaluarMovimiento(casillero, direccion);
             while (movimiento == null)
@@ -48,8 +44,7 @@ namespace AutomataNETjuegos.PruebaEnConsola
             {
                 if (relativo.Muralla == null || relativo.Muralla == this)
                 {
-                    return new AccionMoverDto()
-                    { Direccion = direccion };
+                    return new AccionMoverDto() { Direccion = direccion };
                 }
             }
 
@@ -58,7 +53,7 @@ namespace AutomataNETjuegos.PruebaEnConsola
 
         private DireccionEnum GenerarDireccionAleatoria()
         {
-            var random = new Random().Next(0, 4);
+            var random = new Random().Next(0,4);
             return (DireccionEnum)random;
         }
 
@@ -71,18 +66,6 @@ namespace AutomataNETjuegos.PruebaEnConsola
             }
 
             return obtenido;
-        }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var prueba = new AutomataNETjuegos.Logica.PruebaEnConsola();
-            prueba.AgregarRobot(typeof(RobotUsuario));
-            prueba.Main();
-            Console.WriteLine("Cont: {0}", prueba.Cont);
-            Console.ReadLine();
         }
     }
 }

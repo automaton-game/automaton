@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using AutoMapper;
-using AutomataNETjuegos.Robots;
+using AutomataNETjuegos.Logica.Robots;
 using AutomataNETjuegos.Web.Models;
 using Tablero = AutomataNETjuegos.Contratos.Entorno.Tablero;
 using Microsoft.Extensions.Logging;
