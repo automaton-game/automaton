@@ -14,6 +14,9 @@ export class SpinnerComponent {
   ngOnInit() {
     this.spinnerService.visibility.subscribe(state => {
       this.visibility = state;
+      if (state) {
+        window.scroll(0, 0);
+      }
     });
   }
 }
