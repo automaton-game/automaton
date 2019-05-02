@@ -1,10 +1,10 @@
-<div *ngIf="errores" class="panel panel-danger">
-  <div class="panel-heading">Se produjeron errores:</div>
-  <div class="panel-body">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let error of errores">{{error}}</li>
-    </ul>
-  </div>
+<div *ngIf="errores" class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="errores=null"><span aria-hidden="true">&times;</span></button>
+  <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+  <strong>SE PRODUJERON ERRORES:</strong>
+  <ul>
+    <li *ngFor="let error of errores">{{error}}</li>
+  </ul>
 </div>
 
 <div *ngIf="!juegoManualResponse">
@@ -27,7 +27,7 @@
 </div>
 
 <div *ngIf="juegoManualResponse">
-  <div class="col-md-12" >
+  <div class="col-md-12">
     <tablero-component [juegoResponse]="juegoManualResponse"></tablero-component>
   </div>
   <div class="col-md-6">
@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="col-md-6">
     <div class=" panel panel-default">
       <div class="panel-heading"><label>Jugador actual</label></div>
@@ -55,7 +55,7 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 
 

@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { JuegoManualResponse } from './modelos/juegoManualResponse';
 import { AccionRobot } from './modelos/accionRobot';
 import { timer } from 'rxjs/observable/timer';
 import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-juegoManual-component',
@@ -13,6 +14,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class JuegoManualComponent implements OnInit {
   private suscripcionRefresco: Subscription;
+  // Set the http options
+  private HTTP_OPTIONS = {
+    headers: new HttpHeaders({ "Content-Type": "application/json" })
+  };
 
   public juegoManualResponse: JuegoManualResponse;
 
@@ -29,7 +34,7 @@ export class JuegoManualComponent implements OnInit {
   }
 
   crearTablero() {
-    const susc = this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/CrearTablero', {} )
+    const susc = this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/CrearTablero', this.HTTP_OPTIONS )
       .subscribe(result => {
         susc.unsubscribe();
         this.juegoManualResponse = result;
@@ -40,7 +45,7 @@ export class JuegoManualComponent implements OnInit {
   }
 
   obtenerTablero() {
-    const susc = this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/ObtenerTablero?idTablero=' + this.idTablero)
+    const susc = this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/ObtenerTablero?idTablero=' + this.idTablero, this.HTTP_OPTIONS)
       .subscribe(result => {
         susc.unsubscribe();
         this.juegoManualResponse = result;
