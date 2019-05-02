@@ -1,15 +1,22 @@
 <h1>Juego</h1>
 
 <div *ngIf="!juegoResponse">
-  <div *ngIf="errores" class="panel panel-danger">
-    <div class="panel-heading">Se produjeron errores:</div>
-    <div class="panel-body">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let error of errores">{{error}}</li>
-      </ul>
-    </div>
 
+  <div *ngIf="errores" class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="errores=null"><span aria-hidden="true">&times;</span></button>
+    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+    <strong>SE PRODUJERON ERRORES:</strong>
+    <ul >
+      <li  *ngFor="let error of errores">{{error}}</li>
+    </ul>
   </div>
+
+  <div *ngIf="!ocultarEditor" class="alert alert-info alert-dismissible" role="alert">
+    <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="ocultarEditor=true"><span aria-hidden="true">&times;</span></button>
+    <strong>TIP:</strong> Para simplificar la escritura de código, puedes usar este <a href="https://dotnetfiddle.net/RhSnzT" class="alert-link" target="_blank">editor</a>
+  </div>
+
   <div class="panel panel-default">
     <div class="panel-heading"><label>Logica de robot 1</label></div>
     <div class="panel-body">
