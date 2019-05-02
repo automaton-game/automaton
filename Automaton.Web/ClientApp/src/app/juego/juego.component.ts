@@ -10,6 +10,8 @@ import { JuegoResponse } from './modelos/juegoResponse';
 })
 export class JuegoComponent implements OnInit {
 
+  public static nombre: string = "Jugar con IA";
+
   public juegoResponse: JuegoResponse;
 
   public logica1: string;
