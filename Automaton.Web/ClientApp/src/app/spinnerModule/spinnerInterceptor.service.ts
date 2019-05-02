@@ -16,7 +16,7 @@ export class InterceptorService implements HttpInterceptor {
     this.spinner.visibility.emit(true);
     return next.handle(req)
       .pipe(
-        delay(1000),
+        delay(10),
         finalize(() => this.spinner.visibility.emit(false))
       )
   }
