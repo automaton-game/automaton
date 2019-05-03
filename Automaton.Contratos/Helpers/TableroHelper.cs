@@ -1,5 +1,6 @@
 ﻿using Automaton.Contratos.Entorno;
 using Automaton.Contratos.Robots;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Automaton.Contratos.Helpers
@@ -30,6 +31,11 @@ namespace Automaton.Contratos.Helpers
         public static Casillero GetMax(this Tablero tablero)
         {
             return tablero.Filas.Last().Casilleros.Last();
+        }
+
+        public static IEnumerable<Casillero> GetCasilleros(this Tablero tablero)
+        {
+            return tablero.Filas.SelectMany(fila => fila.Casilleros);
         }
     }
 }
