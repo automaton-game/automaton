@@ -42,7 +42,7 @@ export class JuegoComponent implements OnInit {
     /// Por lo tanto siempre debes utilizar el mismo nombre en la creación de tu clase
     /// </summary>
     /// <example> MiRobotJose </example>
-    public class RobotDefensivo : IRobot
+    public class MiRobotJose : IRobot
     {
         ///<summary>Devuelve el estado actual del tablero. Correspondiente al turno actual</summary>
         public Tablero Tablero { get; set; }
