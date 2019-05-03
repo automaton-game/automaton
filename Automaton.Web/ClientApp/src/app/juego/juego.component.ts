@@ -31,9 +31,7 @@ export class JuegoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const logica = `namespace Automaton.Logica.Robots
-{
-    using Automaton.Contratos.Entorno;
+    const logica = `    using Automaton.Contratos.Entorno;
     using Automaton.Contratos.Helpers;
     using Automaton.Contratos.Robots;
     
@@ -152,8 +150,7 @@ export class JuegoComponent implements OnInit {
             // Si no se que hacer, devuelvo nulo. Y el juego termina.
             return null;
         }
-    }
-}`;
+    }`;
 
     this.logica1 = logica;
   }
