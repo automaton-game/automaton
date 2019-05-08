@@ -15,6 +15,7 @@ import { CeldaComponent } from './juego/celda/celda.component';
 import { TableroComponent } from './juego/tablero/tablero.component';
 import { JuegoManualComponent } from './juegoManual/juegoManual.component';
 import { SpinnerModule } from './spinnerModule/spinner.module';
+import { InstruccionesComponent } from './instrucciones/instrucciones.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { SpinnerModule } from './spinnerModule/spinner.module';
     CeldaComponent,
     TableroComponent,
     JuegoManualComponent,
-
+    InstruccionesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,6 +43,7 @@ import { SpinnerModule } from './spinnerModule/spinner.module';
       { path: 'juego', component: JuegoComponent },
       { path: 'juegoManual', component: JuegoManualComponent },
       { path: 'juegoManual/:id', component: JuegoManualComponent },
+      { path: 'instrucciones', component: InstruccionesComponent },
     ]),
     SpinnerModule,
   ],
