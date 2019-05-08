@@ -1,3 +1,9 @@
 .sobreElJuego {
-  font-size: 2vw;
+  font-size:xx-large;
+}
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
 }
