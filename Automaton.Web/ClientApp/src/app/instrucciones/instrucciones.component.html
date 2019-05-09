@@ -1,4 +1,62 @@
-<h1>Instrucciones</h1>
+<div class="page-header"><h1>Instrucciones</h1><small> / Reglas </small></div>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <div><img src="../../assets/regla_inicio.gif" width="100%" /></div>
+      <div>
+        <p>Cada jugador comienza en una esquina del tablero, pudiendo desplazarse 1 casillero por turno. Solo se permiten movimientos horizontales o verticales. No es posible moverse hacia casilleros ocupados por murallas ajenas.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div><img src="../../assets/regla_muralla.gif" width="100%" /></div>
+      <div>
+        <p>El jugador podrá crear una muralla en su turno, sólo si el casillero está ocupado únicamente por él. Crear una muralla, consume el turno actual, por lo que deberá esperar al próximo turno para poder moverse.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div><img src="../../assets/regla_superposicion.png" width="100%" /></div>
+      <div>
+        <p>Un jugador puede avanzar sobre el casillero ocupado por otro jugador siempre y cuando no existe una muralla. Esto obliga a ese jugador a abandonar dicho casille y no le permite crear una muralla en el sitio.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div><img src="../../assets/regla_excedido.jpg" width="100%" /></div>
+      <div>
+        <p>Un jugador puede realizar un máximo de 10 movimientos sin construir. Esto permite que un jugador bloquee el acceso a los casilleros libres. De modo que el otro jugador solo podrá desplazarse hasta perder.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div><img src="../../assets/regla_nulo.jpg" width="100%" /></div>
+      <div>
+        <p>Cuando un jugador devuelva una instruccion incorrecta para su turno actual o una respuesta nula, automáticamente pierde la partida. Por ejemplo, un intento de movimiento por fuera de los limites del tablero.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
 <div class="col-xs-12 col-sm-6 col-md-4">
   <div class="panel panel-default">

@@ -1,13 +1,13 @@
-<h1>Juego</h1>
+<div class="page-header"><h1>Juego</h1><small> &lt; Programa tu IA &gt;</small></div>
 
-<div *ngIf="!juegoResponse">
+<div class="row" *ngIf="!juegoResponse">
 
   <div *ngIf="errores" class="alert alert-warning alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="errores=null"><span aria-hidden="true">&times;</span></button>
     <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
     <strong>SE PRODUJERON ERRORES:</strong>
-    <ul >
-      <li  *ngFor="let error of errores">{{error}}</li>
+    <ul>
+      <li *ngFor="let error of errores">{{error}}</li>
     </ul>
   </div>
 
@@ -23,17 +23,23 @@
       <textarea [(ngModel)]="logica1" rows="10" style="width:100%;"></textarea>
     </div>
   </div>
-  <div class="well well-lg">
-    <button (click)="obtenerTablero()">Enviar</button>
-  </div>
 </div>
 
-<div *ngIf="juegoResponse">
+<div class="row" *ngIf="juegoResponse">
   <tablero-component [juegoResponse]="juegoResponse"></tablero-component>
-  <div>
-    <button (click)="juegoResponse=null">Borrar</button>
-  </div>
 </div>
+
+<nav class="navbar navbar-default" aria-label="navigation">
+  <ul class="pager">
+
+    <li class="previous" *ngIf="juegoResponse"><a [routerLink]="" (click)="juegoResponse=null"><span aria-hidden="true">&larr;</span> Volver</a></li>
+    <li class="previous" *ngIf="!juegoResponse"><a [routerLink]='["/"]'><span aria-hidden="true">&larr;</span> Volver</a></li>
+    <li class="next" *ngIf="!juegoResponse"><a [routerLink]="" (click)="obtenerTablero()">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+    <li class="next" *ngIf="juegoResponse"><a href="https://ionbot.blogspot.com/2019/05/opinion.html" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Blogger.svg" height="20"/> Comentar <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+
+</nav>
+
 
 
 
