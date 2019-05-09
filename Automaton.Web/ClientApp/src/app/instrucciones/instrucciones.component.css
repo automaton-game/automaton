@@ -1,5 +1,23 @@
-.vcenter {
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
+.col-xs-6 {
+  padding: 5%;
+  text-align: center;
 }
+
+  .col-xs-6 img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .col-xs-6 p {
+    font-size: 1.3vw;
+  }
+
+  .col-xs-6 h3 {
+    font-size: 2vw;
+  }
+
+.carousel-indicators li {
+  background-color: #0000ff;
+  box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+

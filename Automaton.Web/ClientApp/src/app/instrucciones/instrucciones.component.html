@@ -1,4 +1,4 @@
-<div class="page-header"><h1>Instrucciones</h1><small> / Reglas </small></div>
+<div class="page-header"><h1>Instrucciones</h1></div>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -6,41 +6,48 @@
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#myCarousel" data-slide-to="4"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <div><img src="../../assets/regla_inicio.gif" width="100%" /></div>
-      <div>
+      <div class="col-xs-6"><img src="../../assets/regla_inicio.gif" /></div>
+      <div class="col-xs-6">
+        <h3>Desplazamiento</h3>
         <p>Cada jugador comienza en una esquina del tablero, pudiendo desplazarse 1 casillero por turno. Solo se permiten movimientos horizontales o verticales. No es posible moverse hacia casilleros ocupados por murallas ajenas.</p>
       </div>
     </div>
 
     <div class="item">
-      <div><img src="../../assets/regla_muralla.gif" width="100%" /></div>
-      <div>
+      <div class="col-xs-6"><img src="../../assets/regla_muralla.gif"  /></div>
+      <div class="col-xs-6">
+        <h3>Murallas</h3>
         <p>El jugador podrá crear una muralla en su turno, sólo si el casillero está ocupado únicamente por él. Crear una muralla, consume el turno actual, por lo que deberá esperar al próximo turno para poder moverse.</p>
       </div>
     </div>
 
     <div class="item">
-      <div><img src="../../assets/regla_superposicion.png" width="100%" /></div>
-      <div>
+      <div class="col-xs-6"><img src="../../assets/regla_superposicion.png"  /></div>
+      <div class="col-xs-6">
+        <h3>Superposicion</h3>
         <p>Un jugador puede avanzar sobre el casillero ocupado por otro jugador siempre y cuando no existe una muralla. Esto obliga a ese jugador a abandonar dicho casille y no le permite crear una muralla en el sitio.</p>
       </div>
     </div>
 
     <div class="item">
-      <div><img src="../../assets/regla_excedido.jpg" width="100%" /></div>
-      <div>
+      <div class="col-xs-6"><img src="../../assets/regla_excedido.jpg"  /></div>
+      <div class="col-xs-6">
+        <h3>Limite</h3>
         <p>Un jugador puede realizar un máximo de 10 movimientos sin construir. Esto permite que un jugador bloquee el acceso a los casilleros libres. De modo que el otro jugador solo podrá desplazarse hasta perder.</p>
       </div>
     </div>
 
     <div class="item">
-      <div><img src="../../assets/regla_nulo.jpg" width="100%" /></div>
-      <div>
+      <div class="col-xs-6"><img src="../../assets/regla_nulo.jpg" /></div>
+      <div class="col-xs-6">
+        <h3>Nulo</h3>
         <p>Cuando un jugador devuelva una instruccion incorrecta para su turno actual o una respuesta nula, automáticamente pierde la partida. Por ejemplo, un intento de movimiento por fuera de los limites del tablero.</p>
       </div>
     </div>
@@ -58,6 +65,18 @@
   </a>
 </div>
 
+<br />
+
+<nav class="navbar navbar-default" aria-label="navigation">
+  <ul class="pager">
+
+    <li><a [routerLink]='["/"]'><span aria-hidden="true">&larr;</span> Volver</a></li>
+    <li><a [routerLink]='["/juego"]' >Jugar <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+
+</nav>
+
+<!--
 <div class="col-xs-12 col-sm-6 col-md-4">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -123,3 +142,4 @@
     </div>
   </div>
 </div>
+-->
