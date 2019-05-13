@@ -9,6 +9,6 @@ namespace Automaton.Logica.Dtos
 
         public IRobot Robot { get; set; }
 
-        public List<AccionRobotDto> Acciones { get; set; } = new List<AccionRobotDto>();
+        public List<ResultadoTurnoDto> Turnos { get; set; } = new List<ResultadoTurnoDto>();
     }
 }

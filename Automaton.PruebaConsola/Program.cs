@@ -5,15 +5,9 @@ using Automaton.Contratos.Entorno;
 using Automaton.Contratos.Helpers;
 using Automaton.Contratos.Robots;
 
-public class RobotUsuario : IRobot
+public class RobotUsuario : ARobot
 {
-    public Tablero Tablero
-    {
-        get;
-        set;
-    }
-
-    public AccionRobotDto GetAccionRobot()
+    public override AccionRobotDto GetAccionRobot(IConsole console)
     {
         var casillero = this.GetPosition(Tablero);
         if (casillero.Muralla == null && casillero.Robots.Count == 1)
@@ -85,10 +79,10 @@ public class Program
         usuario1.Tablero.Filas.First().Casilleros.First().AgregarRobot(usuario1);
         usuario1.Tablero.Filas.Last().Casilleros.Last().AgregarRobot(usuario2);
 
-        var accion = usuario1.GetAccionRobot();
+        var accion = usuario1.GetAccionRobot(null);
 
-        Console.WriteLine($"El primer movimiento es de tipo {accion.GetType().Name }");
-        Console.ReadLine();
+        System.Console.WriteLine($"El primer movimiento es de tipo {accion.GetType().Name }");
+        System.Console.ReadLine();
     }
 
     private static Tablero Crear(IRobot robot)

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
@@ -11,6 +11,10 @@
   <ItemGroup>
     <None Remove="Automaton.Logica.1.0.2.nupkg" />
     <None Remove="Automaton.Logica.1.0.2.nuspec" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
   </ItemGroup>
 
   <ItemGroup>

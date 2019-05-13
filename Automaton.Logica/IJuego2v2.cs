@@ -14,7 +14,7 @@ namespace Automaton.Logica
 
         void AgregarRobot(IRobot robot);
 
-        string JugarTurno();
+        ResultadoTurnoDto JugarTurno();
 
         string ObtenerUsuarioGanador();
 

@@ -1,8 +1,7 @@
-﻿using Automaton.Contratos.Entorno;
-using Automaton.Contratos.Robots;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Automaton.Contratos.Entorno;
+using Automaton.Contratos.Robots;
 
 namespace Automaton.Contratos.Helpers
 {

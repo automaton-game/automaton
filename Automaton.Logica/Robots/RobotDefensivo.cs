@@ -1,22 +1,20 @@
 ﻿namespace Automaton.Logica.Robots
 {
+    using System.Collections.Generic;
     using Automaton.Contratos.Entorno;
     using Automaton.Contratos.Helpers;
     using Automaton.Contratos.Robots;
-    
+
     /// <summary>
     /// El nombre de la clase es el nombre del usuario. 
     /// Por lo tanto siempre debes utilizar el mismo nombre en la creación de tu clase
     /// </summary>
     /// <example> MiRobotJose </example>
-    public class RobotDefensivo : IRobot
+    public class RobotDefensivo : ARobot
     {
-        ///<summary>Devuelve el estado actual del tablero. Correspondiente al turno actual</summary>
-        public Tablero Tablero { get; set; }
-
         ///<summary>El metodo que resuelve el proximo movimiento que el robot debe ejecutar</summary>
-		///<returns>Devuelve una accion según el estado actual del tablero.</returns>
-        public AccionRobotDto GetAccionRobot()
+        ///<returns>Devuelve una accion según el estado actual del tablero.</returns>
+        public override AccionRobotDto GetAccionRobot(IConsole console)
         {
             /// -------------------------------------
             /// Completar aqui con tu logica

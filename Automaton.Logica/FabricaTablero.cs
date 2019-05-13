@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using AutoMapper;
 using Automaton.Contratos.Entorno;
 
 namespace Automaton.Logica
@@ -7,6 +8,13 @@ namespace Automaton.Logica
     {
         private const int filas = 5;
         private const int columnas = 5;
+        private readonly IMapper mapper;
+
+        public FabricaTablero(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
 
         public Tablero Crear()
         {
@@ -22,6 +30,11 @@ namespace Automaton.Logica
                 return fila;
             }).ToArray();
             return tablero;
+        }
+
+        public Tablero Clone(Tablero tablero)
+        {
+            return mapper.Map<Tablero,Tablero>(tablero);
         }
     }
 }

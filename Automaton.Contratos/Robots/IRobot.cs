@@ -4,7 +4,7 @@ namespace Automaton.Contratos.Robots
 {
     public interface IRobot
     {
-        AccionRobotDto GetAccionRobot();
+        AccionRobotDto GetAccionRobot(IConsole console);
 
         Tablero Tablero { get; set; }
     }

@@ -41,6 +41,7 @@ namespace Automaton.Web
             services.AddTransient(p => {
                 var config = new MapperConfiguration(cfg => {
                     cfg.AddProfile<ErrorProfile>();
+                    cfg.AddProfile<ResultadoTurnoProfile>();
                     cfg.CreateMap<Tablero, Models.Tablero>();
                     cfg.CreateMap<FilaTablero, Models.FilaTablero>();
                     cfg.CreateMap<Casillero, Models.Casillero>()
@@ -55,6 +56,8 @@ namespace Automaton.Web
             });
 
             services.AddTransient<IJuego2v2, Juego2v2>();
+            services.AddTransient<IJuegoTurno, JuegoTurno>();
+            services.AddTransient<IDirectorJuego, DirectorJuego>();
             services.AddTransient<IFabricaTablero, FabricaTablero>();
             services.AddTransient<IFabricaRobot, FabricaRobot>();
             services.AddTransient<ErrorHandlingMiddleware>();

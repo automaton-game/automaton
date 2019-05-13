@@ -10,6 +10,7 @@ using System.Linq;
 using Automaton.Web.Logica;
 using Automaton.Contratos.Robots;
 using System;
+using Automaton.Logica.Dtos;
 
 namespace Automaton.Web.Controllers
 {
@@ -23,7 +24,7 @@ namespace Automaton.Web.Controllers
         private readonly IRegistroRobots registroRobots;
         private readonly IRegistroJuegosManuales registroJuegosManuales;
         private readonly IFabricaRobot fabricaRobot;
-        private string motivo;
+        private readonly IDirectorJuego directorJuego;
 
         public TableroController(
             IJuego2v2 juego,
@@ -31,7 +32,8 @@ namespace Automaton.Web.Controllers
             ILogger<TableroController> logger,
             IRegistroRobots registroRobots,
             IRegistroJuegosManuales registroJuegosManuales,
-            IFabricaRobot fabricaRobot)
+            IFabricaRobot fabricaRobot,
+            IDirectorJuego directorJuego)
         {
             this.juego = juego;
             this.mapper = mapper;
@@ -39,6 +41,7 @@ namespace Automaton.Web.Controllers
             this.registroRobots = registroRobots;
             this.registroJuegosManuales = registroJuegosManuales;
             this.fabricaRobot = fabricaRobot;
+            this.directorJuego = directorJuego;
         }
 
         [HttpGet("[action]")]
@@ -98,7 +101,7 @@ namespace Automaton.Web.Controllers
 
             
             string ganador = null;
-            if (!JugarTurno(juego))
+            if (juego.JugarTurno() is TurnoFinalDto)
             {
                 ganador = juego.ObtenerUsuarioGanador();
             }
@@ -106,45 +109,13 @@ namespace Automaton.Web.Controllers
             var tableroModel = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
             var tableros = registroJuegosManuales.GuardarTablero(juegoManualRequest.IdTablero, tableroModel);
 
-            return new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = juegoManualRequest.IdTablero, Ganador = ganador, MotivoDerrota = motivo};
+            return new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = juegoManualRequest.IdTablero, Ganador = ganador, MotivoDerrota = string.Empty};
         }
 
         [HttpPost("[action]")]
         public JuegoResponse GetTablero(TableroRequest tableroRequest)
         {
-            var tipo = AgregarRobot(tableroRequest.LogicaRobot);
-            registroRobots.Registrar(tipo.Name, tableroRequest.LogicaRobot);
-            
-            var ultimoCampeon = registroRobots.ObtenerUltimoCampeon();
-            if (ultimoCampeon != null)
-            {
-                AgregarRobot(ultimoCampeon);
-            }
-            else
-            {
-                var jugador = typeof(RobotDefensivo);
-                AgregarRobot(jugador);
-            }
-
-            var tableros = GetTableros(juego).ToArray();
-            var usuarioGanador = juego.ObtenerUsuarioGanador();
-            registroRobots.RegistrarVictoria(usuarioGanador);
-
-            return new JuegoResponse { Tableros = tableros, Ganador = usuarioGanador, MotivoDerrota = this.motivo };
-        }
-
-        private IEnumerable<Models.Tablero> GetTableros(IJuego2v2 juego)
-        {
-            {
-                var tablero = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
-                yield return tablero;
-            }
-            
-            while (JugarTurno(juego))
-            {
-                var tablero = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
-                yield return tablero;
-            }
+            return directorJuego.Iniciar(tableroRequest.LogicaRobot);
         }
 
         private void AgregarRobot(Type robotType)
@@ -161,11 +132,5 @@ namespace Automaton.Web.Controllers
             return tipo;
         }
 
-        private bool JugarTurno(IJuego2v2 juego)
-        {
-            var motivo = juego.JugarTurno();
-            this.motivo = motivo;
-            return motivo == null;
-        }
     }
 }

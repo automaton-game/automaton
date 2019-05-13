@@ -40,14 +40,11 @@ export class JuegoComponent implements OnInit {
     /// Por lo tanto siempre debes utilizar el mismo nombre en la creación de tu clase
     /// </summary>
     /// <example> MiRobotJose </example>
-    public class MiRobotJose : IRobot
+    public class MiRobotJose : ARobot
     {
-        ///<summary>Devuelve el estado actual del tablero. Correspondiente al turno actual</summary>
-        public Tablero Tablero { get; set; }
-
         ///<summary>El metodo que resuelve el proximo movimiento que el robot debe ejecutar</summary>
-		///<returns>Devuelve una accion según el estado actual del tablero.</returns>
-        public AccionRobotDto GetAccionRobot()
+		    ///<returns>Devuelve una accion según el estado actual del tablero.</returns>
+        public override AccionRobotDto GetAccionRobot(IConsole console)
         {
             /// -------------------------------------
             /// Completar aqui con tu logica

@@ -1,15 +1,12 @@
-﻿using Automaton.Contratos.Entorno;
-using Automaton.Contratos.Robots;
+﻿using Automaton.Contratos.Robots;
 
 namespace Automaton.Logica.Robots
 {
-    public class RobotManual : IRobot
+    public class RobotManual : ARobot
     {
-        public Tablero Tablero { get; set; }
-
         public AccionRobotDto AccionRobot { get; set; }
 
-        public AccionRobotDto GetAccionRobot()
+        public override AccionRobotDto GetAccionRobot(IConsole console)
         {
             return AccionRobot;
         }
