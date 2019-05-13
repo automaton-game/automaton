@@ -11,6 +11,7 @@ import { JuegoResponse } from '../modelos/juegoResponse';
 export class TableroComponent {
   private _juegoResponse: JuegoResponse;
 
+  public consola: Array<string>;
   public filas: Array<FilaTablero>;
   public actual: number;
   public ganador: string;
@@ -29,5 +30,6 @@ export class TableroComponent {
 
   actualizarTablero() {
     this.filas = this.juegoResponse.tableros[this.actual].filas;
+    this.consola = this.juegoResponse.tableros[this.actual].consola;
   }
 }
