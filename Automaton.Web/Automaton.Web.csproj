@@ -28,6 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\autenticacion\autenticacion.service.ts" />
+    <None Remove="ClientApp\src\app\autenticacion\login.component.ts" />
+    <None Remove="ClientApp\src\app\autenticacion\tokenInterceptor.ts" />
     <None Remove="ClientApp\src\app\juegoManual\modelos\accionRobot.ts" />
     <None Remove="ClientApp\src\app\juegoManual\modelos\juegoManualResponse.ts" />
     <None Remove="ClientApp\src\app\juego\modelos\casillero.ts" />
@@ -43,6 +46,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\autenticacion\autenticacion.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\autenticacion\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\autenticacion\tokenInterceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juegoManual\modelos\accionRobot.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juegoManual\modelos\juegoManualResponse.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juego\modelos\casillero.ts" />

@@ -6,6 +6,7 @@ using Automaton.Logica;
 using Automaton.Web.Logica;
 using Automaton.Web.MappingProfiles;
 using Automaton.Web.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +15,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using System.Linq;
 
 namespace Automaton.Web
@@ -37,6 +39,22 @@ namespace Automaton.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+              .AddJwtBearer(options => {
+                  options.TokenValidationParameters =
+                       new TokenValidationParameters
+                       {
+                           ValidateIssuer = false,
+                           ValidateActor = false,
+                           ValidateAudience = false,
+                           ValidateIssuerSigningKey = false,
+                           ValidateLifetime = false,
+                           ValidateTokenReplay = false,
+                           
+                           IssuerSigningKey = JwtTokenBuilder.GetSymmetricSecurityKey()
+                       };
+              });
 
             services.AddTransient(p => {
                 var config = new MapperConfiguration(cfg => {
@@ -83,6 +101,7 @@ namespace Automaton.Web
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 

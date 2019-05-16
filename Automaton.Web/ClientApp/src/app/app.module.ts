@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,9 @@ import { TableroComponent } from './juego/tablero/tablero.component';
 import { JuegoManualComponent } from './juegoManual/juegoManual.component';
 import { SpinnerModule } from './spinnerModule/spinner.module';
 import { InstruccionesComponent } from './instrucciones/instrucciones.component';
+import { LoginComponent } from './autenticacion/login/login.component';
+import { AutenticacionService } from './autenticacion/autenticacion.service';
+import { TokenInterceptor } from './autenticacion/tokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { InstruccionesComponent } from './instrucciones/instrucciones.component'
     TableroComponent,
     JuegoManualComponent,
     InstruccionesComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,10 +48,18 @@ import { InstruccionesComponent } from './instrucciones/instrucciones.component'
       { path: 'juegoManual', component: JuegoManualComponent },
       { path: 'juegoManual/:id', component: JuegoManualComponent },
       { path: 'instrucciones', component: InstruccionesComponent },
+      { path: 'login', component: LoginComponent },
     ]),
     SpinnerModule,
   ],
-  providers: [],
+  providers: [
+    AutenticacionService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

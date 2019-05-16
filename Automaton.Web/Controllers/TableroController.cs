@@ -11,6 +11,7 @@ using Automaton.Web.Logica;
 using Automaton.Contratos.Robots;
 using System;
 using Automaton.Logica.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Automaton.Web.Controllers
 {
