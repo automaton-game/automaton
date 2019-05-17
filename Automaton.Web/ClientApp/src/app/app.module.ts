@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -19,6 +20,8 @@ import { InstruccionesComponent } from './instrucciones/instrucciones.component'
 import { LoginComponent } from './autenticacion/login/login.component';
 import { AutenticacionService } from './autenticacion/autenticacion.service';
 import { TokenInterceptor } from './autenticacion/tokenInterceptor';
+import { LoginComponentTemplate } from './autenticacion/login/login.template';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { TokenInterceptor } from './autenticacion/tokenInterceptor';
     JuegoManualComponent,
     InstruccionesComponent,
     LoginComponent,
+    LoginComponentTemplate
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,6 +55,7 @@ import { TokenInterceptor } from './autenticacion/tokenInterceptor';
       { path: 'login', component: LoginComponent },
     ]),
     SpinnerModule,
+    ModalModule.forRoot(),
   ],
   providers: [
     AutenticacionService,
@@ -60,6 +65,9 @@ import { TokenInterceptor } from './autenticacion/tokenInterceptor';
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    LoginComponentTemplate
+  ]
 })
 export class AppModule { }

@@ -23,13 +23,22 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="%2a%2a\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="%2a%2a\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="%2a%2a\**" />
+    <None Remove="%2a%2a\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\autenticacion\autenticacion.service.ts" />
     <None Remove="ClientApp\src\app\autenticacion\login.component.ts" />
+    <None Remove="ClientApp\src\app\autenticacion\login\login.template.ts" />
+    <None Remove="ClientApp\src\app\autenticacion\token.service.ts" />
     <None Remove="ClientApp\src\app\autenticacion\tokenInterceptor.ts" />
     <None Remove="ClientApp\src\app\juegoManual\modelos\accionRobot.ts" />
     <None Remove="ClientApp\src\app\juegoManual\modelos\juegoManualResponse.ts" />
@@ -46,7 +55,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\autenticacion\token.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\autenticacion\autenticacion.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\autenticacion\login\login.template.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\autenticacion\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\autenticacion\tokenInterceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\juegoManual\modelos\accionRobot.ts" />

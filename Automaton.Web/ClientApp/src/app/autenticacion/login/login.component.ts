@@ -1,27 +1,16 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { AutenticacionService } from '../autenticacion.service';
+import { BsModalRef } from 'ngx-bootstrap';
+import { LoginComponentTemplate } from './login.template';
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
 })
-export class LoginComponent {
-
+export class LoginComponent extends LoginComponentTemplate {
   constructor(
-    private http: HttpClient,
-    @Inject('BASE_URL') private baseUrl: string,
-    private authService: AutenticacionService,
+    authService: AutenticacionService
   ) {
-
-  }
-
-  public usuario: string;
-
-  login() {
-    this.http.post<{ token: string}>(this.baseUrl + 'api/Token/Create', { userName: this.usuario })
-      .subscribe(response => {
-        this.authService.token = response.token;
-      }, (err: HttpErrorResponse) => alert(err.error.errors.map(m => m.message)));
+    super(authService, new BsModalRef());
   }
 }
