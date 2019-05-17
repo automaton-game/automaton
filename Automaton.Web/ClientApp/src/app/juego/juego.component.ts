@@ -42,6 +42,8 @@ export class JuegoComponent implements OnInit {
     /// <example> MiRobotJose </example>
     public class MiRobotJose : ARobot
     {
+        private int cont;
+
         ///<summary>El metodo que resuelve el proximo movimiento que el robot debe ejecutar</summary>
 		    ///<returns>Devuelve una accion según el estado actual del tablero.</returns>
         public override AccionRobotDto GetAccionRobot(IConsole console)
@@ -52,8 +54,9 @@ export class JuegoComponent implements OnInit {
 
             /// -------------------------------------
             /// Prueba distintos ejemplos de movimiento --->
-            
 
+            console.WriteLine("Turno {0}", cont++);
+            
             return MovimientoEjemplo1();
             //return MovimientoEjemplo2();
             //return MovimientoEjemplo3();
