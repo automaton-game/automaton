@@ -101,12 +101,13 @@ namespace Automaton.Web
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseMiddleware<ErrorHandlingMiddleware>();
+            
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -13,9 +13,16 @@ export class LoginComponentTemplate implements OnInit {
   ) { }
 
   public usuario: string;
+  public error: { msg: string } = { msg: null };
 
   login() {
-    this.authService.login(this.usuario);
+    this.authService.login(this.usuario).subscribe(value => {
+      if (value.ok) {
+        this.bsModalRef.hide();
+      } else {
+        this.error.msg = value.error;
+      }
+    });
   }
 
   ngOnInit(): void {

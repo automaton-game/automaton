@@ -22,7 +22,6 @@ import { AutenticacionService } from './autenticacion/autenticacion.service';
 import { TokenInterceptor } from './autenticacion/tokenInterceptor';
 import { LoginComponentTemplate } from './autenticacion/login/login.template';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +36,7 @@ import { LoginComponentTemplate } from './autenticacion/login/login.template';
     JuegoManualComponent,
     InstruccionesComponent,
     LoginComponent,
-    LoginComponentTemplate
+    LoginComponentTemplate,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

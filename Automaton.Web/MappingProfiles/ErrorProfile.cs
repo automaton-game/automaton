@@ -1,6 +1,5 @@
-﻿using Automaton.Compilador.Excepciones;
+﻿using System;
 using Automaton.Web.Models;
-using System;
 
 namespace Automaton.Web.MappingProfiles
 {
@@ -12,6 +11,9 @@ namespace Automaton.Web.MappingProfiles
 
             CreateMap<string, ErrorModel>()
                 .ForMember(x => x.Message, y => y.MapFrom(x => x));
+
+            CreateMap<Exception, ErrorCompositorModel>()
+                .ForMember(x => x.Errors, x => x.Ignore());
         }
     }
 }

@@ -27,7 +27,11 @@ export class JuegoComponent implements OnInit {
     this.http.post<JuegoResponse>(this.baseUrl + 'api/Tablero/GetTablero', { logicaRobot: this.logica1 })
       .subscribe(result => {
         this.juegoResponse = result;
-      }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
+      }, (err: HttpErrorResponse) => {
+        if (err.error && err.error.errors) {
+          this.errores = err.error.errors.map(m => m.message)
+        }
+      });
   }
 
   ngOnInit(): void {

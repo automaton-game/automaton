@@ -4,19 +4,25 @@
   <button type="button" class="close" (click)="bsModalRef.hide()" data-dismiss="modal" aria-hidden="true">&times;</button>
 </div>
 <div class="modal-body">
+  <div *ngIf="error.msg" class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="error.msg=null"><span aria-hidden="true">&times;</span></button>
+    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+    <strong>Error: </strong>
+    <p>{{error.msg}}</p>
+  </div>
   <div class="form-group">
     <label>Username</label>
     <input [(ngModel)]="usuario" type="text" class="form-control" required="required">
   </div>
-  <div class="form-group">
+  <!--<div class="form-group">
     <div class="clearfix">
       <label>Password</label>
       <a href="#" class="pull-right text-muted"><small>Forgot?</small></a>
     </div>
     <input type="password" class="form-control">
-  </div>
+  </div>-->
 </div>
 <div class="modal-footer">
-  <label class="checkbox-inline pull-left"><input type="checkbox"> Remember me</label>
+  <!--<label class="checkbox-inline pull-left"><input type="checkbox"> Remember me</label>-->
   <button (click)="login()" class="btn btn-primary pull-right">Enviar</button>
 </div>

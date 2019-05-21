@@ -113,6 +113,7 @@ namespace Automaton.Web.Controllers
             return new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = juegoManualRequest.IdTablero, Ganador = ganador, MotivoDerrota = string.Empty};
         }
 
+        [Authorize]
         [HttpPost("[action]")]
         public JuegoResponse GetTablero(TableroRequest tableroRequest)
         {

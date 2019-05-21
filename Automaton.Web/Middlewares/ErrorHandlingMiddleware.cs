@@ -42,21 +42,24 @@ namespace Automaton.Web.Middlewares
         {
             context.Response.ContentType = "application/json";
 
-            IList<ErrorModel> errors;
+            ErrorModel error;
             HttpStatusCode code = HttpStatusCode.InternalServerError; // 500 if unexpected
 
             if (ex is ExcepcionCompilacion)
             {
-                errors = ((ExcepcionCompilacion)ex).ErroresCompilacion.Select(mapper.Map<string, ErrorModel>).ToArray();
+                var errorComp = mapper.Map<Exception, ErrorCompositorModel>(ex);
+                errorComp.Errors = ((ExcepcionCompilacion)ex).ErroresCompilacion.Select(mapper.Map<string, ErrorModel>).ToArray();
+
+                error = errorComp;
                 code = HttpStatusCode.BadRequest;
             } else
             {
-                errors = new[] { mapper.Map<Exception, ErrorModel>(ex) };
+                error = mapper.Map<Exception, ErrorModel>(ex);
             }
 
             var serializerSettings = new JsonSerializerSettings();
             serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            var result = JsonConvert.SerializeObject(new { errors }, serializerSettings);
+            var result = JsonConvert.SerializeObject(error, serializerSettings);
 
             context.Response.StatusCode = (int)code;
             await context.Response.WriteAsync(result);
