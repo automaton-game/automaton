@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -17,10 +16,7 @@ import { TableroComponent } from './juego/tablero/tablero.component';
 import { JuegoManualComponent } from './juegoManual/juegoManual.component';
 import { SpinnerModule } from './spinnerModule/spinner.module';
 import { InstruccionesComponent } from './instrucciones/instrucciones.component';
-import { LoginComponent } from './autenticacion/login/login.component';
-import { AutenticacionService } from './autenticacion/autenticacion.service';
-import { TokenInterceptor } from './autenticacion/tokenInterceptor';
-import { LoginComponentTemplate } from './autenticacion/login/login.template';
+import { AutenticacionModule } from './autenticacion/autenticacion.module';
 
 @NgModule({
   declarations: [
@@ -35,8 +31,6 @@ import { LoginComponentTemplate } from './autenticacion/login/login.template';
     TableroComponent,
     JuegoManualComponent,
     InstruccionesComponent,
-    LoginComponent,
-    LoginComponentTemplate,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,22 +45,16 @@ import { LoginComponentTemplate } from './autenticacion/login/login.template';
       { path: 'juegoManual', component: JuegoManualComponent },
       { path: 'juegoManual/:id', component: JuegoManualComponent },
       { path: 'instrucciones', component: InstruccionesComponent },
-      { path: 'login', component: LoginComponent },
     ]),
     SpinnerModule,
-    ModalModule.forRoot(),
+    AutenticacionModule,
   ],
   providers: [
-    AutenticacionService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
+    
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    LoginComponentTemplate
+    
   ]
 })
 export class AppModule { }
