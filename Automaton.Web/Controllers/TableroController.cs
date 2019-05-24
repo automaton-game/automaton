@@ -12,6 +12,8 @@ using Automaton.Contratos.Robots;
 using System;
 using Automaton.Logica.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
+using Automaton.Web.Hubs;
 
 namespace Automaton.Web.Controllers
 {
@@ -26,6 +28,7 @@ namespace Automaton.Web.Controllers
         private readonly IRegistroJuegosManuales registroJuegosManuales;
         private readonly IFabricaRobot fabricaRobot;
         private readonly IDirectorJuego directorJuego;
+        private readonly IHubContext<TurnoHub, ITurnoHubClient> turnoHubClient;
 
         public TableroController(
             IJuego2v2 juego,
@@ -34,7 +37,8 @@ namespace Automaton.Web.Controllers
             IRegistroRobots registroRobots,
             IRegistroJuegosManuales registroJuegosManuales,
             IFabricaRobot fabricaRobot,
-            IDirectorJuego directorJuego)
+            IDirectorJuego directorJuego,
+            IHubContext<TurnoHub, ITurnoHubClient> turnoHubClient)
         {
             this.juego = juego;
             this.mapper = mapper;
@@ -43,6 +47,7 @@ namespace Automaton.Web.Controllers
             this.registroJuegosManuales = registroJuegosManuales;
             this.fabricaRobot = fabricaRobot;
             this.directorJuego = directorJuego;
+            this.turnoHubClient = turnoHubClient;
         }
 
         [HttpGet("[action]")]
@@ -109,6 +114,8 @@ namespace Automaton.Web.Controllers
 
             var tableroModel = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
             var tableros = registroJuegosManuales.GuardarTablero(juegoManualRequest.IdTablero, tableroModel);
+
+            turnoHubClient.Clients.All.FinTurno(juegoManualRequest.IdTablero, juegoManualRequest.IdJugador);
 
             return new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = juegoManualRequest.IdTablero, Ganador = ganador, MotivoDerrota = string.Empty};
         }

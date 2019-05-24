@@ -3,6 +3,7 @@ using Automaton.Compilador;
 using Automaton.Contratos.Entorno;
 using Automaton.Contratos.Helpers;
 using Automaton.Logica;
+using Automaton.Web.Hubs;
 using Automaton.Web.Logica;
 using Automaton.Web.MappingProfiles;
 using Automaton.Web.Middlewares;
@@ -39,7 +40,9 @@ namespace Automaton.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            
+
+            services.AddSignalR();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
               .AddJwtBearer(options => {
                   options.TokenValidationParameters =
@@ -108,6 +111,12 @@ namespace Automaton.Web
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseAuthentication();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<TurnoHub>(new PathString("/turno"));
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

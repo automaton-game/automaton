@@ -1,12 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { JuegoManualResponse } from './modelos/juegoManualResponse';
-import { AccionRobot } from './modelos/accionRobot';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+
 import { timer } from 'rxjs/observable/timer';
 import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { isNullOrUndefined } from 'util';
+
+import { JuegoManualResponse } from './modelos/juegoManualResponse';
+import { AccionRobot } from './modelos/accionRobot';
 
 @Component({
   selector: 'app-juegoManual-component',
@@ -19,8 +22,9 @@ export class JuegoManualComponent implements OnInit {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
-  public juegoManualResponse: JuegoManualResponse;
+  private _hubConnection: HubConnection;
 
+  public juegoManualResponse: JuegoManualResponse;
   public ganador: string;
   public errores: string[];
   public idTablero: string;
@@ -99,7 +103,23 @@ export class JuegoManualComponent implements OnInit {
       if (idTablero && idTablero != this.idTablero) {
         this.idTablero = idTablero;
         this.obtenerTablero();
+        this.connect();
       }
     });
+  }
+
+  private connect() {
+    let connection = new HubConnectionBuilder()
+      .withUrl("/turno")
+      .build();
+
+    connection.on("FinTurno", (idPartida: string, hashRobot: string) => {
+      console.info(idPartida);
+      this.obtenerTablero();
+    });
+
+    connection.start()
+      .then(() => console.log('Connection started!'))
+      .catch(err => console.log('Error while establishing connection :('));
   }
 }
