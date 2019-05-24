@@ -1,7 +1,6 @@
 ﻿using Automaton.Contratos.Entorno;
 using Automaton.Contratos.Robots;
 using Automaton.Logica.Dtos;
-using System;
 using System.Collections.Generic;
 
 namespace Automaton.Logica
@@ -12,7 +11,7 @@ namespace Automaton.Logica
 
         ICollection<string> Robots { get; }
 
-        void AgregarRobot(IRobot robot);
+        void AgregarRobot(string usuario, IRobot robot);
 
         ResultadoTurnoDto JugarTurno();
 

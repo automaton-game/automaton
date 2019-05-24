@@ -55,14 +55,14 @@ namespace Automaton.Web.Logica
         private void AgregarRobot(Type robotType)
         {
             var r = fabricaRobot.ObtenerRobot(robotType);
-            juego.AgregarRobot(r);
+            juego.AgregarRobot(robotType.Name, r);
         }
 
         private Type AgregarRobot(string robotCode)
         {
             var r = fabricaRobot.ObtenerRobot(robotCode);
             var tipo = r.GetType();
-            juego.AgregarRobot(r);
+            juego.AgregarRobot(tipo.Name, r);
             return tipo;
         }
 

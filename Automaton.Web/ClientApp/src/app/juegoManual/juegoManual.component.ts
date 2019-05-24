@@ -1,12 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
-
-import { timer } from 'rxjs/observable/timer';
-import { switchMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs/Subscription';
 
 import { JuegoManualResponse } from './modelos/juegoManualResponse';
 import { AccionRobot } from './modelos/accionRobot';
@@ -15,14 +11,15 @@ import { AccionRobot } from './modelos/accionRobot';
   selector: 'app-juegoManual-component',
   templateUrl: './juegoManual.component.html',
 })
-export class JuegoManualComponent implements OnInit {
-  private suscripcionRefresco: Subscription;
+export class JuegoManualComponent implements OnInit, OnDestroy {
+
   // Set the http options
   private HTTP_OPTIONS = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
   private _hubConnection: HubConnection;
+  private urlPrefix: string; 
 
   public juegoManualResponse: JuegoManualResponse;
   public ganador: string;
@@ -34,11 +31,13 @@ export class JuegoManualComponent implements OnInit {
     private http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string,
     private route: ActivatedRoute,
-    private router: Router,) {
+    private router: Router, ) {
+
+    this.urlPrefix = this.baseUrl + 'api/JuegoManual/';
   }
 
   crearTablero() {
-    const susc = this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/CrearTablero', this.HTTP_OPTIONS )
+    const susc = this.http.get<JuegoManualResponse>(this.urlPrefix + 'CrearTablero', this.HTTP_OPTIONS )
       .subscribe(result => {
         susc.unsubscribe();
         this.juegoManualResponse = result;
@@ -49,52 +48,22 @@ export class JuegoManualComponent implements OnInit {
   }
 
   obtenerTablero() {
-    const susc = this.http.get<JuegoManualResponse>(this.baseUrl + 'api/Tablero/ObtenerTablero?idTablero=' + this.idTablero, this.HTTP_OPTIONS)
+    const susc = this.http.get<JuegoManualResponse>(this.urlPrefix + 'ObtenerTablero?idTablero=' + this.idTablero, this.HTTP_OPTIONS)
       .subscribe(result => {
         susc.unsubscribe();
         this.juegoManualResponse = result;
         if (!this.idJugador) {
           this.idJugador = result.jugadores[0];
-        }
-
-        this.cambioJugador();
-        
+        }        
       }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
   }
   
   accionarTablero(accionRobot: AccionRobot) {
-    const susc = this.http.post<JuegoManualResponse>(this.baseUrl + 'api/Tablero/AccionarTablero', { idTablero: this.idTablero, idJugador: this.idJugador, accionRobot: accionRobot  })
+    const susc = this.http.post<JuegoManualResponse>(this.urlPrefix + 'AccionarTablero', { idTablero: this.idTablero, idJugador: this.idJugador, accionRobot: accionRobot  })
       .subscribe(result => {
         susc.unsubscribe();
         this.juegoManualResponse = result;
-        this.iniciarTimerRefresco();
       }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
-  }
-
- 
-
-  public cambioJugador() {
-    const miTurno = this.juegoManualResponse.jugadorTurnoActual == this.idJugador;
-    if (miTurno) {
-      this.frenarTimer();
-    } else {
-      this.iniciarTimerRefresco();
-    }
-  }
-
-  private frenarTimer() {
-    if (this.suscripcionRefresco) {
-      this.suscripcionRefresco.unsubscribe();
-    }
-  }
-
-  private iniciarTimerRefresco() {
-    if (this.suscripcionRefresco && !this.suscripcionRefresco.closed) {
-      return;
-    }
-    this.suscripcionRefresco = timer(3000, 1000).subscribe(count => {
-      this.obtenerTablero();
-    });
   }
 
   ngOnInit(): void {
@@ -108,17 +77,23 @@ export class JuegoManualComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    if (this._hubConnection) {
+      this._hubConnection.stop();
+    }
+  }
+
   private connect() {
-    let connection = new HubConnectionBuilder()
+    this._hubConnection = new HubConnectionBuilder()
       .withUrl("/turno")
       .build();
 
-    connection.on("FinTurno", (idPartida: string, hashRobot: string) => {
+    this._hubConnection.on("FinTurno", (idPartida: string, hashRobot: string) => {
       console.info(idPartida);
       this.obtenerTablero();
     });
 
-    connection.start()
+    this._hubConnection.start()
       .then(() => console.log('Connection started!'))
       .catch(err => console.log('Error while establishing connection :('));
   }

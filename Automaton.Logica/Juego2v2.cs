@@ -29,12 +29,6 @@ namespace Automaton.Logica
 
         public Tablero Tablero { get; private set; }
 
-        public void AgregarRobot(IRobot robot)
-        {
-            var typeName = robot.GetType().Name;
-            this.AgregarRobot(typeName, robot);
-        }
-
         public ResultadoTurnoDto JugarTurno()
         {
             var robotJuego = ObtenerRobotTurnoActual();
@@ -56,7 +50,7 @@ namespace Automaton.Logica
             return this.robotsJuegoDto.Except(new[] { perdedor }).First().Usuario;
         }
 
-        private void AgregarRobot(string usuario, IRobot robot)
+        public void AgregarRobot(string usuario, IRobot robot)
         {
             this.robotsJuegoDto.Add(new RobotJuegoDto { Usuario = usuario, Robot = robot });
 
