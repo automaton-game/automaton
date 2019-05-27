@@ -17,6 +17,7 @@ import { JuegoManualComponent } from './juegoManual/juegoManual.component';
 import { SpinnerModule } from './spinnerModule/spinner.module';
 import { InstruccionesComponent } from './instrucciones/instrucciones.component';
 import { AutenticacionModule } from './autenticacion/autenticacion.module';
+import { SocketClientServiceFactory } from './socketClientFactory.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { AutenticacionModule } from './autenticacion/autenticacion.module';
     AutenticacionModule,
   ],
   providers: [
-    
+    SocketClientServiceFactory
   ],
   bootstrap: [AppComponent],
   entryComponents: [

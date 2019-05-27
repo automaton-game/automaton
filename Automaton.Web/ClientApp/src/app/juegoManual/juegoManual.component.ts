@@ -2,10 +2,12 @@ import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+
 
 import { JuegoManualResponse } from './modelos/juegoManualResponse';
 import { AccionRobot } from './modelos/accionRobot';
+import { SocketClientServiceFactory } from '../socketClientFactory.service';
+import { SocketClientService } from '../socketClient.service';
 
 @Component({
   selector: 'app-juegoManual-component',
@@ -13,12 +15,14 @@ import { AccionRobot } from './modelos/accionRobot';
 })
 export class JuegoManualComponent implements OnInit, OnDestroy {
 
+  private socketConnection: SocketClientService;
+
   // Set the http options
   private HTTP_OPTIONS = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
-  private _hubConnection: HubConnection;
+  
   private urlPrefix: string; 
 
   public juegoManualResponse: JuegoManualResponse;
@@ -31,7 +35,9 @@ export class JuegoManualComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string,
     private route: ActivatedRoute,
-    private router: Router, ) {
+    private router: Router,
+    private socketClientServiceFactory: SocketClientServiceFactory
+  ) {
 
     this.urlPrefix = this.baseUrl + 'api/JuegoManual/';
   }
@@ -39,30 +45,30 @@ export class JuegoManualComponent implements OnInit, OnDestroy {
   crearTablero() {
     const susc = this.http.get<JuegoManualResponse>(this.urlPrefix + 'CrearTablero', this.HTTP_OPTIONS )
       .subscribe(result => {
-        susc.unsubscribe();
         this.juegoManualResponse = result;
         this.idTablero = result.idTablero;
         this.idJugador = result.jugadores[0];
         this.router.navigate(['.', this.idTablero], { relativeTo: this.route });
+        susc.unsubscribe();
       }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
   }
 
   obtenerTablero() {
     const susc = this.http.get<JuegoManualResponse>(this.urlPrefix + 'ObtenerTablero?idTablero=' + this.idTablero, this.HTTP_OPTIONS)
       .subscribe(result => {
-        susc.unsubscribe();
         this.juegoManualResponse = result;
         if (!this.idJugador) {
           this.idJugador = result.jugadores[0];
-        }        
+        }
+        susc.unsubscribe();
       }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
   }
   
   accionarTablero(accionRobot: AccionRobot) {
     const susc = this.http.post<JuegoManualResponse>(this.urlPrefix + 'AccionarTablero', { idTablero: this.idTablero, idJugador: this.idJugador, accionRobot: accionRobot  })
       .subscribe(result => {
-        susc.unsubscribe();
         this.juegoManualResponse = result;
+        susc.unsubscribe();
       }, (err: HttpErrorResponse) => this.errores = err.error.errors.map(m => m.message));
   }
 
@@ -78,23 +84,18 @@ export class JuegoManualComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this._hubConnection) {
-      this._hubConnection.stop();
+    if (this.socketConnection) {
+      this.socketConnection.ngOnDestroy();
     }
   }
 
   private connect() {
-    this._hubConnection = new HubConnectionBuilder()
-      .withUrl("/turno")
-      .build();
+    this.socketConnection = this.socketClientServiceFactory.connect("/turno");
 
-    this._hubConnection.on("FinTurno", (idPartida: string, hashRobot: string) => {
-      console.info(idPartida);
-      this.obtenerTablero();
+    this.socketConnection.read<{ juego: JuegoManualResponse, hashRobot: string }>().subscribe(resp => {
+      if (this.idTablero == resp.juego.idTablero && this.idJugador != resp.hashRobot) {
+        this.juegoManualResponse = resp.juego;
+      }
     });
-
-    this._hubConnection.start()
-      .then(() => console.log('Connection started!'))
-      .catch(err => console.log('Error while establishing connection :('));
   }
 }

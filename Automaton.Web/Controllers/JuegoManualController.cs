@@ -118,9 +118,11 @@ namespace Automaton.Web.Controllers
             var tableroModel = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
             var tableros = registroJuegosManuales.GuardarTablero(juegoManualRequest.IdTablero, tableroModel);
 
-            turnoHubClient.Clients.All.FinTurno(juegoManualRequest.IdTablero, juegoManualRequest.IdJugador);
+            var juegoResp = new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = juegoManualRequest.IdTablero, Ganador = ganador, MotivoDerrota = string.Empty };
 
-            return new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = juegoManualRequest.IdTablero, Ganador = ganador, MotivoDerrota = string.Empty};
+            turnoHubClient.Clients.All.FinTurno(new FinTurnoDto { Juego = juegoResp, HashRobot = juegoManualRequest.IdJugador });
+
+            return juegoResp;
         }
     }
 }
