@@ -5,14 +5,29 @@ using Automaton.Contratos.Robots;
 
 namespace Automaton.Contratos.Helpers
 {
+    /// <summary>
+    /// Helper Robot
+    /// </summary>
     public static class RobotHelper
     {
+        /// <summary>
+        /// Obtener la posicion del objeto
+        /// </summary>
+        /// <param name="robot">Objeto Robot</param>
+        /// <returns></returns>
         public static Casillero GetPosition(this IRobot robot)
         {
             var tablero = robot.Tablero;
             return tablero.Filas.SelectMany(f => f.Casilleros).First(c => c.ContieneRobot(robot));
         }
 
+        /// <summary>
+        /// Devuelve el casillero correspondiente a las coordenadas indicadas
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public static Casillero GetPosition(this IRobot robot, int x, int y)
         {
             var tablero = robot.Tablero;

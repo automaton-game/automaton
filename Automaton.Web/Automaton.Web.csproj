@@ -53,6 +53,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Automaton.Compilador\Automaton.Compilador.csproj" />
     <ProjectReference Include="..\Automaton.Logica\Automaton.Logica.csproj" />
+    <ProjectReference Include="..\Tools.Documentador\Tools.Documentador.csproj" />
   </ItemGroup>
 
   <ItemGroup>
