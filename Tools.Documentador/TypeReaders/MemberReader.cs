@@ -35,7 +35,7 @@ namespace Tools.Documentador.Readers
 
         public IItemMemberInfo GetParamInfo(ParameterInfo p)
         {
-            return new ParamInfo { Name = p.Name, Type = p.ParameterType.Name };
+            return new ParamInfo { Name = p.Name, Type = p.ParameterType.FullName };
         }
     }
 }
