@@ -8,6 +8,7 @@ namespace Automaton.Contratos.Helpers
     /// <summary>
     /// Helper Robot
     /// </summary>
+    /// <category>CAT1</category>
     public static class RobotHelper
     {
         /// <summary>
@@ -15,6 +16,9 @@ namespace Automaton.Contratos.Helpers
         /// </summary>
         /// <param name="robot">Objeto Robot</param>
         /// <returns></returns>
+        /// <categories>
+        ///     <category>FIRST</category>
+        /// </categories>
         public static Casillero GetPosition(this IRobot robot)
         {
             var tablero = robot.Tablero;
