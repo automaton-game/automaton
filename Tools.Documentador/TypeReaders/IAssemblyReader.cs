@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using Tools.Documentador.Dtos;
+using Tools.Documentador.XmlReaders;
 
 namespace Tools.Documentador
 {
     public interface IAssemblyReader
     {
-        IEnumerable<IClassInfo> ReadAssembly(Type type);
-        IEnumerable<IClassInfo> ReadAssembly<TClassInAssembly>() where TClassInAssembly : class;
+        IEnumerableDisposable<IClassInfo> ReadAssembly(Type type);
     }
 }

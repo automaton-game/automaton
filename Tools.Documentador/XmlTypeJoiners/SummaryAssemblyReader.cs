@@ -3,36 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using Tools.Documentador.Dtos;
 using Tools.Documentador.Models;
-using Tools.Documentador.XmlDocumentation;
+using Tools.Documentador.XmlReaders;
 using Tools.Documentador.XmlTypeJoiners.Dtos;
 
 namespace Tools.Documentador
 {
-    public class SummaryAssemblyReader
+    public class SummaryAssemblyReader : IAssemblyReader
     {
         private readonly IAssemblyReader assemblyReader;
-        private readonly IXmlClassReader xmlClassReader;
+        private readonly IXmlAssemblyReader xmlAssemblyReader;
 
         public SummaryAssemblyReader(
             IAssemblyReader assemblyReader,
-            IXmlClassReader xmlClassReader)
+            IXmlAssemblyReader xmlAssemblyReader)
         {
             this.assemblyReader = assemblyReader;
-            this.xmlClassReader = xmlClassReader;
+            this.xmlAssemblyReader = xmlAssemblyReader;
         }
 
-        public IEnumerable<IClassInfo> ReadAssembly(Type type)
+        public IEnumerableDisposable<IClassInfo> ReadAssembly(Type type)
         {
             var classInfos = assemblyReader.ReadAssembly(type);
-            var xmlClasses = xmlClassReader.Read();
-
+            var xmlClasses = xmlAssemblyReader.Read(type);
             var qry =
                 from classInfo in classInfos
-                join xmlClass in xmlClasses.DefaultIfEmpty() on classInfo.Type equals xmlClass.Name into xmlClassesJoin
+                join xmlClass in xmlClasses on classInfo.Type equals xmlClass.Name into xmlClassesJoin
                 from xmlClassJoin in xmlClassesJoin.DefaultIfEmpty()
                 select GetClassSummaryMember(classInfo, xmlClassJoin);
 
-            return qry;
+            return new EnumerableDisposable<IClassInfo>
+            {
+                Disposable = xmlClasses,
+                IEnumerable = qry
+            };
         }
 
         private IClassInfo GetClassSummaryMember(IClassInfo classInfo, XmlClass xmlClass)

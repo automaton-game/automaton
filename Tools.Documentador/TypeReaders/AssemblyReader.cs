@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Tools.Documentador.Dtos;
 using Tools.Documentador.Readers;
+using Tools.Documentador.XmlReaders;
 
 namespace Tools.Documentador
 {
@@ -15,17 +16,11 @@ namespace Tools.Documentador
             this.classReader = classReader;
         }
 
-        public IEnumerable<IClassInfo> ReadAssembly(Type type)
+        public IEnumerableDisposable<IClassInfo> ReadAssembly(Type type)
         {
             var types = type.Assembly.GetExportedTypes();
             var arr = types.Select(classReader.ReadClass);
-            return arr;
-        }
-
-        public IEnumerable<IClassInfo> ReadAssembly<TClassInAssembly>() where TClassInAssembly : class
-        {
-            var type = typeof(TClassInAssembly);
-            return ReadAssembly(type);
+            return new EnumerableDisposable<IClassInfo> { IEnumerable = arr };
         }
     }
 }

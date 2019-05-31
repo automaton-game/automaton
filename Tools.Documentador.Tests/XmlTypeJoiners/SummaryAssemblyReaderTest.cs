@@ -16,17 +16,13 @@ namespace Tools.Documentador.Tests.XmlTypeJoiners
         public void SummaryAssemblyReaderRead()
         {
             var typeAssembly = typeof(RobotHelper);
-            var service = new SummaryAssemblyReader(
-                new AssemblyReader(
-                    new ClassReader(
-                        new MemberReader())),
-                new XmlClassReader(
-                    new XmlMembersReader(
-                        new XmlReaderFactory().CreateXmlReader(typeAssembly))));
+            var service = ReaderFactory.Create();
 
-            var rta = service.ReadAssembly(typeAssembly).ToList();
-
-            Assert.IsNotNull(rta);
+            using (var ie = service.ReadAssembly(typeAssembly))
+            {
+                var rta = ie.ToList();
+                Assert.IsNotNull(rta);
+            }
         }
     }
 }

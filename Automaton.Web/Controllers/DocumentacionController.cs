@@ -1,4 +1,4 @@
-﻿using Automaton.Contratos.Helpers;
+﻿using Automaton.Contratos.Robots;
 using Microsoft.AspNetCore.Mvc;
 using Tools.Documentador;
 
@@ -8,13 +8,18 @@ namespace Automaton.Web.Controllers
     [ApiController]
     public class DocumentacionController : ControllerBase
     {
+        private readonly IAssemblyReader assemblyReader;
+
+        public DocumentacionController(IAssemblyReader assemblyReader)
+        {
+            this.assemblyReader = assemblyReader;
+        }
 
         [HttpGet("[action]")]
         public IActionResult Get()
         {
-            var lectorXml = new LectorXml();
-            var f = lectorXml.Leer(typeof(RobotHelper), "GetPosition");
-            return Ok(new { Obs = f });
+            var values = assemblyReader.ReadAssembly(typeof(IRobot));
+            return Ok(values);
         } 
     }
 }
