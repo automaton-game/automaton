@@ -3,8 +3,14 @@ using System.Collections.Generic;
 
 namespace Automaton.Contratos.Entorno
 {
+    /// <summary>
+    /// Representa una cuadricula del tablero
+    /// </summary>
     public class Casillero
     {
+        /// <summary>
+        /// Nro de fila comenzando en cero.
+        /// </summary>
         public int NroFila { get; set; }
 
         public int NroColumna { get; set; }

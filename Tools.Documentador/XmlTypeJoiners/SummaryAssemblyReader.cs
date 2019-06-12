@@ -44,18 +44,26 @@ namespace Tools.Documentador
                 return classInfo;
             }
 
-            var qry =
-                from typeMethod in classInfo.Methods.DefaultIfEmpty()
+            var methodsQry =
+                from typeMethod in classInfo.Methods
                 join xmlMethod in xmlClass.Methods on GetXmlMethodName(classInfo, typeMethod) equals xmlMethod.Name into xmlMethodsLeft
                 from xmlMethod in xmlMethodsLeft.DefaultIfEmpty()
                 select CreateSummary(typeMethod, xmlMethod);
-            var items = qry.ToArray();
+            var methods = methodsQry.ToArray();
+
+            var propertiesQry =
+                from typeProperty in classInfo.Properties
+                join xmlProperty in xmlClass.Properties on GetXmlPropertyName(classInfo, typeProperty) equals xmlProperty.Name into xmlMethodsLeft
+                from xmlMethod in xmlMethodsLeft.DefaultIfEmpty()
+                select CreatePropertySummary(typeProperty, xmlMethod);
+            var properties = propertiesQry.ToArray();
 
             var newClassInfo = new ClassInfo
             {
-                Methods = items,
+                Methods = methods,
                 Name = classInfo.Name,
-                Type = classInfo.Type
+                Type = classInfo.Type,
+                Properties = properties
             };
 
 
@@ -81,12 +89,31 @@ namespace Tools.Documentador
             };
         }
 
+        private IItemMemberInfo CreatePropertySummary<TMember>(TMember member, XmlMember xmlMember) where TMember : IItemMemberInfo
+        {
+            if (xmlMember == null)
+            {
+                return member;
+            }
+
+            return new SummaryMember<TMember>
+            {
+                ItemMemberInfo = member,
+                Summary = xmlMember?.Summary
+            };
+        }
+
         private string GetXmlMethodName(IClassInfo classinfo, IMethodInfoDto methodInfo)
         {
             var parametros = methodInfo.Params.Select(p => p.Type);
             var pJoin = string.Join(",", parametros);
             string methodName = classinfo.Type + "." + methodInfo.Name + "(" + pJoin + ")";
             return methodName;
+        }
+
+        private string GetXmlPropertyName(IClassInfo classinfo, IItemMemberInfo itemMemberInfo)
+        {
+            return classinfo.Type + "." + itemMemberInfo.Name;
         }
     }
 }

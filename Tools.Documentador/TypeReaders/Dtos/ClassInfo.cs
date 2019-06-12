@@ -6,6 +6,8 @@ namespace Tools.Documentador.Dtos
     {
         public ICollection<IMethodInfoDto> Methods { get; set; }
 
+        public ICollection<IItemMemberInfo> Properties { get; set; }
+
         public override string ToString()
         {
             return $"{Type}";

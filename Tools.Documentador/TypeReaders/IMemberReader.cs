@@ -10,5 +10,6 @@ namespace Tools.Documentador.Readers
         IMethodInfoDto GetMemeberInfo(MethodInfo methodInfo);
         IItemMemberInfo GetParamInfo(ParameterInfo p);
         IEnumerable<IMethodInfoDto> ReadMembers(Type classType);
+        IEnumerable<IItemMemberInfo> ReadProperties(Type type);
     }
 }

@@ -18,6 +18,7 @@ namespace Tools.Documentador.XmlDocumentation
             var members = xmlMembersReader.Read();
             XmlClass xmlClass = null;
             IList<XmlMethod> methods = null;
+            IList<XmlMember> properties = null;
 
             foreach (var member in members)
             {
@@ -34,12 +35,14 @@ namespace Tools.Documentador.XmlDocumentation
                             yield return xmlClass;
                         }
 
+                        properties = new List<XmlMember>();
                         methods = new List<XmlMethod>();
                         xmlClass = new XmlClass
                         {
                             Methods = methods,
                             Name = definicion,
-                            Summary = member.Summary
+                            Summary = member.Summary,
+                            Properties = properties,
                         };
                         break;
                     case "M":
@@ -51,8 +54,17 @@ namespace Tools.Documentador.XmlDocumentation
 
                         methods.Add(xmlMethod);
                         break;
+                    case "P":
+                        var xmlProperty = new XmlMember
+                        {
+                            Name = definicion,
+                            Summary = member.Summary
+                        };
+                        properties.Add(xmlProperty);
+                        break;
                     default:
-                        throw new NotSupportedException($"No se reconoce el tipo '{tipo}'");
+                        //throw new NotSupportedException($"No se reconoce el tipo '{tipo}'");
+                        break;
                 }
             }
 

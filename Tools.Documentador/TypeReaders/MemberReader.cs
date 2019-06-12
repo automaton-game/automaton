@@ -21,9 +21,22 @@ namespace Tools.Documentador.Readers
             return methods.Select(GetMemeberInfo);
         }
 
+        public IEnumerable<IItemMemberInfo> ReadProperties(Type classType)
+        {
+            var methods = classType
+                .GetProperties(
+                     BindingFlags.Public |
+                     BindingFlags.NonPublic |
+                     BindingFlags.Instance |
+                     BindingFlags.Static |
+                     BindingFlags.DeclaredOnly)
+                .Where(m => !m.IsSpecialName);
+            return methods.Select(GetPropertyInfo);
+        }
+
         public IMethodInfoDto GetMemeberInfo(MethodInfo methodInfo)
         {
-            var itemMemberInfo = new MethodInfoDto()
+            var itemMemberInfo = new MethodInfoDto
             {
                 Name = methodInfo.Name,
                 Type = methodInfo.ReturnType.Name,
@@ -33,9 +46,22 @@ namespace Tools.Documentador.Readers
             return itemMemberInfo;
         }
 
+        public IItemMemberInfo GetPropertyInfo(PropertyInfo propertyInfo)
+        {
+            var itemMemberInfo = new ItemMemberInfo
+            {
+                Name = propertyInfo.Name,
+                Type = propertyInfo.PropertyType.Name,
+            };
+
+            return itemMemberInfo;
+        }
+
         public IItemMemberInfo GetParamInfo(ParameterInfo p)
         {
             return new ParamInfo { Name = p.Name, Type = p.ParameterType.FullName };
         }
+
+        
     }
 }
