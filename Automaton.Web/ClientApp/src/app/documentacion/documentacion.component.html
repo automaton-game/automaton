@@ -1,0 +1,7 @@
+<div *ngFor="let clase of assembly">
+  <h3>{{clase.type}}</h3>
+  <ul>
+    <li *ngFor="let metodo of clase.items"><b>{{metodo.name}}(</b><span *ngFor="let p of metodo.params">{{p.name}}: {{p.type}}, </span><b>)</b>: {{metodo.type}}</li>
+  </ul>
+</div>
+

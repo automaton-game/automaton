@@ -1,6 +1,8 @@
 ﻿using Automaton.Contratos.Robots;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using Tools.Documentador;
+using Tools.Documentador.Dtos;
 
 namespace Automaton.Web.Controllers
 {
@@ -18,8 +20,17 @@ namespace Automaton.Web.Controllers
         [HttpGet("[action]")]
         public IActionResult Get()
         {
-            var values = assemblyReader.ReadAssembly(typeof(IRobot));
-            return Ok(values);
-        } 
+            using (var values = assemblyReader.ReadAssembly(typeof(IRobot)))
+            {
+                var lista = values.Where(Filtro).ToArray();
+                return Ok(new { lista });
+            }
+        }
+        
+        private bool Filtro(IClassInfo classInfo)
+        {
+            const string SS = "Automaton.Contratos.Helpers";
+            return classInfo.Type.Substring(0, SS.Length) == SS;
+        }
     }
 }

@@ -17,7 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using System.Linq;
+using Tools.Documentador;
 
 namespace Automaton.Web
 {
@@ -81,6 +81,9 @@ namespace Automaton.Web
             services.AddTransient<IDirectorJuego, DirectorJuego>();
             services.AddTransient<IFabricaTablero, FabricaTablero>();
             services.AddTransient<IFabricaRobot, FabricaRobot>();
+            services.AddTransient<IAssemblyReader>(f => ReaderFactory.Create());
+
+
             services.AddTransient<ErrorHandlingMiddleware>();
 
             services.AddScoped<ITempFileManager, TempFileManager>();

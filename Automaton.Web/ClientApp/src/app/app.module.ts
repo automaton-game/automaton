@@ -18,6 +18,7 @@ import { SpinnerModule } from './spinnerModule/spinner.module';
 import { InstruccionesComponent } from './instrucciones/instrucciones.component';
 import { AutenticacionModule } from './autenticacion/autenticacion.module';
 import { SocketClientServiceFactory } from './socketClientFactory.service';
+import { DocumentacionComponent } from './documentacion/documentacion.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SocketClientServiceFactory } from './socketClientFactory.service';
     TableroComponent,
     JuegoManualComponent,
     InstruccionesComponent,
+    DocumentacionComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +48,7 @@ import { SocketClientServiceFactory } from './socketClientFactory.service';
       { path: 'juegoManual', component: JuegoManualComponent },
       { path: 'juegoManual/:id', component: JuegoManualComponent },
       { path: 'instrucciones', component: InstruccionesComponent },
+      { path: 'documentacion', component: DocumentacionComponent },
     ]),
     SpinnerModule,
     AutenticacionModule,
