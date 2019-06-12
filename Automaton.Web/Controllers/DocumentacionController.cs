@@ -29,8 +29,13 @@ namespace Automaton.Web.Controllers
         
         private bool Filtro(IClassInfo classInfo)
         {
-            const string SS = "Automaton.Contratos.Helpers";
-            return classInfo.Type.Substring(0, SS.Length) == SS;
+            var lista = new[]
+            {
+                "Automaton.Contratos.Helpers",
+                "Automaton.Contratos.Entorno",
+            };
+
+            return lista.Any(ss => classInfo.Type.Substring(0, ss.Length) == ss);
         }
     }
 }
