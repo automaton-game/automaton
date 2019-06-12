@@ -25,7 +25,7 @@ namespace Tools.Documentador.Readers
             {
                 Name = type.Name,
                 Type = type.FullName,
-                Items = memberReader.ReadMembers(type).ToArray()
+                Methods = memberReader.ReadMembers(type).ToArray()
             };
 
             return classInfo;

@@ -45,7 +45,7 @@ namespace Tools.Documentador
             }
 
             var qry =
-                from typeMethod in classInfo.Items.DefaultIfEmpty()
+                from typeMethod in classInfo.Methods.DefaultIfEmpty()
                 join xmlMethod in xmlClass.Methods on GetXmlMethodName(classInfo, typeMethod) equals xmlMethod.Name into xmlMethodsLeft
                 from xmlMethod in xmlMethodsLeft.DefaultIfEmpty()
                 select CreateSummary(typeMethod, xmlMethod);
@@ -53,7 +53,7 @@ namespace Tools.Documentador
 
             var newClassInfo = new ClassInfo
             {
-                Items = items,
+                Methods = items,
                 Name = classInfo.Name,
                 Type = classInfo.Type
             };

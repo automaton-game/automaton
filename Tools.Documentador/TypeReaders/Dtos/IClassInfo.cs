@@ -4,6 +4,6 @@ namespace Tools.Documentador.Dtos
 {
     public interface IClassInfo : IItemMemberInfo
     {
-        ICollection<IMethodInfoDto> Items { get; }
+        ICollection<IMethodInfoDto> Methods { get; }
     }
 }

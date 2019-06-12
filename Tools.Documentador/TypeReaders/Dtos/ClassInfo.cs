@@ -4,7 +4,7 @@ namespace Tools.Documentador.Dtos
 {
     public class ClassInfo : ItemMemberInfo, IClassInfo
     {
-        public ICollection<IMethodInfoDto> Items { get; set; }
+        public ICollection<IMethodInfoDto> Methods { get; set; }
 
         public override string ToString()
         {
