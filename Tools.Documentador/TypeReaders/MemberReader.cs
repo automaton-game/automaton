@@ -40,6 +40,7 @@ namespace Tools.Documentador.Readers
             {
                 Name = methodInfo.Name,
                 Type = methodInfo.ReturnType.Name,
+                Namespace = methodInfo.ReturnType.Namespace,
                 Params = methodInfo.GetParameters().Select(GetParamInfo).ToArray()
             };
 
@@ -52,6 +53,7 @@ namespace Tools.Documentador.Readers
             {
                 Name = propertyInfo.Name,
                 Type = propertyInfo.PropertyType.Name,
+                Namespace = propertyInfo.PropertyType.Namespace
             };
 
             return itemMemberInfo;
@@ -59,7 +61,12 @@ namespace Tools.Documentador.Readers
 
         public IItemMemberInfo GetParamInfo(ParameterInfo p)
         {
-            return new ParamInfo { Name = p.Name, Type = p.ParameterType.FullName };
+            return new ParamInfo
+            {
+                Name = p.Name,
+                Type = p.ParameterType.Name,
+                Namespace = p.ParameterType.Namespace
+            };
         }
 
         

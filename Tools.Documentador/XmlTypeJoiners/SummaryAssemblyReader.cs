@@ -105,7 +105,7 @@ namespace Tools.Documentador
 
         private string GetXmlMethodName(IClassInfo classinfo, IMethodInfoDto methodInfo)
         {
-            var parametros = methodInfo.Params.Select(p => p.Type);
+            var parametros = methodInfo.Params.Select(p => string.Concat(p.Namespace, ".", p.Type));
             var pJoin = string.Join(",", parametros);
             string methodName = classinfo.Type + "." + methodInfo.Name + "(" + pJoin + ")";
             return methodName;
@@ -113,7 +113,7 @@ namespace Tools.Documentador
 
         private string GetXmlPropertyName(IClassInfo classinfo, IItemMemberInfo itemMemberInfo)
         {
-            return classinfo.Type + "." + itemMemberInfo.Name;
+            return string.Concat(classinfo.Namespace, ".", classinfo.Type , "." , itemMemberInfo.Name);
         }
     }
 }

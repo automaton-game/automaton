@@ -11,5 +11,7 @@ namespace Tools.Documentador.Dtos
         public string Name => ItemMemberInfo.Name;
 
         public string Type => ItemMemberInfo.Type;
+
+        public string Namespace => ItemMemberInfo.Namespace;
     }
 }
