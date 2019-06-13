@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Automaton.PruebaConsola</RootNamespace>
     <AssemblyName>Automaton.PruebaConsola</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -54,6 +54,10 @@
     <ProjectReference Include="..\Automaton.Contratos\Automaton.Contratos.csproj">
       <Project>{ebc8c57d-ea24-42fd-9d0b-4b619f4ed04f}</Project>
       <Name>Automaton.Contratos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Automaton.Logica\Automaton.Logica.csproj">
+      <Project>{f9bca978-debf-4c54-8930-8fe5abf6ed7f}</Project>
+      <Name>Automaton.Logica</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

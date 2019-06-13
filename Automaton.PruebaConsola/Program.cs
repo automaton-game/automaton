@@ -4,6 +4,7 @@ using System.Linq;
 using Automaton.Contratos.Entorno;
 using Automaton.Contratos.Helpers;
 using Automaton.Contratos.Robots;
+using Automaton.Logica.Helpers;
 
 public class RobotUsuario : ARobot
 {

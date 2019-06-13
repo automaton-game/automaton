@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Automaton.Contratos.Helpers;
 using Automaton.Logica.Robots;
+using Automaton.Logica.Helpers;
 
 namespace Automaton.Logica
 {
