@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Automaton.Contratos.Robots;
 using System.Collections.Generic;
 
-namespace Automaton.Contratos.Robots
+namespace Automaton.Logica.Robots
 {
-    public class Console : IConsole
+    public class RobotConsole : IConsole
     {
         public IList<string> Logs { get; private set; } = new List<string>();
 

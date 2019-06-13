@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Automaton.Contratos.Helpers;
+using Automaton.Logica.Robots;
 
 namespace Automaton.Logica
 {
@@ -38,7 +39,7 @@ namespace Automaton.Logica
             {
                 RobotJuego.Robot.Tablero = this.Tablero;
 
-                var console = new Contratos.Robots.Console();
+                var console = new RobotConsole();
                 var accion = EjecutarAccionRobot(RobotJuego, console);
                 return new TurnoRobotDto { Accion = accion, Consola = console.Logs };
             }

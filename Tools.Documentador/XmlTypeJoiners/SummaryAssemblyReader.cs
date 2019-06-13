@@ -63,7 +63,8 @@ namespace Tools.Documentador
                 Methods = methods,
                 Name = classInfo.Name,
                 Type = classInfo.Type,
-                Properties = properties
+                Properties = properties,
+                Namespace = classInfo.Namespace,
             };
 
 

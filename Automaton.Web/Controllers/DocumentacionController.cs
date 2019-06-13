@@ -22,7 +22,7 @@ namespace Automaton.Web.Controllers
         {
             using (var values = assemblyReader.ReadAssembly(typeof(IRobot)))
             {
-                var lista = values.Where(Filtro).ToArray();
+                var lista = values.ToArray();
                 return Ok(new { lista });
             }
         }
@@ -35,7 +35,7 @@ namespace Automaton.Web.Controllers
                 "Automaton.Contratos.Entorno",
             };
 
-            return lista.Any(ss => classInfo.Type.Substring(0, ss.Length) == ss);
+            return lista.Any(ss => classInfo.Namespace == ss);
         }
     }
 }
