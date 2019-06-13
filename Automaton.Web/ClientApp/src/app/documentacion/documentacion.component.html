@@ -1,8 +1,31 @@
-<div *ngFor="let clase of assembly">
-  <h3>{{clase.type}}</h3>
-  <ul>
-    <li *ngFor="let metodo of clase.methods"><b>{{metodo.name}}(</b><span *ngFor="let p of metodo.params">{{p.name}}: {{p.type}}, </span><b>)</b>: {{metodo.type}} <blockquote *ngIf="metodo.summary">{{metodo.summary}}</blockquote></li>
-    <li *ngFor="let property of clase.properties"><b>{{property.name}}</b>: {{property.type}} <blockquote *ngIf="property.summary">{{property.summary}}</blockquote></li>
-  </ul>
-</div>
+<ul>
+  <li *ngFor="let nameSpace of assembly; let nameSpaceId = index">
+    {{nameSpace.name}}
+    <ul>
+      <li *ngFor="let clase of nameSpace.classes; let classId = index">
+        <a data-toggle="collapse" href="#class_{{clase.name}}" *ngIf="claseConContenido(clase)">{{clase.name}}</a>
+        <span *ngIf="!claseConContenido(clase)">{{clase.name}}</span>
+        <span *ngIf="clase.summary"> >> {{clase.summary}}</span>
+        <div class="collapse" id="class_{{clase.name}}">
+          <ul>
+            <li *ngFor="let metodo of clase.methods">
+              <b>{{metodo.name}}(</b>
+              <span *ngFor="let p of metodo.params">{{p.name}}: {{p.type}}, </span>
+              <b>)</b>: {{metodo.type}}
+              <span *ngIf="metodo.summary"> >> {{metodo.summary}}</span>
+            </li>
+          </ul>
+          <ul>
+            <li *ngFor="let property of clase.properties">
+              <b>{{property.name}}</b>: {{property.type}}
+              <span *ngIf="property.summary"> >> {{property.summary}}</span>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
 

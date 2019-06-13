@@ -1,8 +1,7 @@
 ﻿using Automaton.Contratos.Robots;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using Tools.Documentador;
-using Tools.Documentador.Dtos;
+using Tools.Documentador.TypeReaders;
 
 namespace Automaton.Web.Controllers
 {
@@ -10,32 +9,21 @@ namespace Automaton.Web.Controllers
     [ApiController]
     public class DocumentacionController : ControllerBase
     {
-        private readonly IAssemblyReader assemblyReader;
+        private readonly INameSpaceGrouping nameSpaceGrouping;
 
-        public DocumentacionController(IAssemblyReader assemblyReader)
+        public DocumentacionController(INameSpaceGrouping nameSpaceGrouping)
         {
-            this.assemblyReader = assemblyReader;
+            this.nameSpaceGrouping = nameSpaceGrouping;
         }
 
         [HttpGet("[action]")]
         public IActionResult Get()
         {
-            using (var values = assemblyReader.ReadAssembly(typeof(IRobot)))
+            using (var values = nameSpaceGrouping.ReadNamespaces(typeof(IRobot)))
             {
                 var lista = values.ToArray();
                 return Ok(new { lista });
             }
-        }
-        
-        private bool Filtro(IClassInfo classInfo)
-        {
-            var lista = new[]
-            {
-                "Automaton.Contratos.Helpers",
-                "Automaton.Contratos.Entorno",
-            };
-
-            return lista.Any(ss => classInfo.Namespace == ss);
         }
     }
 }

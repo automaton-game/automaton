@@ -18,7 +18,7 @@ namespace Tools.Documentador.Tests.XmlTypeJoiners
             var typeAssembly = typeof(RobotHelper);
             var service = ReaderFactory.Create();
 
-            using (var ie = service.ReadAssembly(typeAssembly))
+            using (var ie = service.ReadNamespaces(typeAssembly))
             {
                 var rta = ie.ToList();
                 Assert.IsNotNull(rta);
