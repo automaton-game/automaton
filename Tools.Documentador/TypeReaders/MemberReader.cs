@@ -39,7 +39,7 @@ namespace Tools.Documentador.Readers
             var itemMemberInfo = new MethodInfoDto
             {
                 Name = methodInfo.Name,
-                Type = methodInfo.ReturnType.Name,
+                Type = GetTypeName(methodInfo.ReturnType),
                 Namespace = methodInfo.ReturnType.Namespace,
                 Params = methodInfo.GetParameters().Select(GetParamInfo).ToArray()
             };
@@ -52,7 +52,7 @@ namespace Tools.Documentador.Readers
             var itemMemberInfo = new ItemMemberInfo
             {
                 Name = propertyInfo.Name,
-                Type = propertyInfo.PropertyType.Name,
+                Type = GetTypeName(propertyInfo.PropertyType),
                 Namespace = propertyInfo.PropertyType.Namespace
             };
 
@@ -64,11 +64,22 @@ namespace Tools.Documentador.Readers
             return new ParamInfo
             {
                 Name = p.Name,
-                Type = p.ParameterType.Name,
+                Type = GetTypeName(p.ParameterType),
                 Namespace = p.ParameterType.Namespace
             };
         }
 
+        private string GetTypeName(Type tipo)
+        {
+            var rta = tipo.Name;
+            var args = tipo.GetGenericArguments().Select(a => a.Name).ToArray();
+            if(args.Length > 0)
+            {
+                rta += string.Concat("<", string.Join(",", args), ">");
+            }
+
+            return rta;
+        }
         
     }
 }
