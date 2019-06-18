@@ -10,7 +10,7 @@
   <div class="panel panel-default ">
     <div class="panel-heading"><label>Visor de turnos</label></div>
     <div class="panel-body">
-      <input type="range" class="custom-range" id="customRange1" min="0" max="{{juegoResponse.tableros.length - 1}}" [(ngModel)]="actual" (change)="actualizarTablero()">
+      <input type="range" class="custom-range" id="customRange1" min="0" max="{{juegoResponse.tableros.length - 1}}" [(ngModel)]="actual" (change)="selectorChange()">
       <p>Valor actual: <b>{{actual}}</b></p>
     </div>
   </div>
