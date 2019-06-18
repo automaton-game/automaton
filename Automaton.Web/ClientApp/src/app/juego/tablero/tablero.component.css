@@ -1,0 +1,6 @@
+.consola{
+  background-color: black;
+  color:white;
+  height: 50px;
+  overflow-y:auto;
+}

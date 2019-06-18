@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'tablero-component',
   templateUrl: './tablero.component.html',
-  styleUrls: []
+  styleUrls: ['./tablero.component.css']
 })
 export class TableroComponent implements OnInit {
     
