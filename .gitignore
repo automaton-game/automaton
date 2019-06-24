@@ -23,3 +23,4 @@ Obj/
 *.nuspec
 *.nupkg
 /node_modules/*
+/AutomataNETjuegos.Web/Properties/launchSettings.json
