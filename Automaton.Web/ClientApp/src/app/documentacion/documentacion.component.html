@@ -1,18 +1,26 @@
-<ul>
-  <li *ngFor="let nameSpace of assembly; let nameSpaceId = index">
-    {{nameSpace.name}}
-    <ul>
-      <li *ngFor="let clase of nameSpace.classes; let classId = index">
-        <a data-toggle="collapse" href="#class_{{clase.name}}" *ngIf="claseConContenido(clase)">{{clase.name}}</a>
-        <span *ngIf="!claseConContenido(clase)">{{clase.name}}</span>
-        <span *ngIf="clase.summary"> >> {{clase.summary}}</span>
-        <div class="collapse" id="class_{{clase.name}}">
+<div id="faq" role="tablist" aria-multiselectable="true">
+
+  <div *ngFor="let nameSpace of assembly; let nameSpaceId = index">
+    <h3>{{nameSpace.name}}</h3>
+
+    <div class="panel panel-default" *ngFor="let clase of nameSpace.classes; let classId = index">
+      <div class="panel-heading" role="tab" id="classContainer_{{clase.name}}">
+        <h5 class="panel-title">
+          <a *ngIf="claseConContenido(clase)" data-toggle="collapse" data-parent="#faq" href="#class_{{clase.name}}" aria-expanded="false" aria-controls="answerOne">
+            > {{clase.name}}
+          </a>
+          <span *ngIf="!claseConContenido(clase)">{{clase.name}}</span>
+          <span *ngIf="clase.summary" style="font-size:small; color:gray"> >> {{clase.summary}}</span>
+        </h5>
+      </div>
+      <div id="class_{{clase.name}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="questionOne">
+        <div class="panel-body">
           <ul>
             <li *ngFor="let metodo of clase.methods">
               <b>{{metodo.name}}(</b>
               <span *ngFor="let p of metodo.params">{{p.name}}: {{p.type}}, </span>
               <b>)</b>: {{metodo.type}}
-              <span *ngIf="metodo.summary"> >> {{metodo.summary}}</span>
+              <span *ngIf="metodo.summary" > >> {{metodo.summary}}</span>
             </li>
           </ul>
           <ul>
@@ -22,10 +30,7 @@
             </li>
           </ul>
         </div>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-
-
+      </div>
+    </div>
+  </div>
+</div>
