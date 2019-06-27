@@ -114,7 +114,13 @@ namespace Tools.Documentador
 
         private string GetXmlPropertyName(IClassInfo classinfo, IItemMemberInfo itemMemberInfo)
         {
-            return string.Concat(classinfo.Namespace, ".", classinfo.Type , "." , itemMemberInfo.Name);
+            var valores = new[] 
+            {
+                classinfo.Namespace,
+                classinfo.Name,
+                itemMemberInfo.Name
+            };
+            return string.Join(".", valores);
         }
     }
 }
