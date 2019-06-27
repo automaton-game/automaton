@@ -10,7 +10,7 @@ public class RobotUsuario : ARobot
 {
     public override AccionRobotDto GetAccionRobot(IConsole console)
     {
-        var casillero = this.GetPosition(Tablero);
+        var casillero = Tablero.GetPosition(this);
         if (casillero.Muralla == null && casillero.Robots.Count == 1)
         {
             return new AccionConstruirDto()

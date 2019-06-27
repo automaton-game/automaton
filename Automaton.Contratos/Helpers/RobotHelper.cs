@@ -6,7 +6,7 @@ using Automaton.Contratos.Robots;
 namespace Automaton.Contratos.Helpers
 {
     /// <summary>
-    /// Helper Robot
+    /// Atajos para el robot. 
     /// </summary>
     /// <category>CAT1</category>
     public static class RobotHelper
@@ -44,33 +44,65 @@ namespace Automaton.Contratos.Helpers
             return fila.Casilleros.FirstOrDefault(c => c.NroColumna == x);
         }
 
+        /// <summary>
+        /// Devuelve un listado de robots enemigos
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <returns></returns>
         public static IEnumerable<IRobot> GetOtherRobots(this IRobot robot)
         {
             return robot.Tablero.GetCasilleros().SelectMany(c => c.Robots).Where(c => c != null && c != robot);
         }
 
+        /// <summary>
+        /// Verifica si el robot se encuentra en la ultima columna
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <returns></returns>
         public static bool EstoyUltimaColumna(this IRobot robot)
         {
             var pos = robot.GetPosition();
             return pos.NroColumna == pos.Fila.Tablero.GetMax().NroColumna;
         }
 
+        /// <summary>
+        /// Verifica si el robot se encuentra en la ultima fila
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <returns></returns>
         public static bool EstoyUltimaFila(this IRobot robot)
         {
             var casillero = robot.GetPosition();
             return casillero.NroFila == casillero.Fila.Tablero.GetMax().NroFila;
         }
 
+        /// <summary>
+        /// Verifica si el robot se encuentra en la primera columna
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <returns></returns>
         public static bool EstoyPrimeraColumna(this IRobot robot)
         {
             return robot.GetPosition().NroColumna == 0;
         }
 
+        /// <summary>
+        /// Verifica si el robot se encuentra en la primera fila
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <returns></returns>
         public static bool EsPrimeraFila(this IRobot robot)
         {
             return robot.GetPosition().NroFila == 0;
         }
 
+        /// <summary>
+        /// Devuelve el casillero correspondiente al desplazamiento indicado para el robot en su posicion actual.
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <param name="desplazamientoHorizontal"></param>
+        /// <param name="desplazamientoVertical"></param>
+        /// <returns></returns>
         public static Casillero BuscarRelativo(this IRobot robot, int desplazamientoHorizontal, int desplazamientoVertical)
         {
             var casillero = robot.GetPosition();
@@ -79,6 +111,12 @@ namespace Automaton.Contratos.Helpers
             return casillero.Fila.Tablero.GetPosition(x, y);
         }
 
+        /// <summary>
+        /// Devuelve el casillero de la ubicacion adyancente indicada, segun la posicion actual del robot.
+        /// </summary>
+        /// <param name="robot"></param>
+        /// <param name="movimiento"></param>
+        /// <returns></returns>
         public static Casillero BuscarRelativo(this IRobot robot, DireccionEnum movimiento)
         {
             var casillero = robot.GetPosition();
