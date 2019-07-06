@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2043
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaton.Logica", "Automaton.Logica\Automaton.Logica.csproj", "{F9BCA978-DEBF-4C54-8930-8FE5ABF6ED7F}"
 EndProject
@@ -19,9 +19,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton.PruebaConsola", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{9E149747-FDA8-4E3A-829B-A278CCDB995E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools.Documentador", "Tools.Documentador\Tools.Documentador.csproj", "{11F6876C-DB5E-40F1-AEEA-D866F5C334BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.Documentador", "Tools.Documentador\Tools.Documentador.csproj", "{11F6876C-DB5E-40F1-AEEA-D866F5C334BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools.Documentador.Tests", "Tools.Documentador.Tests\Tools.Documentador.Tests.csproj", "{C81BBF14-64F9-4D53-8955-F3ADCAA82E26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.Documentador.Tests", "Tools.Documentador.Tests\Tools.Documentador.Tests.csproj", "{C81BBF14-64F9-4D53-8955-F3ADCAA82E26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E8998B44-46FA-46AD-B36B-21BBB438AE9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton.Web.Tests", "Automaton.Web.Tests\Automaton.Web.Tests.csproj", "{EBE765DF-0545-4335-A7BD-3707A465CF3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,13 +69,19 @@ Global
 		{C81BBF14-64F9-4D53-8955-F3ADCAA82E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C81BBF14-64F9-4D53-8955-F3ADCAA82E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C81BBF14-64F9-4D53-8955-F3ADCAA82E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBE765DF-0545-4335-A7BD-3707A465CF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBE765DF-0545-4335-A7BD-3707A465CF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBE765DF-0545-4335-A7BD-3707A465CF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBE765DF-0545-4335-A7BD-3707A465CF3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{D73C18E7-0B33-4921-AE7F-7A3E94D2FDE6} = {E8998B44-46FA-46AD-B36B-21BBB438AE9A}
 		{11F6876C-DB5E-40F1-AEEA-D866F5C334BB} = {9E149747-FDA8-4E3A-829B-A278CCDB995E}
 		{C81BBF14-64F9-4D53-8955-F3ADCAA82E26} = {9E149747-FDA8-4E3A-829B-A278CCDB995E}
+		{EBE765DF-0545-4335-A7BD-3707A465CF3C} = {E8998B44-46FA-46AD-B36B-21BBB438AE9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B61A17E3-CC98-42F4-8C98-BA1BAA0158D8}
