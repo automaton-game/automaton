@@ -1,3 +1,5 @@
+using Automaton.Logica;
+using Automaton.Web.Logica;
 using NUnit.Framework;
 
 namespace Tests
@@ -12,6 +14,9 @@ namespace Tests
         [Test]
         public void Test1()
         {
+
+            //var kernel = new StandardKernel();
+
             Assert.Pass();
         }
     }
