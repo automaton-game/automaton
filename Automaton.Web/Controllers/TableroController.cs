@@ -22,7 +22,8 @@ namespace Automaton.Web.Controllers
         [HttpPost("[action]")]
         public JuegoResponse GetTablero(TableroRequest tableroRequest)
         {
-            return directorJuego.Iniciar(tableroRequest.LogicaRobot);
+            var usuario = this.HttpContext.User.Identity.Name;
+            return directorJuego.Iniciar(tableroRequest.LogicaRobot, usuario);
         }
     }
 }

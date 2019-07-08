@@ -4,11 +4,9 @@ namespace Automaton.Web.Logica
 {
     public interface IRegistroRobots
     {
-        void Registrar(string key, string logica);
+        int RegistrarVictoria(string ganador, string logicaGanador = null);
 
-        int RegistrarVictoria(string key);
-
-        string ObtenerUltimoCampeon();
+        RegistroVictoriasDto ObtenerUltimoCampeon();
 
         IDictionary<string, int> ObtenerResumen();
     }

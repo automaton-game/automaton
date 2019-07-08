@@ -29,15 +29,13 @@ namespace Automaton.Web.Logica
             this.fabricaRobot = fabricaRobot;
         }
 
-        public JuegoResponse Iniciar(string logicaRobot)
+        public JuegoResponse Iniciar(string logicaRobot, string usuario)
         {
-            var tipo = AgregarRobot(logicaRobot);
-            registroRobots.Registrar(tipo.Name, logicaRobot);
-
+            var tipo = AgregarRobot(logicaRobot, usuario);
             var ultimoCampeon = registroRobots.ObtenerUltimoCampeon();
-            if (ultimoCampeon != null)
+            if (ultimoCampeon != null && ultimoCampeon.Logica != null)
             {
-                AgregarRobot(ultimoCampeon);
+                AgregarRobot(ultimoCampeon.Logica, ultimoCampeon.Usuario);
             }
             else
             {
@@ -47,7 +45,8 @@ namespace Automaton.Web.Logica
 
             var tableros = GetTableros(juego).ToArray();
             var usuarioGanador = juego.ObtenerUsuarioGanador();
-            registroRobots.RegistrarVictoria(usuarioGanador);
+            var logicaGanador = usuarioGanador == usuario ? logicaRobot : null;
+            registroRobots.RegistrarVictoria(usuarioGanador, logicaGanador);
 
             return new JuegoResponse { Tableros = tableros, Ganador = usuarioGanador, MotivoDerrota = tableros.Last().Consola.Last() };
         }
@@ -58,11 +57,11 @@ namespace Automaton.Web.Logica
             juego.AgregarRobot(robotType.Name, r);
         }
 
-        private Type AgregarRobot(string robotCode)
+        private Type AgregarRobot(string robotCode, string usuario)
         {
             var r = fabricaRobot.ObtenerRobot(robotCode);
             var tipo = r.GetType();
-            juego.AgregarRobot(tipo.Name, r);
+            juego.AgregarRobot(usuario, r);
             return tipo;
         }
 

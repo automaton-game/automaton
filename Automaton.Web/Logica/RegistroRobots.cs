@@ -6,32 +6,44 @@ namespace Automaton.Web.Logica
 {
     public class RegistroRobots : IRegistroRobots
     {
-        private IDictionary<string, Tuple<string, int, DateTime>> lista = new Dictionary<string, Tuple<string, int, DateTime>>(); 
+        private IList<RegistroVictoriasDto> victorias = new List<RegistroVictoriasDto>();
 
         public IDictionary<string, int> ObtenerResumen()
         {
-            return lista.ToDictionary(d => d.Key, d => d.Value.Item2);
+            return victorias.GroupBy(v => v.Usuario).ToDictionary(d => d.Key, d => d.Sum(v => v.Victorias));
         }
 
-        public string ObtenerUltimoCampeon()
+        public RegistroVictoriasDto ObtenerUltimoCampeon()
         {
-            return lista.Where(d => d.Value.Item2 > 0).OrderByDescending(d => d.Value.Item3).Select(d => d.Value.Item1).FirstOrDefault();
+            var a = victorias.LastOrDefault();
+            return a;
         }
 
-        public void Registrar(string key, string logica)
+        public int RegistrarVictoria(string ganador, string logicaGanador = null)
         {
-            lista[key] = new Tuple<string, int, DateTime>(logica, 0, DateTime.Now);
-        }
-
-        public int RegistrarVictoria(string key)
-        {
-            if (lista.TryGetValue(key, out Tuple<string, int, DateTime> tupla))
+            var ultimo = ObtenerUltimoCampeon();
+            var nroVictorias = 1;
+            if(ultimo != null)
             {
-                lista[key] = new Tuple<string, int, DateTime>(tupla.Item1, tupla.Item2 + 1, tupla.Item3);
-                return tupla.Item2 + 1;
+                nroVictorias = ultimo.Victorias+ 1;
             }
 
-            return 0;
+            if (ultimo?.Usuario == ganador)
+            {
+                ultimo.Victorias = nroVictorias;
+            }
+            else
+            {
+                victorias.Add(new RegistroVictoriasDto
+                {
+                    Fecha = DateTime.Now,
+                    Victorias = nroVictorias,
+                    Logica = logicaGanador,
+                    Usuario = ganador
+                });
+            }
+
+            return nroVictorias;
         }
     }
 }
