@@ -115,7 +115,7 @@ namespace Automaton.Web
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseAuthentication();
-
+            
             app.UseSignalR(routes =>
             {
                 routes.MapHub<TurnoHub>(new PathString("/turno"));

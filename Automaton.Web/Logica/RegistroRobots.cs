@@ -8,6 +8,11 @@ namespace Automaton.Web.Logica
     {
         private IList<RegistroVictoriasDto> victorias = new List<RegistroVictoriasDto>();
 
+        public void BorrarTodo()
+        {
+            victorias = new List<RegistroVictoriasDto>();
+        }
+
         public IDictionary<string, int> ObtenerResumen()
         {
             return victorias.GroupBy(v => v.Usuario).ToDictionary(d => d.Key, d => d.Sum(v => v.Victorias));

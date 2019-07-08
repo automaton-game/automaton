@@ -2,6 +2,7 @@
 using System.Linq;
 using Automaton.Web.Logica;
 using Automaton.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Automaton.Web.Controllers
@@ -21,6 +22,14 @@ namespace Automaton.Web.Controllers
         public IDictionary<string, int> Get()
         {
             return registroRobots.ObtenerResumen();
+        }
+
+        [Authorize]
+        [HttpGet("[action]")]
+        public IActionResult BorrarTodo()
+        {
+            registroRobots.BorrarTodo();
+            return Ok();
         }
     }
 }

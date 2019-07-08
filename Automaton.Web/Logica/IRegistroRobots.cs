@@ -9,5 +9,7 @@ namespace Automaton.Web.Logica
         RegistroVictoriasDto ObtenerUltimoCampeon();
 
         IDictionary<string, int> ObtenerResumen();
+
+        void BorrarTodo();
     }
 }
