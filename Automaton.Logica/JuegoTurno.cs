@@ -32,6 +32,9 @@ namespace Automaton.Logica
 
             this.RobotJuego = robotJuego;
             this.AccionesRobot = accionesRobot;
+
+            // Establezco el turno del robot actual en el tablero.
+            this.Tablero.TurnoRobot = this.RobotJuego.Robot;
         }
 
         public ResultadoTurnoDto JugarTurno()

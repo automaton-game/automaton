@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Automaton.Contratos.Robots;
+using System.Collections.Generic;
 
 namespace Automaton.Contratos.Entorno
 {
@@ -11,5 +12,10 @@ namespace Automaton.Contratos.Entorno
         /// Almacena las filas del tablero
         /// </summary>
         public IList<FilaTablero> Filas { get;set; }
+
+        /// <summary>
+        /// Hace refencia al turno del robot para el tablero actual. 
+        /// </summary>
+        public IRobot TurnoRobot { get; set; }
     }
 }

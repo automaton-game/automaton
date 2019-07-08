@@ -7,5 +7,7 @@ namespace Automaton.Web.Models
         public IList<FilaTablero> Filas { get;set; }
 
         public IList<string> Consola { get; set; }
+
+        public string TurnoRobot { get; set; }
     }
 }

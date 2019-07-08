@@ -64,7 +64,8 @@ namespace Automaton.Web
                 var config = new MapperConfiguration(cfg => {
                     cfg.AddProfile<ErrorProfile>();
                     cfg.AddProfile<ResultadoTurnoProfile>();
-                    cfg.CreateMap<Tablero, Models.Tablero>();
+                    cfg.CreateMap<Tablero, Models.Tablero>()
+                        .ForMember(m => m.TurnoRobot, y => y.MapFrom(m => m.TurnoRobot != null ? (int?)m.TurnoRobot.GetHashCode() : null));
                     cfg.CreateMap<FilaTablero, Models.FilaTablero>();
                     cfg.CreateMap<Casillero, Models.Casillero>()
                         .ForMember(m => m.Muralla, y => y.MapFrom(m => m.Muralla != null ? (int?)m.Muralla.GetHashCode() : null))
