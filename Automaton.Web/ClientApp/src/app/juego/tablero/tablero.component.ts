@@ -23,6 +23,9 @@ export class TableroComponent implements OnInit {
   public animacion: Subscription;
 
   @Input()
+  public mostrarAnimacion: boolean;
+
+  @Input()
   set juegoResponse(juegoResponse: JuegoResponse) {
     this._juegoResponse = juegoResponse;
     this.actual = 0;
@@ -30,13 +33,18 @@ export class TableroComponent implements OnInit {
     this.motivo = juegoResponse.motivoDerrota;
     this.actualizarTablero();
 
-    this.animacion = Observable.timer(1000, 200).subscribe(() => {
-      if (this.incrementar()) {
-        this.actualizarTablero();
-      } else {
-        this.animacion.unsubscribe();
-      }
-    });
+    if (this.mostrarAnimacion) {
+      this.animacion = Observable.timer(1000, 200).subscribe(() => {
+        if (this.incrementar()) {
+          this.actualizarTablero();
+        } else {
+          this.animacion.unsubscribe();
+        }
+      });
+    } else {
+      this.actual = this.juegoResponse.tableros.length - 1;
+      this.actualizarTablero();
+    }
   }
 
   get juegoResponse(): JuegoResponse { return this._juegoResponse; }
@@ -56,7 +64,10 @@ export class TableroComponent implements OnInit {
   }
 
   selectorChange() {
-    this.animacion.unsubscribe();
+    if (this.animacion) {
+      this.animacion.unsubscribe();
+    }
+    
     this.actualizarTablero();
   }
 
