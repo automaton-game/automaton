@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { JuegoComponent } from './juego/juego.component';
 import { FilaComponent } from './juego/fila/fila.component';
 import { CeldaComponent } from './juego/celda/celda.component';
@@ -19,6 +18,7 @@ import { InstruccionesComponent } from './instrucciones/instrucciones.component'
 import { AutenticacionModule } from './autenticacion/autenticacion.module';
 import { SocketClientServiceFactory } from './socketClientFactory.service';
 import { DocumentacionComponent } from './documentacion/documentacion.component';
+import { ColorService } from './color.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ import { DocumentacionComponent } from './documentacion/documentacion.component'
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent,
     JuegoComponent,
     FilaComponent,
     CeldaComponent,
@@ -42,7 +41,6 @@ import { DocumentacionComponent } from './documentacion/documentacion.component'
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'home', component: HomeComponent },
       { path: 'juego', component: JuegoComponent },
       { path: 'juegoManual', component: JuegoManualComponent },
@@ -54,7 +52,8 @@ import { DocumentacionComponent } from './documentacion/documentacion.component'
     AutenticacionModule,
   ],
   providers: [
-    SocketClientServiceFactory
+    SocketClientServiceFactory,
+    ColorService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
