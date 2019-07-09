@@ -1,6 +1,3 @@
-import { FilaTablero } from "./filaTablero";
-import { Robot } from "./robot";
-
 export class Casillero {
 
   public nroFila: number; 

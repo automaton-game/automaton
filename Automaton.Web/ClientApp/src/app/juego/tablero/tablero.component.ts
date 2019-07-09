@@ -5,6 +5,7 @@ import { JuegoResponse } from '../modelos/juegoResponse';
 import { setTimeout } from 'timers';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { ColorService } from '../../color.service';
 
 @Component({
   selector: 'tablero-component',
@@ -17,6 +18,8 @@ export class TableroComponent implements OnInit {
 
   public consola: Array<string>;
   public filas: Array<FilaTablero>;
+  public tablero: Tablero;
+  public colorTablero: string;
   public actual: number;
   public ganador: string;
   public motivo: string;
@@ -49,6 +52,15 @@ export class TableroComponent implements OnInit {
 
   get juegoResponse(): JuegoResponse { return this._juegoResponse; }
 
+  constructor(private colorService: ColorService) {
+
+  }
+
+  public getColor(hashId: string) {
+    return this.colorService.getColor(hashId);
+    
+  }
+
   ngOnInit(): void {
     
   }
@@ -72,7 +84,14 @@ export class TableroComponent implements OnInit {
   }
 
   actualizarTablero() {
-    this.filas = this.juegoResponse.tableros[this.actual].filas;
-    this.consola = this.juegoResponse.tableros[this.actual].consola;
+    this.tablero = this.juegoResponse.tableros[this.actual];
+    if (this.tablero.turnoRobot) {
+      this.colorTablero = this.colorService.getColor(this.tablero.turnoRobot);
+    } else {
+      this.colorTablero = "#000";
+    }
+    
+    this.filas = this.tablero.filas;
+    this.consola = this.tablero.consola;
   }
 }

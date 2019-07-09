@@ -1,9 +1,8 @@
-<div class="col-md-6" style="text-align:center;">
-  <div style="display: inline-block;">
-    <div *ngFor="let fila of filas" style="width: auto;">
-      <juego-fila-component  [datosFila]="fila"></juego-fila-component>
+<div class="col-md-6" style="text-align:center; " >
+  <div  class="tablero" [style.backgroundColor]="colorTablero">
+    <div  >
+      <juego-fila-component *ngFor="let fila of filas" [datosFila]="fila"></juego-fila-component>
     </div>
-    <div style="clear: both;"></div>
   </div>
 </div>
 <div class="col-md-6">
@@ -17,8 +16,8 @@
   <div class="panel panel-default ">
     <div class="panel-heading"><label>Salida de consola</label></div>
     <div class="panel-body">
-      <ol class="consola">
-        <li *ngFor="let itemConsola of consola">{{itemConsola}}</li>
+      <ol class="consola" [style.backgroundColor]="colorTablero">
+        <li *ngFor="let itemConsola of consola"><span>{{itemConsola}}</span></li>
       </ol>
     </div>
   </div>

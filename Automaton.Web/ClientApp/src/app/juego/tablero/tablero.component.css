@@ -1,6 +1,23 @@
-.consola{
-  background-color: black;
-  color:white;
-  height: 50px;
-  overflow-y:auto;
+.tablero {
+  display: inline-block;
+  box-shadow: 0 0 10px #000;
 }
+
+  .tablero div {
+    
+    display: inline-block;
+    margin-top: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    background-color: white;
+  }
+
+.consola {
+    height: 50px;
+    overflow-y: auto;
+}
+
+  .consola li span {
+    color: white;
+    text-shadow: 0 0 10px #000;
+  }
