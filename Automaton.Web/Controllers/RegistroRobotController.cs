@@ -19,9 +19,11 @@ namespace Automaton.Web.Controllers
         }
 
         [HttpGet("[action]")]
-        public IDictionary<string, int> Get()
+        public IActionResult Get()
         {
-            return registroRobots.ObtenerResumen();
+            var diccionario = registroRobots.ObtenerResumen();
+            var rta = diccionario.Select(v => new { v.Key, v.Value }).ToArray();
+            return Ok(rta);
         }
 
         [Authorize]

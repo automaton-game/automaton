@@ -19,6 +19,8 @@ import { AutenticacionModule } from './autenticacion/autenticacion.module';
 import { SocketClientServiceFactory } from './socketClientFactory.service';
 import { DocumentacionComponent } from './documentacion/documentacion.component';
 import { ColorService } from './color.service';
+import { PodiumModule } from './podium/podium.module';
+import { VictoriasComponent } from './juego/victorias/victorias.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { ColorService } from './color.service';
     JuegoManualComponent,
     InstruccionesComponent,
     DocumentacionComponent,
+    VictoriasComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,6 +46,7 @@ import { ColorService } from './color.service';
       { path: 'counter', component: CounterComponent },
       { path: 'home', component: HomeComponent },
       { path: 'juego', component: JuegoComponent },
+      { path: 'juego/victorias', component: VictoriasComponent },
       { path: 'juegoManual', component: JuegoManualComponent },
       { path: 'juegoManual/:id', component: JuegoManualComponent },
       { path: 'instrucciones', component: InstruccionesComponent },
@@ -50,6 +54,7 @@ import { ColorService } from './color.service';
     ]),
     SpinnerModule,
     AutenticacionModule,
+    PodiumModule,
   ],
   providers: [
     SocketClientServiceFactory,
