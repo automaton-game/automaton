@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Automaton.Web.Logica
 {
     public interface IRegistroRobots
     {
-        int RegistrarVictoria(string ganador, string logicaGanador = null);
+        void RegistrarVictoria(string ganador, string perdedor, string logicaGanador = null);
 
-        RegistroVictoriasDto ObtenerUltimoCampeon();
+        KeyValuePair<string, string>? ObtenerLogicaCampeon();
 
         IDictionary<string, int> ObtenerResumen();
 

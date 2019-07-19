@@ -4,12 +4,10 @@ namespace Automaton.Web.Logica
 {
     public class RegistroVictoriasDto
     {
-        public string Usuario { get; set; }
+        public string Ganador { get; set; }
 
-        public int Victorias { get; set; }
+        public string Perdedor { get; set; }
 
         public DateTime Fecha { get; set; }
-
-        public string Logica { get; set; }
     }
 }

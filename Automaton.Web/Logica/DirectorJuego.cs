@@ -31,19 +31,26 @@ namespace Automaton.Web.Logica
 
         public JuegoResponse Iniciar(string logicaRobot, string usuario)
         {
-            var tipo = AgregarRobot(logicaRobot, usuario);
-            var ultimoCampeon = registroRobots.ObtenerUltimoCampeon();
-            if (ultimoCampeon != null && ultimoCampeon.Logica != null)
+            // Agrego visitante
+            AgregarRobot(logicaRobot, usuario);
+
+            var logicaCampeon = registroRobots.ObtenerLogicaCampeon();
+            if (logicaCampeon.HasValue)
             {
-                AgregarRobot(ultimoCampeon.Logica, ultimoCampeon.Usuario);
+                // Agrego Local
+                AgregarRobot(logicaCampeon.Value.Key, logicaCampeon.Value.Value);
             }
             else
             {
+                // Agrego Local defensivo base
                 var jugador = typeof(RobotDefensivo);
                 AgregarRobot(jugador);
             }
 
+            // Obtengo resultado de la partida
             var tableros = GetTableros(juego).ToArray();
+
+            // Registro jugador ganador
             var usuarioGanador = juego.ObtenerUsuarioGanador();
             var logicaGanador = usuarioGanador == usuario ? logicaRobot : null;
             registroRobots.RegistrarVictoria(usuarioGanador, logicaGanador);

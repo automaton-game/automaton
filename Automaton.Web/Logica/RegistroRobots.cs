@@ -8,6 +8,8 @@ namespace Automaton.Web.Logica
     {
         private IList<RegistroVictoriasDto> victorias = new List<RegistroVictoriasDto>();
 
+        private IDictionary<string, string> logicas = new Dictionary<string, string>();
+
         public void BorrarTodo()
         {
             victorias = new List<RegistroVictoriasDto>();
@@ -15,40 +17,55 @@ namespace Automaton.Web.Logica
 
         public IDictionary<string, int> ObtenerResumen()
         {
-            return victorias.GroupBy(v => v.Usuario).ToDictionary(d => d.Key, d => d.Sum(v => v.Victorias));
+            return victorias
+                .GroupBy(v => v.Ganador)
+                .Select(Agrup)
+                .ToDictionary(x => x.Key, x => x.Value);
         }
 
-        public RegistroVictoriasDto ObtenerUltimoCampeon()
+        public KeyValuePair<string, string>? ObtenerLogicaCampeon()
         {
-            var a = victorias.LastOrDefault();
+            var a = victorias
+                .OrderByDescending(f => f.Fecha)
+                .Select(ObtenerLogicaJugador)
+                .FirstOrDefault();
             return a;
         }
 
-        public int RegistrarVictoria(string ganador, string logicaGanador = null)
+        public void RegistrarVictoria(string ganador, string perdedor, string logicaGanador = null)
         {
-            var ultimo = ObtenerUltimoCampeon();
-            var nroVictorias = 1;
-            if(ultimo != null)
+            if(!string.IsNullOrEmpty(logicaGanador))
             {
-                nroVictorias = ultimo.Victorias+ 1;
+                logicas[ganador] = logicaGanador;
+            }
+                
+            victorias.Add(new RegistroVictoriasDto
+            {
+                Fecha = DateTime.Now,
+                Ganador = ganador,
+                Perdedor = perdedor
+            });
+        }
+
+        private KeyValuePair<string, string>? ObtenerLogicaJugador(RegistroVictoriasDto registro)
+        {
+            if(logicas.TryGetValue(registro.Ganador, out string value))
+            {
+                return new KeyValuePair<string, string>(registro.Ganador, value);
             }
 
-            if (ultimo?.Usuario == ganador)
-            {
-                ultimo.Victorias = nroVictorias;
-            }
-            else
-            {
-                victorias.Add(new RegistroVictoriasDto
-                {
-                    Fecha = DateTime.Now,
-                    Victorias = nroVictorias,
-                    Logica = logicaGanador,
-                    Usuario = ganador
-                });
-            }
+            return null;
+        }
 
-            return nroVictorias;
+        private KeyValuePair<string, int> Agrup(IGrouping<string, RegistroVictoriasDto> ganador)
+        {
+            var victorias = ganador
+                .Where(r => r.Perdedor != ganador.Key)
+                .Select(r => r.Perdedor)
+                .Distinct()
+                .Count();
+            var rta = new KeyValuePair<string, int>(ganador.Key, victorias);
+            return rta;
         }
     }
 }
