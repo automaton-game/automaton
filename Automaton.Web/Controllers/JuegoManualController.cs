@@ -14,6 +14,7 @@ using Automaton.Logica.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Automaton.Web.Hubs;
+using Automaton.Logica.Registro;
 
 namespace Automaton.Web.Controllers
 {
@@ -24,7 +25,6 @@ namespace Automaton.Web.Controllers
         private readonly IJuego2v2 juego;
         private readonly IMapper mapper;
         private readonly ILogger logger;
-        private readonly IRegistroRobots registroRobots;
         private readonly IRegistroJuegosManuales registroJuegosManuales;
         private readonly IFabricaRobot fabricaRobot;
         private readonly IHubContext<TurnoHub, ITurnoHubClient> turnoHubClient;
@@ -33,7 +33,6 @@ namespace Automaton.Web.Controllers
             IJuego2v2 juego,
             IMapper mapper,
             ILogger<TableroController> logger,
-            IRegistroRobots registroRobots,
             IRegistroJuegosManuales registroJuegosManuales,
             IFabricaRobot fabricaRobot,
             IHubContext<TurnoHub, ITurnoHubClient> turnoHubClient)
@@ -41,7 +40,6 @@ namespace Automaton.Web.Controllers
             this.juego = juego;
             this.mapper = mapper;
             this.logger = logger;
-            this.registroRobots = registroRobots;
             this.registroJuegosManuales = registroJuegosManuales;
             this.fabricaRobot = fabricaRobot;
             this.turnoHubClient = turnoHubClient;

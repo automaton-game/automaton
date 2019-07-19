@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Automaton.Web.Logica
+namespace Automaton.Logica.Registro
 {
     public class RegistroRobots : IRegistroRobots
     {

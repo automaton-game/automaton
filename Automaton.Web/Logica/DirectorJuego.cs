@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Automaton.Logica.Dtos;
+using Automaton.Logica.Registro;
 
 namespace Automaton.Web.Logica
 {

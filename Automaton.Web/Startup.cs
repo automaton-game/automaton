@@ -3,6 +3,7 @@ using Automaton.Compilador;
 using Automaton.Contratos.Entorno;
 using Automaton.Contratos.Helpers;
 using Automaton.Logica;
+using Automaton.Logica.Registro;
 using Automaton.Web.Hubs;
 using Automaton.Web.Logica;
 using Automaton.Web.MappingProfiles;

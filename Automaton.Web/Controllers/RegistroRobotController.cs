@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Automaton.Logica.Registro;
 using Automaton.Web.Logica;
 using Automaton.Web.Models;
 using Microsoft.AspNetCore.Authorization;
