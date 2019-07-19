@@ -27,9 +27,15 @@ namespace Automaton.Web.Controllers
         }
 
         [Authorize]
-        [HttpGet("[action]")]
+        [HttpPost("[action]")]
         public IActionResult BorrarTodo()
         {
+            var usuario = this.HttpContext.User.Identity.Name;
+            if(usuario != "12HN12")
+            {
+                return Unauthorized();
+            }
+
             registroRobots.BorrarTodo();
             return Ok();
         }

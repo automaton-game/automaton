@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PodiumModel } from './podium.model';
 
 declare let $: any;
 
@@ -10,7 +9,15 @@ declare let $: any;
 })
 export class PodiumComponent implements OnInit {
   
-  @Input() model: PodiumModel;
+  @Input() model: Array<string>;
+
+  puesto(id: number) {
+    if (id >= 0 && this.model && this.model.length > id) {
+      return this.model[id];
+    }
+
+    return "";
+  }
 
   ngOnInit(): void {
     $(document).ready(function () {

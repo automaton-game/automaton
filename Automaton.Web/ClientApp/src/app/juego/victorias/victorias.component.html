@@ -1,4 +1,38 @@
-<podium-component [model]="podio"></podium-component>
-<ol>
-  <li *ngFor="let jugador of jugadores">{{jugador.key}}: {{jugador.value}}</li>
-</ol>
+<div class="page-header"><h1>Podio</h1><small> &lt; Victorias por jugador &gt;</small></div>
+
+<div class="row" >
+
+  <div class="col-md-6">
+    <podium-component [model]="podio"></podium-component>
+  </div>
+  <div class="col-md-6">
+
+    <table>
+      <thead>
+        <tr class="cabecera">
+          <td class="celda">Jugador</td>
+          <td class="celda">Victorias</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let jugador of jugadores">
+          <td class="celda">{{jugador.key}}</td>
+          <td class="celda derecha">{{jugador.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  
+
+</div>
+<div class="row">
+  <nav class="navbar navbar-default" aria-label="navigation">
+    <ul class="pager">
+
+      <li><button (click)="borrar()">Reset</button></li>
+      <li><button (click)="ngOnInit()">Actualizar</button></li>
+    </ul>
+
+  </nav>
+</div>
