@@ -9,7 +9,7 @@ namespace Automaton.Logica.Tests
         [Fact]
         public void Test1()
         {
-            var registro = new RegistroRobots();
+            var registro = new RegistroVictorias();
             registro.RegistrarVictoria("RobotDefensivo", "HN", null);
             registro.RegistrarVictoria("RobotDefensivo", "HN", null);
             registro.RegistrarVictoria("RobotDefensivo", "OTRO", null);

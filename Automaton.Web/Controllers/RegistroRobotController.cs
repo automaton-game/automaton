@@ -12,9 +12,9 @@ namespace Automaton.Web.Controllers
     [ApiController]
     public class RegistroRobotController : ControllerBase
     {
-        private readonly IRegistroRobots registroRobots;
+        private readonly IRegistroVictorias registroRobots;
 
-        public RegistroRobotController(IRegistroRobots registroRobots)
+        public RegistroRobotController(IRegistroVictorias registroRobots)
         {
             this.registroRobots = registroRobots;
         }

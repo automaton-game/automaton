@@ -14,13 +14,13 @@ namespace Automaton.Web.Logica
     public class DirectorJuego : IDirectorJuego
     {
         private readonly IJuego2v2 juego;
-        private readonly IRegistroRobots registroRobots;
+        private readonly IRegistroVictorias registroRobots;
         private readonly IMapper mapper;
         private readonly IFabricaRobot fabricaRobot;
 
         public DirectorJuego(
             IJuego2v2 juego,
-            IRegistroRobots registroRobots,
+            IRegistroVictorias registroRobots,
             IMapper mapper,
             IFabricaRobot fabricaRobot)
         {

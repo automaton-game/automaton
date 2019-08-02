@@ -93,7 +93,7 @@ namespace Automaton.Web
             services.AddScoped<IDomainFactory, DomainFactory>();
             services.AddLogging(ConfigureLogging);
 
-            services.AddSingleton<IRegistroRobots, RegistroRobots>();
+            services.AddSingleton<IRegistroVictorias, IRegistroVictorias>();
             services.AddSingleton<IRegistroJuegosManuales, RegistroJuegosManuales>();
             services.AddSingleton<IMetadataFactory, MetadataFactory>();
         }

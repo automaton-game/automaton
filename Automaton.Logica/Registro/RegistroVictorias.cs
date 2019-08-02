@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Automaton.Logica.Registro
 {
-    public class RegistroRobots : IRegistroRobots
+    public class RegistroVictorias : IRegistroVictorias
     {
         private IList<RegistroVictoriasDto> victorias = new List<RegistroVictoriasDto>();
 

@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.Documentador.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E8998B44-46FA-46AD-B36B-21BBB438AE9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton.Web.Tests", "Automaton.Web.Tests\Automaton.Web.Tests.csproj", "{EBE765DF-0545-4335-A7BD-3707A465CF3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaton.Web.Tests", "Automaton.Web.Tests\Automaton.Web.Tests.csproj", "{EBE765DF-0545-4335-A7BD-3707A465CF3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

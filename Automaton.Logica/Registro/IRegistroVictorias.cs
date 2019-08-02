@@ -2,7 +2,7 @@
 
 namespace Automaton.Logica.Registro
 {
-    public interface IRegistroRobots
+    public interface IRegistroVictorias
     {
         void RegistrarVictoria(string ganador, string perdedor, string logicaGanador = null);
 
