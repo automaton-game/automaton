@@ -20,6 +20,7 @@ namespace Automaton.Logica.Registro
             return victorias
                 .GroupBy(v => v.Ganador)
                 .Select(Agrup)
+                .OrderByDescending(v => v.Value)
                 .ToDictionary(x => x.Key, x => x.Value);
         }
 
