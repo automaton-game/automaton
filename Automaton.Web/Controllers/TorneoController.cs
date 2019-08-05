@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Automaton.Logica;
 using Automaton.Logica.Registro;
 using Automaton.Web.Models;
 using Automaton.Web.Models.Torneo;
@@ -12,16 +13,13 @@ namespace Automaton.Web.Controllers
     public class TorneoController : ControllerBase
     {
         private readonly IRegistroPartidas registroPartidas;
-        private readonly IRegistroRobots registroRobots;
         private readonly IMapper mapper;
 
         public TorneoController(
             IRegistroPartidas registroPartidas,
-            IRegistroRobots registroRobots,
             IMapper mapper)
         {
             this.registroPartidas = registroPartidas;
-            this.registroRobots = registroRobots;
             this.mapper = mapper;
         }
 
@@ -49,7 +47,7 @@ namespace Automaton.Web.Controllers
         public void Post(string logica)
         {
             var usuario = this.HttpContext.User.Identity.Name;
-            registroRobots.RegistrarRobot(usuario, logica);
+            registroPartidas.RegistrarRobot(new LogicaRobotDto { Usuario = usuario, Logica = logica } );
         }
     }
 }
