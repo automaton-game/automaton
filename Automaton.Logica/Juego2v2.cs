@@ -47,7 +47,7 @@ namespace Automaton.Logica
         {
             var perdedor = ObtenerRobotTurnoActual();
             return perdedor.Usuario;
-            return this.robotsJuegoDto.Except(new[] { perdedor }).First().Usuario;
+            //return this.robotsJuegoDto.Except(new[] { perdedor }).First().Usuario;
         }
 
         public void AgregarRobot(string usuario, IRobot robot)
