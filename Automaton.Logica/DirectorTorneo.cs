@@ -1,5 +1,6 @@
 ﻿using Automaton.Contratos.Entorno;
 using Automaton.Logica.Dtos;
+using Automaton.Logica.Factories;
 using Automaton.Logica.Registro;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,19 @@ namespace Automaton.Logica
     public class DirectorTorneo : IDirectorTorneo
     {
         private readonly IFabricaRobot fabricaRobot;
+        private readonly IJuegoFactory juegoFactory;
 
-        public DirectorTorneo(IFabricaRobot fabricaRobot)
+        public DirectorTorneo(
+            IFabricaRobot fabricaRobot,
+            IJuegoFactory juegoFactory)
         {
             this.fabricaRobot = fabricaRobot;
+            this.juegoFactory = juegoFactory;
         }
 
         public async Task<PartidaResueltaDto> Iniciar(ICollection<LogicaRobotDto> logicaRobotDtos)
         {
-            IJuego2v2 juego = null;
+            var juego = juegoFactory.CreateJuego2V2();
 
             foreach (var logicaRobotDto in logicaRobotDtos)
             {
@@ -37,8 +42,8 @@ namespace Automaton.Logica
             return new PartidaResueltaDto
             {
                 Tableros = null,
-                Ganador = usuarioGanador
-                //MotivoDerrota = tableros.Last().Consola.Last()  TODO
+                Ganador = usuarioGanador,
+                MotivoDerrota = null // tableros.Last().Consola.Last()  TODO
             };
         }
 
