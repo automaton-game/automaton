@@ -6,15 +6,17 @@
     <OutputType>Library</OutputType>
     <StartupObject />
     <Version>1.0.4</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>BajoLaManga.Automaton.Logica</PackageId>
+    <Authors>BajoLaManga</Authors>
+    <Company>BajoLaManga</Company>
+    <Product>BajoLaManga.Automaton</Product>
+    <Copyright>BajoLaManga</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Automaton.Logica.1.0.2.nupkg" />
     <None Remove="Automaton.Logica.1.0.2.nuspec" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
   </ItemGroup>
 
   <ItemGroup>

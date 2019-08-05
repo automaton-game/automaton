@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using AutoMapper;
 using Automaton.Contratos.Entorno;
+using Automaton.Logica;
 
-namespace Automaton.Logica
+namespace Automaton.Web.Logica
 {
     public class FabricaTablero : IFabricaTablero
     {

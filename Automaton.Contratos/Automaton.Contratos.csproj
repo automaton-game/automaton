@@ -2,13 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.1</Version>
+    <Version>1.0.7</Version>
   </PropertyGroup>
 
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>BajoLaManga.Automaton</PackageId>
+    <Authors>BajoLaManga</Authors>
+    <Product>Automaton</Product>
+    <Copyright>BajoLaManga</Copyright>
   </PropertyGroup>
 
 </Project>
