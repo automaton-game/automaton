@@ -5,6 +5,6 @@ namespace Automaton.Logica.Registro
 {
     public interface IRegistroNotificador
     {
-        Task NotificarUltimasPartidas(IList<RegistroPartidaDto> valor);
+        Task NotificarUltimasPartidas(ICollection<IRegistroPartidaDto> valor);
     }
 }

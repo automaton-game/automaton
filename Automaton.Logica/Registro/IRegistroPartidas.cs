@@ -4,8 +4,8 @@ namespace Automaton.Logica.Registro
 {
     public interface IRegistroPartidas
     {
-        RegistroPartidaCompletaDto ObtenerPartida(int idPartida);
+        RegistroPartidaResueltaDto ObtenerPartida(int idPartida);
 
-        IEnumerable<RegistroPartidaDto> ObtenerUltimasPartidas();
+        IEnumerable<IRegistroPartidaDto> ObtenerUltimasPartidas();
     }
 }
