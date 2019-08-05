@@ -30,7 +30,7 @@ namespace Automaton.Web.Logica
             this.fabricaRobot = fabricaRobot;
         }
 
-        public PartidaResueltaDto Iniciar(string logicaRobot, string usuario)
+        public JuegoResponse Iniciar(string logicaRobot, string usuario)
         {
             // Agrego visitante
             AgregarRobot(logicaRobot, usuario);
@@ -56,12 +56,7 @@ namespace Automaton.Web.Logica
             var logicaGanador = usuarioGanador == usuario ? logicaRobot : null;
             registroRobots.RegistrarVictoria(usuarioGanador, logicaGanador);
 
-            return new PartidaResueltaDto
-            {
-                Tableros = tableros,
-                Ganador = usuarioGanador,
-                //MotivoDerrota = tableros.Last().Consola.Last()  TODO
-            };
+            return new JuegoResponse { Tableros = tableros, Ganador = usuarioGanador, MotivoDerrota = tableros.Last().Consola.Last() };
         }
 
         private void AgregarRobot(Type robotType)
@@ -78,17 +73,20 @@ namespace Automaton.Web.Logica
             return tipo;
         }
 
-        private IEnumerable<Tablero> GetTableros(IJuego2v2 juego)
+        private IEnumerable<Models.Tablero> GetTableros(IJuego2v2 juego)
         {
             {
-                yield return juego.Tablero;
+                var tablero = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
+                yield return tablero;
             }
 
             var turnoFinal = false;
             while (!turnoFinal)
             {
                 var resultado = juego.JugarTurno();
-                yield return juego.Tablero;
+                var tablero = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
+                mapper.Map(resultado, tablero);
+                yield return tablero;
                 turnoFinal = (resultado is TurnoFinalDto);
             }
         }
