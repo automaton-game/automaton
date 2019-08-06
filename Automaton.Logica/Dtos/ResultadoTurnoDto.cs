@@ -2,5 +2,6 @@
 {
     public abstract class ResultadoTurnoDto
     {
+        public TableroLogico Tablero { get; set; }
     }
 }

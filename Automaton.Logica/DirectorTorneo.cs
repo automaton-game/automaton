@@ -1,10 +1,7 @@
-﻿using Automaton.Contratos.Entorno;
-using Automaton.Logica.Dtos;
+﻿using Automaton.Logica.Dtos;
 using Automaton.Logica.Factories;
 using Automaton.Logica.Registro;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Automaton.Logica
@@ -33,33 +30,34 @@ namespace Automaton.Logica
                 juego.AgregarRobot(logicaRobotDto.Usuario, r);
             }
 
+            var partida = Task.Run(() => GetPartidaResuelta(juego));
+            return await partida;
+        }
+
+        private PartidaResueltaDto GetPartidaResuelta(IJuego2v2 juego)
+        {
             // Obtengo resultado de la partida
-            var tableros = GetTableros(juego).ToList();
+            var tableros = new List<TableroLogico>();
+            TurnoFinalDto turnoFinal = null;
+            {
+                tableros.Add(juego.Tablero);
+                while (turnoFinal == null)
+                {
+                    var resultado = juego.JugarTurno();
+                    tableros.Add(juego.Tablero);
+                    turnoFinal = resultado as TurnoFinalDto;
+                }
+            }
 
             // Registro jugador ganador
             var usuarioGanador = juego.ObtenerUsuarioGanador();
 
             return new PartidaResueltaDto
             {
-                Tableros = null,
+                Tableros = tableros,
                 Ganador = usuarioGanador,
-                MotivoDerrota = null // tableros.Last().Consola.Last()  TODO
+                MotivoDerrota = turnoFinal.Motivo
             };
-        }
-
-        private IEnumerable<Tablero> GetTableros(IJuego2v2 juego)
-        {
-            {
-                yield return juego.Tablero;
-            }
-
-            var turnoFinal = false;
-            while (!turnoFinal)
-            {
-                var resultado = juego.JugarTurno();
-                yield return juego.Tablero;
-                turnoFinal = (resultado is TurnoFinalDto);
-            }
         }
     }
 }

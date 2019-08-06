@@ -1,5 +1,4 @@
-﻿using Automaton.Contratos.Entorno;
-using Automaton.Logica.Dtos;
+﻿using Automaton.Logica.Dtos;
 
 namespace Automaton.Logica
 {
@@ -7,6 +6,6 @@ namespace Automaton.Logica
     {
         TableroLogico Crear();
 
-        Tablero Clone(Tablero tablero);
+        TableroLogico Clone(TableroLogico tablero);
     }
 }

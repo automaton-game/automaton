@@ -19,13 +19,13 @@ namespace Automaton.Logica
             this.fabricaTablero = fabricaTablero;
         }
 
-        public Tablero Tablero { get; private set; }
+        public TableroLogico Tablero { get; private set; }
 
         public RobotJuegoDto RobotJuego { get; private set; }
 
         public IEnumerable<RobotJuegoDto> AccionesRobot { get; private set; }
 
-        public void Configurar(Tablero tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot)
+        public void Configurar(TableroLogico tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot)
         {
             // Escribo una copia del tablero por seguridad:
             this.Tablero = this.fabricaTablero.Clone(tablero);
@@ -45,11 +45,11 @@ namespace Automaton.Logica
 
                 var console = new RobotConsole();
                 var accion = EjecutarAccionRobot(RobotJuego, console);
-                return new TurnoRobotDto { Accion = accion, Consola = console.Logs };
+                return new TurnoRobotDto { Accion = accion, Consola = console.Logs, Tablero = this.Tablero };
             }
             catch (Exception ex)
             {
-                return new TurnoFinalDto { Motivo = ex.Message };
+                return new TurnoFinalDto { Motivo = ex.Message, Tablero = this.Tablero };
             }
         }
 

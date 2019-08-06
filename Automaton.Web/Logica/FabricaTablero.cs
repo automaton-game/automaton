@@ -34,9 +34,9 @@ namespace Automaton.Web.Logica
             return tablero;
         }
 
-        public Tablero Clone(Tablero tablero)
+        public TableroLogico Clone(TableroLogico tablero)
         {
-            return mapper.Map<Tablero,Tablero>(tablero);
+            return mapper.Map<TableroLogico, TableroLogico>(tablero);
         }
     }
 }
