@@ -2,6 +2,7 @@
 using AutoMapper;
 using Automaton.Contratos.Entorno;
 using Automaton.Logica;
+using Automaton.Logica.Dtos;
 
 namespace Automaton.Web.Logica
 {
@@ -17,9 +18,9 @@ namespace Automaton.Web.Logica
         }
 
 
-        public Tablero Crear()
+        public TableroLogico Crear()
         {
-            var tablero = new Tablero();
+            var tablero = new TableroLogico();
             tablero.Filas = Enumerable.Range(1, filas).Select(f => {
                 var fila = new FilaTablero
                 {

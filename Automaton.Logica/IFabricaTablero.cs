@@ -1,10 +1,11 @@
 ﻿using Automaton.Contratos.Entorno;
+using Automaton.Logica.Dtos;
 
 namespace Automaton.Logica
 {
     public interface IFabricaTablero
     {
-        Tablero Crear();
+        TableroLogico Crear();
 
         Tablero Clone(Tablero tablero);
     }
