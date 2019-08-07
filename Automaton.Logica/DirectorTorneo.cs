@@ -8,11 +8,11 @@ namespace Automaton.Logica
 {
     public class DirectorTorneo : IDirectorTorneo
     {
-        private readonly IFabricaRobot fabricaRobot;
+        private readonly IFabricaRobotAsync fabricaRobot;
         private readonly IJuegoFactory juegoFactory;
 
         public DirectorTorneo(
-            IFabricaRobot fabricaRobot,
+            IFabricaRobotAsync fabricaRobot,
             IJuegoFactory juegoFactory)
         {
             this.fabricaRobot = fabricaRobot;
@@ -25,7 +25,7 @@ namespace Automaton.Logica
 
             foreach (var logicaRobotDto in logicaRobotDtos)
             {
-                var r = fabricaRobot.ObtenerRobot(logicaRobotDto.Logica);
+                var r = await fabricaRobot.ObtenerRobotAsync(logicaRobotDto.Logica);
                 var tipo = r.GetType();
                 juego.AgregarRobot(logicaRobotDto.Usuario, r);
             }

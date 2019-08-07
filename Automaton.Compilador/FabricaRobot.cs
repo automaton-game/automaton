@@ -32,7 +32,7 @@ namespace Automaton.Compilador
         {
             return (IRobot)Activator.CreateInstance(tipo);
         }
-
+        
         public IRobot ObtenerRobot(string t)
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(t);
