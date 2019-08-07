@@ -5,9 +5,24 @@
     /// </summary>
     public enum DireccionEnum
     {
+        /// <summary>
+        /// Arriba
+        /// </summary>
         Arriba,
+
+        /// <summary>
+        /// Abajo
+        /// </summary>
         Abajo,
+
+        /// <summary>
+        /// Izquierda
+        /// </summary>
         Izquierda,
+
+        /// <summary>
+        /// Derecha
+        /// </summary>
         Derecha
     }
 }
