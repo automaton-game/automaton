@@ -19,7 +19,14 @@ namespace Automaton.Logica
             this.juegoFactory = juegoFactory;
         }
 
-        public async Task<PartidaResueltaDto> Iniciar(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public PartidaResueltaDto Iniciar(ICollection<LogicaRobotDto> logicaRobotDtos)
+        {
+            var task = IniciarPartidaAsync(logicaRobotDtos);
+            task.Wait();
+            return task.Result;
+        }
+
+        public async Task<PartidaResueltaDto> IniciarPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos)
         {
             var juego = juegoFactory.CreateJuego2V2();
 
@@ -30,8 +37,8 @@ namespace Automaton.Logica
                 juego.AgregarRobot(logicaRobotDto.Usuario, r);
             }
 
-            var partida = Task.Run(() => GetPartidaResuelta(juego));
-            return await partida;
+            var partida = GetPartidaResuelta(juego);
+            return partida;
         }
 
         private PartidaResueltaDto GetPartidaResuelta(IJuego2v2 juego)

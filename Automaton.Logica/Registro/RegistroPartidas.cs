@@ -33,7 +33,7 @@ namespace Automaton.Logica.Registro
 
         public void RegistrarRobot(LogicaRobotDto logicaRobotDto)
         {
-            var partidaEnCurso = directorTorneo.Iniciar(null);
+            var partidaEnCurso = directorTorneo.IniciarPartidaAsync(null);
             partidaEnCurso.ContinueWith(PartidaFinalizada);
 
             throw new System.NotImplementedException();
