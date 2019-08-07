@@ -31,7 +31,7 @@ namespace Automaton.Logica.Registro
             throw new System.NotImplementedException();
         }
 
-        public void RegistrarRobot(LogicaRobotDto logicaRobotDto)
+        public Task RegistrarRobotAsync(LogicaRobotDto logicaRobotDto)
         {
             var partidaEnCurso = directorTorneo.IniciarPartidaAsync(null);
             partidaEnCurso.ContinueWith(PartidaFinalizada);

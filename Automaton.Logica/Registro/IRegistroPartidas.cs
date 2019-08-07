@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Automaton.Logica.Registro
 {
@@ -23,6 +24,9 @@ namespace Automaton.Logica.Registro
         /// <summary>
         /// Cada vez que un jugador modifica su logica, esta registrando un nuevo robot con su mismo usuario.
         /// </summary>
-        void RegistrarRobot(LogicaRobotDto logicaRobotDto);
+        /// <returns>
+        /// Devuelve una tarea que finaliza cuando todas las tareas asociadas al registro finalizan.
+        /// </returns>
+        Task RegistrarRobotAsync(LogicaRobotDto logicaRobotDto);
     }
 }

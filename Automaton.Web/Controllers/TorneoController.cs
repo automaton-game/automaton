@@ -47,7 +47,7 @@ namespace Automaton.Web.Controllers
         public void Post(string logica)
         {
             var usuario = this.HttpContext.User.Identity.Name;
-            registroPartidas.RegistrarRobot(new LogicaRobotDto { Usuario = usuario, Logica = logica } );
+            registroPartidas.RegistrarRobotAsync(new LogicaRobotDto { Usuario = usuario, Logica = logica } );
         }
     }
 }
