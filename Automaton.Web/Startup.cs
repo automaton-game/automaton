@@ -84,8 +84,9 @@ namespace Automaton.Web
             services.AddTransient<IDirectorJuego, DirectorJuego>();
             services.AddTransient<IFabricaTablero, FabricaTablero>();
             services.AddTransient<IFabricaRobot, FabricaRobot>();
-            services.AddTransient<INameSpaceGrouping>(f => ReaderFactory.Create());
+            services.AddTransient(f => ReaderFactory.Create());
 
+            services.AddTransient<IRegistroNotificador, RegistroNotificador>();
 
             services.AddTransient<ErrorHandlingMiddleware>();
 
