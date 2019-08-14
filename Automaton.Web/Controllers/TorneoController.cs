@@ -5,6 +5,7 @@ using Automaton.Web.Models;
 using Automaton.Web.Models.Torneo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Automaton.Web.Controllers
 {
@@ -44,10 +45,10 @@ namespace Automaton.Web.Controllers
         // POST: api/Torneo
         [HttpPost]
         [Authorize]
-        public void Post(string logica)
+        public async Task Post(string logica)
         {
             var usuario = this.HttpContext.User.Identity.Name;
-            registroPartidas.RegistrarRobotAsync(new LogicaRobotDto { Usuario = usuario, Logica = logica } );
+            await registroPartidas.RegistrarRobotAsync(new LogicaRobotDto { Usuario = usuario, Logica = logica } );
         }
     }
 }
