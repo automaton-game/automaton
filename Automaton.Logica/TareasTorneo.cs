@@ -1,14 +1,12 @@
 ﻿using Automaton.Logica.Registro;
-using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Automaton.Logica
 {
     public class TareasTorneo : ITareasTorneo
     {
-        public event EventHandler<RegistroPartidaResueltaDto> PartidaResuelta;
-
-        public RegistroPartidaEnCursoDto IniciarPartida(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public Task<RegistroPartidaEnCursoDto> IniciarPartida(ICollection<LogicaRobotDto> logicaRobotDtos)
         {
             return null;
         }
