@@ -8,7 +8,7 @@ namespace Automaton.Logica.Registro
     {
         Task<RegistroJugadorDto> Get(string id);
 
-        Task<ICollection<RegistroJugadorDto>> GetAll();
+        Task<IEnumerable<RegistroJugadorDto>> GetAll();
 
         Task<RegistroJugadorDto> Insert(LogicaRobotDto dto);
     }

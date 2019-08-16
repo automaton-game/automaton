@@ -8,7 +8,7 @@ namespace Automaton.Logica.Registro
     {
         Task<IRegistroPartidaDto> Get(int id);
 
-        Task<ICollection<IRegistroPartidaDto>> GetAll();
+        Task<IEnumerable<IRegistroPartidaDto>> GetAll();
 
         Task<T> Create<T>() where T : IRegistroPartidaDto, new();
 
