@@ -1,4 +1,4 @@
-﻿namespace Automaton.Logica.Registro
+﻿namespace Automaton.Logica.Dtos
 {
     public class RegistroPartidaResueltaDto : PartidaResueltaDto, IRegistroPartidaDto
     {

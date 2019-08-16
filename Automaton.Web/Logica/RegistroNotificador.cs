@@ -1,4 +1,5 @@
-﻿using Automaton.Logica.Registro;
+﻿using Automaton.Logica.Dtos;
+using Automaton.Logica.Registro;
 using Automaton.Web.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;

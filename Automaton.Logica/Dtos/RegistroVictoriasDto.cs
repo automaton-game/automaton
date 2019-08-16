@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Automaton.Logica.Registro
+namespace Automaton.Logica.Dtos
 {
     public class RegistroVictoriasDto
     {

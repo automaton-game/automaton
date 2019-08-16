@@ -1,7 +1,7 @@
 ﻿using Automaton.Logica.Dtos;
 using System.Collections.Generic;
 
-namespace Automaton.Logica.Registro
+namespace Automaton.Logica.Dtos
 {
     public class PartidaResueltaDto : PartidaDto
     {

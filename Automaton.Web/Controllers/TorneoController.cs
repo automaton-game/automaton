@@ -26,18 +26,18 @@ namespace Automaton.Web.Controllers
 
         // GET: api/Torneo
         [HttpGet]
-        public PartidosTorneoModel Get()
+        public async Task<PartidosTorneoModel> Get()
         {
-            var partidas = registroPartidas.ObtenerUltimasPartidas();
+            var partidas = await registroPartidas.ObtenerUltimasPartidasAsync();
             var maped = mapper.Map<PartidosTorneoModel>(partidas);
             return maped;
         }
 
         // GET: api/Torneo/{id}
         [HttpGet]
-        public JuegoResponse Get(int id)
+        public async Task<JuegoResponse> Get(int id)
         {
-            var partida = registroPartidas.ObtenerPartida(id);
+            var partida = await registroPartidas.ObtenerPartidaAsync(id);
             var maped = mapper.Map<JuegoResponse>(partida);
             return maped;
         }

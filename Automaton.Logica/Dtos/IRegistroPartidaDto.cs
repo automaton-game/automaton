@@ -1,4 +1,4 @@
-﻿namespace Automaton.Logica.Registro
+﻿namespace Automaton.Logica.Dtos
 {
     public interface IRegistroPartidaDto : IPartidaDto
     {

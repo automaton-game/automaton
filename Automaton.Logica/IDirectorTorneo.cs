@@ -1,4 +1,4 @@
-﻿using Automaton.Logica.Registro;
+﻿using Automaton.Logica.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

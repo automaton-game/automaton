@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Automaton.Logica.Dtos;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Automaton.Logica.Registro
