@@ -9,6 +9,10 @@ namespace Automaton.Logica.Registro
 
         Task<ICollection<IRegistroPartidaDto>> GetAll();
 
-        Task Save(IRegistroPartidaDto dto);
+        Task<T> Create<T>() where T : IRegistroPartidaDto, new();
+
+        Task Update(IRegistroPartidaDto dto);
+
+        Task Delete(int id);
     }
 }
