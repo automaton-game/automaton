@@ -10,6 +10,6 @@ namespace Automaton.Logica.Registro
 
         Task<ICollection<RegistroJugadorDto>> GetAll();
 
-        Task<RegistroJugadorDto> Insert(AltaJugadorDto dto);
+        Task<RegistroJugadorDto> Insert(LogicaRobotDto dto);
     }
 }
