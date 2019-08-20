@@ -12,8 +12,9 @@ namespace Automaton.Logica.Registro
 
         Task<T> Create<T>() where T : IRegistroPartidaDto, new();
 
-        Task Update(IRegistroPartidaDto dto);
+        Task<T> Update<T>(int idPartida) where T : IRegistroPartidaDto, new();
 
         Task Delete(int id);
+        
     }
 }
