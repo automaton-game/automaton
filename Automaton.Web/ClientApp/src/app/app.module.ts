@@ -21,6 +21,7 @@ import { DocumentacionComponent } from './documentacion/documentacion.component'
 import { ColorService } from './color.service';
 import { PodiumModule } from './podium/podium.module';
 import { VictoriasComponent } from './juego/victorias/victorias.component';
+import { TorneoComponent } from './torneo/torneo.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { VictoriasComponent } from './juego/victorias/victorias.component';
     InstruccionesComponent,
     DocumentacionComponent,
     VictoriasComponent,
+    TorneoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,6 +53,7 @@ import { VictoriasComponent } from './juego/victorias/victorias.component';
       { path: 'juegoManual/:id', component: JuegoManualComponent },
       { path: 'instrucciones', component: InstruccionesComponent },
       { path: 'documentacion', component: DocumentacionComponent },
+      { path: 'torneo', component: TorneoComponent },
     ]),
     SpinnerModule,
     AutenticacionModule,
