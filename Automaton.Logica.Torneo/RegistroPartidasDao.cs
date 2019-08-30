@@ -62,10 +62,23 @@ namespace Automaton.Logica.Torneo
             return Task.FromResult(dtos);
         }
 
-        public Task<T> Update<T>(int idPartida) where T : IRegistroPartidaDto, new()
+        public async Task<T> Update<T>(int idPartida) where T : IRegistroPartidaDto, new()
         {
-            var dto = registroPartidas[idPartida];
-            return Task.FromResult((T)dto);
+            //Asynchronously wait to enter the Semaphore. If no-one has been granted access to the Semaphore, code execution will proceed, otherwise this thread waits here until the semaphore is released 
+            await semaphoreSlim.WaitAsync();
+            try
+            {
+                var dto = new T();
+                dto.IdPartida = idPartida;
+                registroPartidas[idPartida] = dto;
+                return dto;
+            }
+            finally
+            {
+                //When the task is ready, release the semaphore. It is vital to ALWAYS release the semaphore when we are ready, or else we will end up with a Semaphore that is forever locked.
+                //This is why it is important to do the Release within a try...finally clause; program execution may crash or take a different path, this way you are guaranteed execution
+                semaphoreSlim.Release();
+            }
         }
     }
 }

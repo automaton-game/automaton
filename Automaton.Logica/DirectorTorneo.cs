@@ -2,6 +2,7 @@
 using Automaton.Logica.Factories;
 using Automaton.Logica.Registro;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Automaton.Logica
@@ -38,6 +39,8 @@ namespace Automaton.Logica
             }
 
             var partida = GetPartidaResuelta(juego);
+            partida.Jugadores = logicaRobotDtos.Select(j => j.Usuario).ToArray();
+
             return partida;
         }
 
@@ -63,7 +66,7 @@ namespace Automaton.Logica
             {
                 Tableros = tableros,
                 Ganador = usuarioGanador,
-                MotivoDerrota = turnoFinal.Motivo
+                MotivoDerrota = turnoFinal.Motivo                
             };
         }
     }

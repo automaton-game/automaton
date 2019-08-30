@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { TorneoService } from './torneo.service';
+import { CasilleroTorneoModel } from '../services/casilleroTorneo.model';
+import { TorneoService } from '../services/torneo.service';
 
 @Component({
 	selector: 'app-torneo-component',
@@ -135,9 +136,3 @@ export class TorneoComponent implements OnInit {
   }
 }
 
-export class CasilleroTorneoModel {
-  public idPartida?: number;
-  public texto: string;
-  public descripcion: string;
-  public progreso?: number;
-}

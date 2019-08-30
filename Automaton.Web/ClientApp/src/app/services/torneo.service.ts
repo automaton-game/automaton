@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit, Injectable, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { CasilleroTorneoModel } from './torneo.component';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { CasilleroTorneoModel } from './casilleroTorneo.model';
 
 @Injectable()
 export class TorneoService implements OnDestroy {
+    
 
 	constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
 		
@@ -18,6 +19,17 @@ export class TorneoService implements OnDestroy {
       .subscribe(response => {
         let mapeado = this.Map(response.partidos);
         subj.next(mapeado);
+      });
+
+    return subj.asObservable();
+  }
+
+  Post(logica1: string) {
+    let subj = new Subject<Array<Array<CasilleroTorneoModel>>>();
+    this.http
+      .post<void>("api/Torneo/Post", { logica: logica1 })
+      .subscribe(() => {
+        subj.next();
       });
 
     return subj.asObservable();

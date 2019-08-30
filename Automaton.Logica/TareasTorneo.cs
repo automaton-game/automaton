@@ -29,7 +29,18 @@ namespace Automaton.Logica
             var partidaEnCurso = directorTorneo
                 .IniciarPartidaAsync(logicaRobotDtos)
                 .ContinueWith(p =>
-                    registroPartidasDao.Update<RegistroPartidaResueltaDto>(registroPartidaEnCursoDto.IdPartida).Wait());
+                {
+                    var partidaResuelta = p.Result;
+                    var updateRegistro = registroPartidasDao.Update<RegistroPartidaResueltaDto>(registroPartidaEnCursoDto.IdPartida);
+                    updateRegistro.Wait();
+                    var registroPartida = updateRegistro.Result;
+
+                    registroPartida.Ganador = partidaResuelta.Ganador;
+                    registroPartida.Jugadores = partidaResuelta.Jugadores;
+                    registroPartida.MotivoDerrota = partidaResuelta.MotivoDerrota;
+                    registroPartida.Tableros = partidaResuelta.Tableros;
+                    registroPartida.PorcentajeProgreso = 100;
+                });
 
             partidasEnCurso.Add(partidaEnCurso);
             _ = partidaEnCurso.ContinueWith(t => partidasEnCurso.Remove(partidaEnCurso));

@@ -43,12 +43,12 @@ namespace Automaton.Web.Controllers
         }
 
         // POST: api/Torneo
-        [HttpPost]
+        [HttpPost("[action]")]
         [Authorize]
-        public async Task Post(string logica)
+        public async Task Post(LogicaRobotModel model)
         {
             var usuario = this.HttpContext.User.Identity.Name;
-            await registroPartidas.RegistrarRobotAsync(new LogicaRobotDto { Usuario = usuario, Logica = logica } );
+            await registroPartidas.RegistrarRobotAsync(new LogicaRobotDto { Usuario = usuario, Logica = model.Logica } );
         }
     }
 }
