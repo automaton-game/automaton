@@ -3,7 +3,9 @@ using Automaton.Compilador;
 using Automaton.Contratos.Entorno;
 using Automaton.Contratos.Helpers;
 using Automaton.Logica;
+using Automaton.Logica.Factories;
 using Automaton.Logica.Registro;
+using Automaton.Logica.Torneo;
 using Automaton.Web.Hubs;
 using Automaton.Web.Logica;
 using Automaton.Web.MappingProfiles;
@@ -18,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using Tools.Documentador;
 using Tools.Documentador.TypeReaders;
 
@@ -65,6 +68,7 @@ namespace Automaton.Web
                 var config = new MapperConfiguration(cfg => {
                     cfg.AddProfile<ErrorProfile>();
                     cfg.AddProfile<ResultadoTurnoProfile>();
+                    cfg.AddProfile<PartidaTorneoProfile>();
                     cfg.CreateMap<Tablero, Models.Tablero>()
                         .ForMember(m => m.TurnoRobot, y => y.MapFrom(m => m.TurnoRobot != null ? (int?)m.TurnoRobot.GetHashCode() : null));
                     cfg.CreateMap<FilaTablero, Models.FilaTablero>();
@@ -97,6 +101,17 @@ namespace Automaton.Web
             services.AddSingleton<IRegistroVictorias, RegistroVictorias>();
             services.AddSingleton<IRegistroJuegosManuales, RegistroJuegosManuales>();
             services.AddSingleton<IMetadataFactory, MetadataFactory>();
+
+            services.AddTransient<IRegistroPartidas, RegistroPartidas>();
+            services.AddSingleton<IRegistroPartidasDao, RegistroPartidasDao>();
+            services.AddSingleton<IRegistroJugadoresDao, RegistroJugadoresDao>();
+            services.AddTransient<IRegistroNotificador, RegistroNotificador>();
+            services.AddTransient<ITareasTorneo, TareasTorneo>();
+            services.AddTransient<IDirectorTorneo, DirectorTorneo>();
+            services.AddTransient<IFabricaRobotAsync, FabricaRobotAsync>();
+            services.AddTransient<IJuegoFactory, JuegoFactory>();
+
+            services.AddTransient<Func<IJuego2v2>>(x => () => x.GetService<IJuego2v2>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

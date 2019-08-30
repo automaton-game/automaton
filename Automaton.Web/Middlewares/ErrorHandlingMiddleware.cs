@@ -29,7 +29,8 @@ namespace Automaton.Web.Middlewares
             }
             catch (Exception ex)
             {
-                if (context.Request.ContentType != "application/json")
+                var devolverJson = context.Request.ContentType == "application/json";
+                if (!devolverJson)
                 {
                     throw ex;
                 }

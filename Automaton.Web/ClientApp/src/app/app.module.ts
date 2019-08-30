@@ -22,6 +22,7 @@ import { ColorService } from './color.service';
 import { PodiumModule } from './podium/podium.module';
 import { VictoriasComponent } from './juego/victorias/victorias.component';
 import { TorneoComponent } from './torneo/torneo.component';
+import { TorneoService } from './torneo/torneo.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { TorneoComponent } from './torneo/torneo.component';
   providers: [
     SocketClientServiceFactory,
     ColorService,
+    TorneoService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

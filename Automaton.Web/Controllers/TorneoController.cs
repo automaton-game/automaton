@@ -25,7 +25,7 @@ namespace Automaton.Web.Controllers
         }
 
         // GET: api/Torneo
-        [HttpGet]
+        [HttpGet("[action]")]
         public async Task<PartidosTorneoModel> Get()
         {
             var partidas = await registroPartidas.ObtenerUltimasPartidasAsync();

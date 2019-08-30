@@ -4,6 +4,8 @@ namespace Automaton.Web.Models.Torneo
 {
     public class PartidoTorneo
     {
+        public int? Id { get; set; }
+
         public IList<string> Jugadores { get; set; }
 
         public string Ganador { get; set; }
