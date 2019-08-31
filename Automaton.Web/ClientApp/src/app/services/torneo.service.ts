@@ -44,9 +44,12 @@ export class TorneoService implements OnDestroy {
         .reduce((a, b) => a.concat(b)) // SelectMany
         .filter((v, i, a) => a.indexOf(v) === i); // Distinct
 
-      let celdaVacia = new CasilleroTorneoModel();
+      // Cabecera
       {
-        let fila = [celdaVacia];
+        let celdaCabera = new CasilleroTorneoModel();
+        celdaCabera.texto = 'DEFENSOR \\ ATACANTE';
+        
+        let fila = [celdaCabera];
 
         let cabecera = jugadores.map(j => {
           let casillero = new CasilleroTorneoModel();
@@ -57,6 +60,38 @@ export class TorneoService implements OnDestroy {
         fila = fila.concat(cabecera);
         casilleros.push(fila);
       }
+
+      let celdaVacia = new CasilleroTorneoModel();
+      jugadores.forEach(function (jugadorFila) {
+        let fila = [];
+
+        {
+          let casillero = new CasilleroTorneoModel();
+          casillero.texto = jugadorFila;
+          fila.push(casillero);
+        }
+
+        jugadores.forEach(jugadorColumna => {
+          let partido = dto
+            .find(f =>
+              f.jugadores[0] === jugadorFila &&
+              f.jugadores
+                .filter(j => j !== f.jugadores[0])
+                .includes(jugadorColumna));
+          if (partido) {
+            let casillero = new CasilleroTorneoModel();
+            casillero.texto = partido.ganador;
+            casillero.idPartida = partido.id;
+            casillero.progreso = partido.porcentajeProgreso;
+            casillero.descripcion = partido.jugadores.join(' ← ');
+            fila.push(casillero);
+          } else {
+            fila.push(celdaVacia);
+          }
+        });
+
+        casilleros.push(fila);
+      });
     }
     
     return casilleros;
