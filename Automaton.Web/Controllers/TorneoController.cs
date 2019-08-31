@@ -33,15 +33,6 @@ namespace Automaton.Web.Controllers
             return maped;
         }
 
-        // GET: api/Torneo/{id}
-        [HttpGet]
-        public async Task<JuegoResponse> Get(int id)
-        {
-            var partida = await registroPartidas.ObtenerPartidaAsync(id);
-            var maped = mapper.Map<JuegoResponse>(partida);
-            return maped;
-        }
-
         // POST: api/Torneo
         [HttpPost("[action]")]
         [Authorize]

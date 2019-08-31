@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit, Injectable, OnDestroy } from '@angular/core';
+import {  Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { CasilleroTorneoModel } from './casilleroTorneo.model';
 
 @Injectable()
-export class TorneoService implements OnDestroy {
+export class TorneoService {
     
 
 	constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
@@ -95,10 +95,6 @@ export class TorneoService implements OnDestroy {
     }
     
     return casilleros;
-  }
-
-  ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
   }
 }
 

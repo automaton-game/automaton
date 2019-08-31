@@ -1,30 +1,5 @@
 <div class="page-header"><h1>Juego</h1><small> &lt; Programa tu IA &gt;</small></div>
 
-<div class="row" *ngIf="!juegoResponse">
-
-  <div *ngIf="errores" class="alert alert-warning alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="errores=null"><span aria-hidden="true">&times;</span></button>
-    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-    <strong>SE PRODUJERON ERRORES:</strong>
-    <ul>
-      <li *ngFor="let error of errores">{{error}}</li>
-    </ul>
-  </div>
-
-  <div *ngIf="!ocultarEditor" class="alert alert-info alert-dismissible" role="alert">
-    <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="ocultarEditor=true"><span aria-hidden="true">&times;</span></button>
-    <strong>TIP:</strong> Para simplificar la escritura de código, puedes usar este <a href="https://dotnetfiddle.net/RhSnzT" class="alert-link" target="_blank">editor</a>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading"><label><span class="glyphicon glyphicon-console" aria-hidden="true"></span> Logica de tu robot</label></div>
-    <div class="panel-body">
-      <textarea [(ngModel)]="logica1" rows="10" style="width:100%;"></textarea>
-    </div>
-  </div>
-</div>
-
 <div class="row" *ngIf="juegoResponse">
   <tablero-component [juegoResponse]="juegoResponse" mostrarAnimacion="true"></tablero-component>
 </div>
@@ -32,11 +7,8 @@
 <nav class="navbar navbar-default" aria-label="navigation">
   <ul class="pager">
 
-    <li *ngIf="juegoResponse"><a [routerLink]="" (click)="juegoResponse=null"><span aria-hidden="true">&larr;</span> Volver</a></li>
-    <li *ngIf="!juegoResponse"><a [routerLink]='["/"]'><span aria-hidden="true">&larr;</span> Volver</a></li>
-    <li *ngIf="!juegoResponse"><a [routerLink]="" (click)="obtenerTablero()">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
-    <li *ngIf="juegoResponse"><a href="https://ionbot.blogspot.com/2019/05/opinion.html" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Blogger.svg" height="20" /> Comentar <span aria-hidden="true">&rarr;</span></a></li>
-    <li *ngIf="juegoResponse"><a [routerLink]='["./victorias"]'> Victorias <span aria-hidden="true">&rarr;</span></a></li>
+    <li><a [routerLink]='["/"]'><span aria-hidden="true">&larr;</span> Volver</a></li>
+    <li><a href="https://ionbot.blogspot.com/2019/05/opinion.html" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Blogger.svg" height="20" /> Comentar <span aria-hidden="true">&rarr;</span></a></li>
   </ul>
 
 </nav>

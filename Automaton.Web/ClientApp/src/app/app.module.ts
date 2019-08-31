@@ -24,6 +24,7 @@ import { VictoriasComponent } from './juego/victorias/victorias.component';
 import { TorneoComponent } from './torneo/torneo.component';
 import { TorneoService } from './services/torneo.service';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
+import { PartidaService } from './services/partida.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { InscripcionComponent } from './inscripcion/inscripcion.component';
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'home', component: HomeComponent },
-      { path: 'juego', component: JuegoComponent },
+      { path: 'partida/:id', component: JuegoComponent },
       { path: 'juego/victorias', component: VictoriasComponent },
       { path: 'juegoManual', component: JuegoManualComponent },
       { path: 'juegoManual/:id', component: JuegoManualComponent },
@@ -67,6 +68,7 @@ import { InscripcionComponent } from './inscripcion/inscripcion.component';
     SocketClientServiceFactory,
     ColorService,
     TorneoService,
+    PartidaService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
