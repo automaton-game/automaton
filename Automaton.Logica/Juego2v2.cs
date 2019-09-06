@@ -26,7 +26,7 @@ namespace Automaton.Logica
 
         public ICollection<string> Robots => robotsJuegoDto.Select(r => r.Usuario).ToArray();
 
-        public TableroLogico Tablero { get; private set; }
+        public Tablero Tablero { get; private set; }
 
         public ResultadoTurnoDto JugarTurno()
         {

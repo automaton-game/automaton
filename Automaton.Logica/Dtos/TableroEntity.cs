@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Automaton.Web.Models
+namespace Automaton.Logica.Dtos
 {
-    public class Tablero
+    public class TableroEntity
     {
-        public IList<FilaTablero> Filas { get;set; }
+        public ICollection<FilaTableroEntity> Filas { get; set; }
 
         public IList<string> Consola { get; set; }
 

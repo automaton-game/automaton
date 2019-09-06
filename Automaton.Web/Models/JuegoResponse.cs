@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Automaton.Logica.Dtos.Model;
+using System.Collections.Generic;
 
 namespace Automaton.Web.Models
 {
     public class JuegoResponse
     {
-        public ICollection<Tablero> Tableros { get; set; }
+        public ICollection<TableroModel> Tableros { get; set; }
 
         public string Ganador { get; set; }
 

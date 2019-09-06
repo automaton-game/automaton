@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Automaton.Web.Hubs;
 using Automaton.Logica.Registro;
+using Automaton.Logica.Dtos.Model;
 
 namespace Automaton.Web.Controllers
 {
@@ -59,7 +60,7 @@ namespace Automaton.Web.Controllers
 
             var id = registroJuegosManuales.Guardar(juego);
 
-            var tableroModel = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
+            var tableroModel = mapper.Map<Tablero, TableroModel>(juego.Tablero);
             var tableros = registroJuegosManuales.GuardarTablero(id, tableroModel);
 
             return new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = id };
@@ -113,7 +114,7 @@ namespace Automaton.Web.Controllers
                 ganador = juego.ObtenerUsuarioGanador();
             }
 
-            var tableroModel = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
+            var tableroModel = mapper.Map<Tablero, TableroModel>(juego.Tablero);
             var tableros = registroJuegosManuales.GuardarTablero(juegoManualRequest.IdTablero, tableroModel);
 
             var juegoResp = new JuegoManualResponse { Jugadores = juego.Robots, jugadorTurnoActual = juego.ObtenerRobotTurnoActual().Usuario, Tableros = tableros, idTablero = juegoManualRequest.IdTablero, Ganador = ganador, MotivoDerrota = string.Empty };

@@ -1,4 +1,7 @@
-﻿using Automaton.Logica.Dtos;
+﻿using AutoMapper;
+using Automaton.Contratos.Entorno;
+using Automaton.Logica.Dtos;
+using Automaton.Logica.Dtos.Model;
 using Automaton.Logica.Factories;
 using Automaton.Logica.Registro;
 using System.Collections.Generic;
@@ -11,13 +14,16 @@ namespace Automaton.Logica
     {
         private readonly IFabricaRobotAsync fabricaRobot;
         private readonly IJuegoFactory juegoFactory;
+        private readonly IMapper mapper;
 
         public DirectorTorneo(
             IFabricaRobotAsync fabricaRobot,
-            IJuegoFactory juegoFactory)
+            IJuegoFactory juegoFactory,
+            IMapper mapper)
         {
             this.fabricaRobot = fabricaRobot;
             this.juegoFactory = juegoFactory;
+            this.mapper = mapper;
         }
 
         public PartidaResueltaDto Iniciar(ICollection<LogicaRobotDto> logicaRobotDtos)
@@ -47,14 +53,19 @@ namespace Automaton.Logica
         private PartidaResueltaDto GetPartidaResuelta(IJuego2v2 juego)
         {
             // Obtengo resultado de la partida
-            var tableros = new List<TableroLogico>();
+            var tableros = new List<TableroModel>();
             TurnoFinalDto turnoFinal = null;
             {
-                tableros.Add(juego.Tablero);
+                {
+                    var tableroModel = mapper.Map<Tablero, TableroModel>(juego.Tablero);
+                    tableros.Add(tableroModel);
+                }
+
                 while (turnoFinal == null)
                 {
                     var resultado = juego.JugarTurno();
-                    tableros.Add(juego.Tablero);
+                    var tableroModel = mapper.Map<Tablero, TableroModel>(juego.Tablero);
+                    tableros.Add(tableroModel);
                     turnoFinal = resultado as TurnoFinalDto;
                 }
             }

@@ -1,9 +1,9 @@
 ﻿
 using System.Collections.Generic;
 
-namespace Automaton.Web.Models
+namespace Automaton.Logica.Dtos.Model
 {
-    public class Casillero
+    public class CasilleroModel
     {
         public int NroFila { get; set; }
 

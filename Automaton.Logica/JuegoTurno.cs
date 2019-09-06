@@ -19,13 +19,13 @@ namespace Automaton.Logica
             this.fabricaTablero = fabricaTablero;
         }
 
-        public TableroLogico Tablero { get; private set; }
+        public Tablero Tablero { get; private set; }
 
         public RobotJuegoDto RobotJuego { get; private set; }
 
         public IEnumerable<RobotJuegoDto> AccionesRobot { get; private set; }
 
-        public void Configurar(TableroLogico tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot)
+        public void Configurar(Tablero tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot)
         {
             // Escribo una copia del tablero por seguridad:
             this.Tablero = this.fabricaTablero.Clone(tablero);

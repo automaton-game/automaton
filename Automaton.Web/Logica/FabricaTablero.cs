@@ -18,9 +18,9 @@ namespace Automaton.Web.Logica
         }
 
 
-        public TableroLogico Crear()
+        public Tablero Crear()
         {
-            var tablero = new TableroLogico();
+            var tablero = new Tablero();
             tablero.Filas = Enumerable.Range(1, filas).Select(f => {
                 var fila = new FilaTablero
                 {
@@ -34,9 +34,11 @@ namespace Automaton.Web.Logica
             return tablero;
         }
 
-        public TableroLogico Clone(TableroLogico tablero)
+        public T Clone<T>(T tablero) where T : Tablero, new()
         {
-            return mapper.Map<TableroLogico, TableroLogico>(tablero);
+            var rta = new T();
+            mapper.Map<Tablero, Tablero>(tablero, rta);
+            return rta;
         }
     }
 }

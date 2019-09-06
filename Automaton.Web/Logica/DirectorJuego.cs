@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Automaton.Logica.Dtos;
 using Automaton.Logica.Registro;
+using Automaton.Logica.Dtos.Model;
 
 namespace Automaton.Web.Logica
 {
@@ -73,10 +74,10 @@ namespace Automaton.Web.Logica
             return tipo;
         }
 
-        private IEnumerable<Models.Tablero> GetTableros(IJuego2v2 juego)
+        private IEnumerable<TableroModel> GetTableros(IJuego2v2 juego)
         {
             {
-                var tablero = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
+                var tablero = mapper.Map<Tablero, TableroModel>(juego.Tablero);
                 yield return tablero;
             }
 
@@ -84,7 +85,7 @@ namespace Automaton.Web.Logica
             while (!turnoFinal)
             {
                 var resultado = juego.JugarTurno();
-                var tablero = mapper.Map<Tablero, Models.Tablero>(juego.Tablero);
+                var tablero = mapper.Map<Tablero, TableroModel>(juego.Tablero);
                 mapper.Map(resultado, tablero);
                 yield return tablero;
                 turnoFinal = (resultado is TurnoFinalDto);

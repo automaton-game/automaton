@@ -7,7 +7,7 @@ namespace Automaton.Logica
 {
     public interface IJuego2v2
     {
-        TableroLogico Tablero { get; }
+        Tablero Tablero { get; }
 
         ICollection<string> Robots { get; }
 

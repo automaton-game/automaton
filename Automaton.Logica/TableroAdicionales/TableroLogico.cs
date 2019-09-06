@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Automaton.Logica.Dtos
 {
-    public class TableroLogico : Tablero 
+    public class TableroLogico : Tablero
     {
         private readonly IDictionary<Type, IAdicionalTablero> adicionales = new Dictionary<Type, IAdicionalTablero>();
 

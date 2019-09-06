@@ -1,4 +1,5 @@
-﻿using Automaton.Logica.Dtos;
+﻿using Automaton.Contratos.Entorno;
+using Automaton.Logica.Dtos;
 using Automaton.Web.Models;
 using Automaton.Web.Models.Torneo;
 using System.Collections.Generic;
@@ -21,6 +22,23 @@ namespace Automaton.Web.MappingProfiles
                 .ForMember(x => x.Ganador, y => y.MapFrom(x => x.Ganador))
                 .ForMember(x => x.MotivoDerrota, y => y.MapFrom(x => x.MotivoDerrota))
                 .ForMember(x => x.Tableros, y => y.MapFrom(x => x.Tableros))
+                ;
+
+            CreateMap<TableroLogico, TableroEntity>()
+                .ForMember(x => x.Consola, y => y.Ignore())
+                .ForMember(x => x.Filas, y => y.MapFrom(x => x.Filas))
+                .ForMember(x => x.TurnoRobot, y => y.MapFrom(x => x.TurnoRobot))
+                ;
+
+            CreateMap<FilaTablero, FilaTableroEntity>()
+                .ForMember(x => x.NroFila, y => y.MapFrom(x => x.NroFila))
+                .ForMember(x => x.Casilleros, y => y.MapFrom(x => x.Casilleros))
+                ;
+
+            CreateMap<Casillero, CasilleroEntity>()
+                .ForMember(x => x.NroFila, y => y.MapFrom(x => x.NroFila))
+                .ForMember(x => x.NroColumna, y => y.MapFrom(x => x.NroColumna))
+                .ForMember(x => x.Muralla, y => y.MapFrom(x => x.Muralla))
                 ;
         }
     }
