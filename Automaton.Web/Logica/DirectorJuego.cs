@@ -77,7 +77,7 @@ namespace Automaton.Web.Logica
         private IEnumerable<TableroModel> GetTableros(IJuego2v2 juego)
         {
             {
-                var tablero = mapper.Map<Tablero, TableroModel>(juego.Tablero);
+                var tablero = mapper.Map<TableroModel>(juego.Tablero);
                 yield return tablero;
             }
 
@@ -85,7 +85,7 @@ namespace Automaton.Web.Logica
             while (!turnoFinal)
             {
                 var resultado = juego.JugarTurno();
-                var tablero = mapper.Map<Tablero, TableroModel>(juego.Tablero);
+                var tablero = mapper.Map<TableroModel>(juego.Tablero);
                 mapper.Map(resultado, tablero);
                 yield return tablero;
                 turnoFinal = (resultado is TurnoFinalDto);

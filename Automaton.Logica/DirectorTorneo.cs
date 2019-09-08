@@ -57,14 +57,14 @@ namespace Automaton.Logica
             TurnoFinalDto turnoFinal = null;
             {
                 {
-                    var tableroModel = mapper.Map<Tablero, TableroModel>(juego.Tablero);
+                    var tableroModel = mapper.Map<TableroModel>(juego.Tablero);
                     tableros.Add(tableroModel);
                 }
 
                 while (turnoFinal == null)
                 {
                     var resultado = juego.JugarTurno();
-                    var tableroModel = mapper.Map<Tablero, TableroModel>(juego.Tablero);
+                    var tableroModel = mapper.Map<TableroModel>(juego.Tablero);
                     tableros.Add(tableroModel);
                     turnoFinal = resultado as TurnoFinalDto;
                 }

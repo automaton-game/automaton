@@ -19,7 +19,7 @@ namespace Automaton.Contratos.Helpers
         /// <categories>
         ///     <category>FIRST</category>
         /// </categories>
-        public static Casillero GetPosition(this IRobot robot)
+        public static ICasillero GetPosition(this IRobot robot)
         {
             var tablero = robot.Tablero;
             return tablero.Filas.SelectMany(f => f.Casilleros).First(c => c.ContieneRobot(robot));
@@ -32,7 +32,7 @@ namespace Automaton.Contratos.Helpers
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static Casillero GetPosition(this IRobot robot, int x, int y)
+        public static ICasillero GetPosition(this IRobot robot, int x, int y)
         {
             var tablero = robot.Tablero;
             var fila = tablero.Filas.FirstOrDefault(f => f.NroFila == y);
@@ -103,7 +103,7 @@ namespace Automaton.Contratos.Helpers
         /// <param name="desplazamientoHorizontal"></param>
         /// <param name="desplazamientoVertical"></param>
         /// <returns></returns>
-        public static Casillero BuscarRelativo(this IRobot robot, int desplazamientoHorizontal, int desplazamientoVertical)
+        public static ICasillero BuscarRelativo(this IRobot robot, int desplazamientoHorizontal, int desplazamientoVertical)
         {
             var casillero = robot.GetPosition();
             var x = casillero.NroColumna + desplazamientoHorizontal;
@@ -117,7 +117,7 @@ namespace Automaton.Contratos.Helpers
         /// <param name="robot"></param>
         /// <param name="movimiento"></param>
         /// <returns></returns>
-        public static Casillero BuscarRelativo(this IRobot robot, DireccionEnum movimiento)
+        public static ICasillero BuscarRelativo(this IRobot robot, DireccionEnum movimiento)
         {
             var casillero = robot.GetPosition();
             var x = casillero.NroColumna;

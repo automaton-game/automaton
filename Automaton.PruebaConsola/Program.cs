@@ -35,7 +35,7 @@ public class RobotUsuario : ARobot
         return movimiento;
     }
 
-    private AccionMoverDto EvaluarMovimiento(Casillero casillero, DireccionEnum direccion)
+    private AccionMoverDto EvaluarMovimiento(ICasillero casillero, DireccionEnum direccion)
     {
         var relativo = casillero.BuscarRelativo(direccion);
         if (relativo != null)

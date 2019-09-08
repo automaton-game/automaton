@@ -6,7 +6,7 @@ namespace Automaton.Logica
 {
     public interface IJuegoTurno
     {
-        void Configurar(Tablero tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot);
+        void Configurar(TableroDto tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot);
         ResultadoTurnoDto JugarTurno();
     }
 }

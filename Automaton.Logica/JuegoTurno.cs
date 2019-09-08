@@ -25,10 +25,10 @@ namespace Automaton.Logica
 
         public IEnumerable<RobotJuegoDto> AccionesRobot { get; private set; }
 
-        public void Configurar(Tablero tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot)
+        public void Configurar(TableroDto tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot)
         {
             // Escribo una copia del tablero por seguridad:
-            this.Tablero = this.fabricaTablero.Clone(tablero);
+            this.Tablero = this.fabricaTablero.Clone<Tablero>(tablero);
 
             this.RobotJuego = robotJuego;
             this.AccionesRobot = accionesRobot;
@@ -115,10 +115,10 @@ namespace Automaton.Logica
 
 
 
-        private Casillero Desplazar(Casillero casilleroOrigen, DireccionEnum movimiento, IRobot robot)
+        private ICasillero Desplazar(ICasillero casilleroOrigen, DireccionEnum movimiento, IRobot robot)
         {
-            var posFila = this.Tablero.Filas.IndexOf(casilleroOrigen.Fila);
-            var posColumna = casilleroOrigen.Fila.Casilleros.IndexOf(casilleroOrigen);
+            var posFila = this.Tablero.Filas.ToList().IndexOf(casilleroOrigen.Fila);
+            var posColumna = casilleroOrigen.Fila.Casilleros.ToList().IndexOf(casilleroOrigen);
 
             switch (movimiento)
             {

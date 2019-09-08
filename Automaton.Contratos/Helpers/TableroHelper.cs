@@ -16,7 +16,7 @@ namespace Automaton.Contratos.Helpers
         /// <param name="tablero"></param>
         /// <param name="robot"></param>
         /// <returns></returns>
-        public static Casillero GetPosition(this Tablero tablero, IRobot robot)
+        public static ICasillero GetPosition(this ITablero tablero, IRobot robot)
         {
             return tablero.Filas.SelectMany(f => f.Casilleros).First(c => c.ContieneRobot(robot));
         }
@@ -28,7 +28,7 @@ namespace Automaton.Contratos.Helpers
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static Casillero GetPosition(this Tablero tablero, int x, int y)
+        public static ICasillero GetPosition(this ITablero tablero, int x, int y)
         {
             var fila = tablero.Filas.FirstOrDefault(f => f.NroFila == y);
             if (fila == null)
@@ -44,7 +44,7 @@ namespace Automaton.Contratos.Helpers
         /// </summary>
         /// <param name="tablero"></param>
         /// <returns></returns>
-        public static Casillero GetMax(this Tablero tablero)
+        public static ICasillero GetMax(this ITablero tablero)
         {
             return tablero.Filas.Last().Casilleros.Last();
         }
@@ -54,7 +54,7 @@ namespace Automaton.Contratos.Helpers
         /// </summary>
         /// <param name="tablero"></param>
         /// <returns></returns>
-        public static IEnumerable<Casillero> GetCasilleros(this Tablero tablero)
+        public static IEnumerable<ICasillero> GetCasilleros(this ITablero tablero)
         {
             return tablero.Filas.SelectMany(fila => fila.Casilleros);
         }

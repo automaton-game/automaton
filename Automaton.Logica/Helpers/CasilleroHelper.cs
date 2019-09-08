@@ -6,7 +6,7 @@ namespace Automaton.Logica.Helpers
 {
     public static class CasilleroHelper
     {
-        public static void AgregarRobot(this Casillero casillero, IRobot robot)
+        public static void AgregarRobot(this ICasillero casillero, IRobot robot)
         {
             if (casillero.Robots == null)
             {
@@ -18,7 +18,7 @@ namespace Automaton.Logica.Helpers
             }
         }
 
-        public static void QuitarRobot(this Casillero casillero, IRobot robot)
+        public static void QuitarRobot(this ICasillero casillero, IRobot robot)
         {
             if (casillero.Robots != null)
             {

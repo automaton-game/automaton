@@ -5,8 +5,8 @@ namespace Automaton.Logica
 {
     public interface IFabricaTablero
     {
-        Tablero Crear();
+        TableroDto Crear();
 
-        T Clone<T>(T tablero) where T : Tablero, new();
+        T Clone<T>(TableroDto tablero) where T : Tablero, new();
     }
 }

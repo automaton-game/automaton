@@ -14,7 +14,7 @@ namespace Automaton.Contratos.Helpers
         /// </summary>
         /// <param name="casillero"></param>
         /// <returns></returns>
-        public static bool EsUltimaColumna(this Casillero casillero)
+        public static bool EsUltimaColumna(this ICasillero casillero)
         {
             return casillero.NroColumna == casillero.Fila.Tablero.GetMax().NroColumna;
         }
@@ -24,7 +24,7 @@ namespace Automaton.Contratos.Helpers
         /// </summary>
         /// <param name="casillero"></param>
         /// <returns></returns>
-        public static bool EsUltimaFila(this Casillero casillero)
+        public static bool EsUltimaFila(this ICasillero casillero)
         {
             return casillero.NroFila == casillero.Fila.Tablero.GetMax().NroFila;
         }
@@ -34,7 +34,7 @@ namespace Automaton.Contratos.Helpers
         /// </summary>
         /// <param name="casillero"></param>
         /// <returns></returns>
-        public static bool EsPrimeraColumna(this Casillero casillero)
+        public static bool EsPrimeraColumna(this ICasillero casillero)
         {
             return casillero.NroColumna == 0;
         }
@@ -44,7 +44,7 @@ namespace Automaton.Contratos.Helpers
         /// </summary>
         /// <param name="casillero"></param>
         /// <returns></returns>
-        public static bool EsPrimeraFila(this Casillero casillero)
+        public static bool EsPrimeraFila(this ICasillero casillero)
         {
             return casillero.NroFila == 0;
         }
@@ -56,7 +56,7 @@ namespace Automaton.Contratos.Helpers
         /// <param name="desplazamientoHorizontal"></param>
         /// <param name="desplazamientoVertical"></param>
         /// <returns></returns>
-        public static Casillero BuscarRelativo(this Casillero casillero, int desplazamientoHorizontal, int desplazamientoVertical)
+        public static ICasillero BuscarRelativo(this ICasillero casillero, int desplazamientoHorizontal, int desplazamientoVertical)
         {
             var x = casillero.NroColumna + desplazamientoHorizontal;
             var y = casillero.NroFila + desplazamientoVertical;
@@ -69,7 +69,7 @@ namespace Automaton.Contratos.Helpers
         /// <param name="casillero"></param>
         /// <param name="movimiento"></param>
         /// <returns></returns>
-        public static Casillero BuscarRelativo(this Casillero casillero, DireccionEnum movimiento)
+        public static ICasillero BuscarRelativo(this ICasillero casillero, DireccionEnum movimiento)
         {
             var x = casillero.NroColumna;
             var y = casillero.NroFila;
@@ -98,7 +98,7 @@ namespace Automaton.Contratos.Helpers
         /// </summary>
         /// <param name="casillero"></param>
         /// <returns></returns>
-        public static IRobot ObtenerRobotLider(this Casillero casillero)
+        public static IRobot ObtenerRobotLider(this ICasillero casillero)
         {
             return casillero.Robots?.LastOrDefault();
         }
@@ -109,7 +109,7 @@ namespace Automaton.Contratos.Helpers
         /// <param name="casillero"></param>
         /// <param name="robot"></param>
         /// <returns></returns>
-        public static bool ContieneRobot(this Casillero casillero, IRobot robot)
+        public static bool ContieneRobot(this ICasillero casillero, IRobot robot)
         {
             if (casillero.Robots != null)
             {
