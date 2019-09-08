@@ -12,6 +12,7 @@ export class InscripcionComponent implements OnInit {
 
   public logica1: string;
   public errores: string[];
+  public ocultarEditor: boolean = false; 
 
   constructor(
     private torneoService: TorneoService,
