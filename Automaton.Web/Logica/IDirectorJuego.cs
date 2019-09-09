@@ -1,4 +1,4 @@
-﻿using Automaton.Web.Models;
+﻿using Automaton.Logica.Dtos.Model;
 
 namespace Automaton.Web.Logica
 {

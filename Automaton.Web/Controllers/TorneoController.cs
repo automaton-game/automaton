@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Automaton.Logica;
+using Automaton.Logica.Dtos.Model.Torneo;
 using Automaton.Logica.Registro;
 using Automaton.Web.Models;
-using Automaton.Web.Models.Torneo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

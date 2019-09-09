@@ -1,11 +1,12 @@
-﻿using Automaton.Contratos.Entorno;
+﻿using AutoMapper;
+using Automaton.Contratos.Entorno;
 using Automaton.Contratos.Helpers;
 using Automaton.Logica.Dtos;
 using Automaton.Logica.Dtos.Model;
 
-namespace Automaton.Web.MappingProfiles
+namespace Automaton.ProfileMapping
 {
-    public class TableroProfile : AutoMapper.Profile
+    public class TableroProfile : Profile
     {
         public TableroProfile()
         {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Automaton.Web.Models.Torneo
+namespace Automaton.Logica.Dtos.Model.Torneo
 {
     public class PartidosTorneoModel
     {

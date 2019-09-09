@@ -4,6 +4,7 @@ using Automaton.Web.Logica;
 using Microsoft.AspNetCore.Authorization;
 using Automaton.Logica;
 using AutoMapper;
+using Automaton.Logica.Dtos.Model;
 
 namespace Automaton.Web.Controllers
 {

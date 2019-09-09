@@ -1,22 +1,33 @@
 ﻿using Automaton.Contratos.Entorno;
 using Automaton.Logica.Dtos;
-using Automaton.Web.Models;
-using Automaton.Web.Models.Torneo;
+using Automaton.Logica.Dtos.Model;
+using Automaton.Logica.Dtos.Model.Torneo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Automaton.Web.MappingProfiles
+namespace Automaton.ProfileMapping
 {
     public class PartidaTorneoProfile : AutoMapper.Profile
     {
         public PartidaTorneoProfile()
         {
             CreateMap<IEnumerable<IRegistroPartidaDto>, PartidosTorneoModel>()
-                .ForMember(x => x.Partidos, y => y.MapFrom(x => x.ToList()))
+                .ForMember(x => x.Partidos, y => y.MapFrom(x => x))
                 ;
 
             CreateMap<IRegistroPartidaDto, PartidoTorneo>()
                 .ForMember(x => x.Id, y => y.MapFrom(x => x.IdPartida));
+
+            CreateMap<RegistroPartidaResueltaDto, PartidoTorneo>()
+                .IncludeBase<IRegistroPartidaDto, PartidoTorneo>()
+                .ForMember(x => x.Ganador, y => y.MapFrom(x => x.Ganador))
+                .ForMember(x => x.PorcentajeProgreso, y => y.UseValue(100));
+
+            CreateMap<RegistroPartidaEnCursoDto, PartidoTorneo>()
+                .IncludeBase<IRegistroPartidaDto, PartidoTorneo>()
+                .ForMember(x => x.Ganador, y => y.Ignore())
+                .ForMember(x => x.PorcentajeProgreso, y => y.UseValue(new Random().Next(20,80)));
 
             CreateMap<PartidaResueltaDto, JuegoResponse>()
                 .ForMember(x => x.Ganador, y => y.MapFrom(x => x.Ganador))

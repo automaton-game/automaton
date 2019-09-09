@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaton.Logica.Torneo", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaton.Logica.Torneo.Tests", "Automaton.Logica.Torneo.Tests\Automaton.Logica.Torneo.Tests.csproj", "{9435408F-0FF9-47A1-913E-54A5D6272A90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton.ProfileMapping", "Automaton.ProfileMapping\Automaton.ProfileMapping.csproj", "{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{9435408F-0FF9-47A1-913E-54A5D6272A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9435408F-0FF9-47A1-913E-54A5D6272A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9435408F-0FF9-47A1-913E-54A5D6272A90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

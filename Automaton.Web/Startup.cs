@@ -6,6 +6,7 @@ using Automaton.Logica;
 using Automaton.Logica.Factories;
 using Automaton.Logica.Registro;
 using Automaton.Logica.Torneo;
+using Automaton.ProfileMapping;
 using Automaton.Web.Hubs;
 using Automaton.Web.Logica;
 using Automaton.Web.MappingProfiles;

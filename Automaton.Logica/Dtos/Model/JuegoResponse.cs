@@ -1,7 +1,6 @@
-﻿using Automaton.Logica.Dtos.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Automaton.Web.Models
+namespace Automaton.Logica.Dtos.Model
 {
     public class JuegoResponse
     {

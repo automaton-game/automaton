@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Automaton.Logica.Dtos.Model;
 using Automaton.Logica.Registro;
 using Automaton.Web.Models;
 using Microsoft.AspNetCore.Mvc;

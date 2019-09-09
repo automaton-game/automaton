@@ -55,6 +55,7 @@
     <ProjectReference Include="..\Automaton.Compilador\Automaton.Compilador.csproj" />
     <ProjectReference Include="..\Automaton.Logica.Torneo\Automaton.Logica.Torneo.csproj" />
     <ProjectReference Include="..\Automaton.Logica\Automaton.Logica.csproj" />
+    <ProjectReference Include="..\Automaton.ProfileMapping\Automaton.ProfileMapping.csproj" />
     <ProjectReference Include="..\Tools.Documentador\Tools.Documentador.csproj" />
   </ItemGroup>
 

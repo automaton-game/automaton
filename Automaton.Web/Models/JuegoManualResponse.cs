@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Automaton.Logica.Dtos.Model;
+using System.Collections.Generic;
 
 namespace Automaton.Web.Models
 {
