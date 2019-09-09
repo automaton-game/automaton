@@ -17,5 +17,8 @@ namespace Automaton.Contratos.Entorno
         /// Hace refencia al turno del robot para el tablero actual. 
         /// </summary>
         public IRobot TurnoRobot { get; set; }
+
+
+        public IList<string> Consola { get; set; }
     }
 }

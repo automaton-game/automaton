@@ -7,19 +7,24 @@ using System.Linq;
 using Automaton.Contratos.Helpers;
 using Automaton.Logica.Robots;
 using Automaton.Logica.Helpers;
+using AutoMapper;
 
 namespace Automaton.Logica
 {
     public class JuegoTurno : IJuegoTurno
     {
         private readonly IFabricaTablero fabricaTablero;
+        private readonly IMapper mapper;
 
-        public JuegoTurno(IFabricaTablero fabricaTablero)
+        public JuegoTurno(
+            IFabricaTablero fabricaTablero,
+            IMapper mapper)
         {
             this.fabricaTablero = fabricaTablero;
+            this.mapper = mapper;
         }
 
-        public Tablero Tablero { get; private set; }
+        public TableroDto Tablero { get; private set; }
 
         public RobotJuegoDto RobotJuego { get; private set; }
 
@@ -28,7 +33,7 @@ namespace Automaton.Logica
         public void Configurar(TableroDto tablero, RobotJuegoDto robotJuego, IEnumerable<RobotJuegoDto> accionesRobot)
         {
             // Escribo una copia del tablero por seguridad:
-            this.Tablero = this.fabricaTablero.Clone<Tablero>(tablero);
+            this.Tablero = tablero;
 
             this.RobotJuego = robotJuego;
             this.AccionesRobot = accionesRobot;
@@ -41,10 +46,10 @@ namespace Automaton.Logica
         {
             try
             {
-                RobotJuego.Robot.Tablero = this.Tablero;
-
+                this.RobotJuego.Robot.Tablero = this.fabricaTablero.Clone<Tablero>(this.Tablero);
                 var console = new RobotConsole();
                 var accion = EjecutarAccionRobot(RobotJuego, console);
+                this.Tablero.Consola = console.Logs;
                 return new TurnoRobotDto { Accion = accion, Consola = console.Logs, Tablero = this.Tablero };
             }
             catch (Exception ex)
