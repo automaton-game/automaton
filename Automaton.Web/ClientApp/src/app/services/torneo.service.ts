@@ -47,7 +47,7 @@ export class TorneoService {
       // Cabecera
       {
         let celdaCabera = new CasilleroTorneoModel();
-        celdaCabera.texto = 'DEFENSOR \\ ATACANTE';
+        celdaCabera.texto = '';
         
         let fila = [celdaCabera];
 

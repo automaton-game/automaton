@@ -26,17 +26,23 @@ namespace Automaton.Compilador
 
         public void Dispose()
         {
-            foreach (var tempFile in tempFiles)
+            try
             {
-                
-                try
+                foreach (var tempFile in tempFiles)
                 {
-                    File.Delete(tempFile);
+
+                    try
+                    {
+                        File.Delete(tempFile);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogWarning(ex, "Fallo al intentar eliminar archivo temporal {0}", tempFile);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    logger.LogWarning(ex, "Fallo al intentar eliminar archivo temporal {0}", tempFile);
-                }
+            }
+            catch (Exception)
+            {
             }
         }
     }
