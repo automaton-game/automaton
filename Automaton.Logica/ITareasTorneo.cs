@@ -1,5 +1,4 @@
-﻿using Automaton.Logica.Dtos;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Automaton.Logica
@@ -11,6 +10,6 @@ namespace Automaton.Logica
         /// </summary>
         /// <param name="logicaRobotDtos"></param>
         /// <returns></returns>
-        Task IniciarPartida(ICollection<LogicaRobotDto> logicaRobotDtos);
+        Task RegistrarPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos);
     }
 }

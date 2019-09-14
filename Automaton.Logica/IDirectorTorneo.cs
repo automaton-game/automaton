@@ -8,6 +8,6 @@ namespace Automaton.Logica
     {
         PartidaResueltaDto Iniciar(ICollection<LogicaRobotDto> logicaRobotDtos);
 
-        Task<PartidaResueltaDto> IniciarPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos);
+        Task<PartidaResueltaDto> ResolverPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos);
     }
 }

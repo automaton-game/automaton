@@ -28,12 +28,12 @@ namespace Automaton.Logica
 
         public PartidaResueltaDto Iniciar(ICollection<LogicaRobotDto> logicaRobotDtos)
         {
-            var task = IniciarPartidaAsync(logicaRobotDtos);
+            var task = ResolverPartidaAsync(logicaRobotDtos);
             task.Wait();
             return task.Result;
         }
 
-        public async Task<PartidaResueltaDto> IniciarPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public async Task<PartidaResueltaDto> ResolverPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos)
         {
             var juego = juegoFactory.CreateJuego2V2();
 

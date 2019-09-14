@@ -66,7 +66,7 @@ namespace Automaton.Logica.Torneo
 
         }
 
-        public  void CreadorPartidas(List<RegistroJugadorDto> jugadores)
+        public void CreadorPartidas(List<RegistroJugadorDto> jugadores)
         {
             for (int i = 0; i < jugadores.Count(); i++)
             {
@@ -85,28 +85,12 @@ namespace Automaton.Logica.Torneo
                         partidaActual.Add(jugadorLocal);
                         partidaActual.Add(jugadorVisitante);
 
-                        var partida = tareasTorneo.IniciarPartida(partidaActual);
+
+                        // No espero a que termine de procesar la partida
+                        tareasTorneo.RegistrarPartidaAsync(partidaActual);
                     }
                 }
             }
         }
-
-        //public List<RegistroJugadorDto> jugadoresUnicos(List<RegistroJugadorDto> ListaJugadores)
-        //{
-        //    List<RegistroJugadorDto> JugadoresHabilitados = new List<RegistroJugadorDto>();
-
-        //    for (int i = 0; i < ListaJugadores.Count; i++)
-        //    {
-        //        RegistroJugadorDto unico = ListaJugadores.LastOrDefault(j => j.Usuario == ListaJugadores[i].Usuario);
-        //        if (!JugadoresHabilitados.Contains(unico))
-        //        {
-        //            JugadoresHabilitados.Add(unico);
-        //        }
-        //    }
-        //    return JugadoresHabilitados;
-        //}
-
-
     }
-
 }

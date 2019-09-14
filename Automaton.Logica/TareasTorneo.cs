@@ -23,11 +23,11 @@ namespace Automaton.Logica
 
         private static IList<Task> partidasEnCurso = new List<Task>();
 
-        public async Task IniciarPartida(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public async Task RegistrarPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos)
         {
             var registroPartidaEnCursoDto = await registroPartidasDao.Create<RegistroPartidaEnCursoDto>();
             var partidaEnCurso = directorTorneo
-                .IniciarPartidaAsync(logicaRobotDtos)
+                .ResolverPartidaAsync(logicaRobotDtos)
                 .ContinueWith(p =>
                 {
                     var partidaResuelta = p.Result;
