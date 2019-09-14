@@ -23,7 +23,7 @@ namespace Automaton.Logica
 
         private static IList<Task> partidasEnCurso = new List<Task>();
 
-        public async Task<RegistroPartidaEnCursoDto> IniciarPartida(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public async Task IniciarPartida(ICollection<LogicaRobotDto> logicaRobotDtos)
         {
             var registroPartidaEnCursoDto = await registroPartidasDao.Create<RegistroPartidaEnCursoDto>();
             var partidaEnCurso = directorTorneo
@@ -43,9 +43,7 @@ namespace Automaton.Logica
                 });
 
             partidasEnCurso.Add(partidaEnCurso);
-            _ = partidaEnCurso.ContinueWith(t => partidasEnCurso.Remove(partidaEnCurso));
-
-            return registroPartidaEnCursoDto;
+            await partidaEnCurso.ContinueWith(t => partidasEnCurso.Remove(partidaEnCurso));
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Automaton.Logica
         /// </summary>
         /// <param name="logicaRobotDtos"></param>
         /// <returns></returns>
-        Task<RegistroPartidaEnCursoDto> IniciarPartida(ICollection<LogicaRobotDto> logicaRobotDtos);
+        Task IniciarPartida(ICollection<LogicaRobotDto> logicaRobotDtos);
     }
 }

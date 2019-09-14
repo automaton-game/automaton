@@ -31,7 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaton.Logica.Torneo", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaton.Logica.Torneo.Tests", "Automaton.Logica.Torneo.Tests\Automaton.Logica.Torneo.Tests.csproj", "{9435408F-0FF9-47A1-913E-54A5D6272A90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton.ProfileMapping", "Automaton.ProfileMapping\Automaton.ProfileMapping.csproj", "{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaton.ProfileMapping", "Automaton.ProfileMapping\Automaton.ProfileMapping.csproj", "{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagram", "Diagram", "{6FD89EE9-6E72-4481-B4CA-83606922D891}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton.Diagrams", "Automaton.Diagrams\Automaton.Diagrams.csproj", "{87457734-C999-47CC-B096-D9CF63F8A0AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +95,10 @@ Global
 		{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF0F2E7-E2AA-49A4-9768-7D9A0F376776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87457734-C999-47CC-B096-D9CF63F8A0AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87457734-C999-47CC-B096-D9CF63F8A0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87457734-C999-47CC-B096-D9CF63F8A0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87457734-C999-47CC-B096-D9CF63F8A0AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +109,7 @@ Global
 		{C81BBF14-64F9-4D53-8955-F3ADCAA82E26} = {9E149747-FDA8-4E3A-829B-A278CCDB995E}
 		{EBE765DF-0545-4335-A7BD-3707A465CF3C} = {E8998B44-46FA-46AD-B36B-21BBB438AE9A}
 		{9435408F-0FF9-47A1-913E-54A5D6272A90} = {E8998B44-46FA-46AD-B36B-21BBB438AE9A}
+		{87457734-C999-47CC-B096-D9CF63F8A0AD} = {6FD89EE9-6E72-4481-B4CA-83606922D891}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B61A17E3-CC98-42F4-8C98-BA1BAA0158D8}
