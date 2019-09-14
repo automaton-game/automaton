@@ -26,7 +26,7 @@ namespace Automaton.Logica
             this.mapper = mapper;
         }
 
-        public PartidaResueltaDto Iniciar(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public PartidaResueltaDto ResolverPartida(ICollection<LogicaRobotDto> logicaRobotDtos)
         {
             var task = ResolverPartidaAsync(logicaRobotDtos);
             task.Wait();
