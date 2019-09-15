@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Automaton.Logica
@@ -11,5 +12,7 @@ namespace Automaton.Logica
         /// <param name="logicaRobotDtos"></param>
         /// <returns></returns>
         Task RegistrarPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos);
+
+        Task<ICollection<LogicaRobotDto>> ObtenerLogicas(CancellationToken cancellationToken);
     }
 }

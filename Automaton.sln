@@ -37,7 +37,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagram", "Diagram", "{6FD8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton.Diagrams", "Automaton.Diagrams\Automaton.Diagrams.csproj", "{87457734-C999-47CC-B096-D9CF63F8A0AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton.Workers", "Automaton.Workers\Automaton.Workers.csproj", "{040EB0B3-67D3-4335-B4C5-18F464142529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automaton.Workers", "Automaton.Workers\Automaton.Workers.csproj", "{040EB0B3-67D3-4335-B4C5-18F464142529}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{034D9B19-4480-4A6A-A632-4D5CF63EE373}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

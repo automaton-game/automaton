@@ -102,12 +102,16 @@ namespace Automaton.Web
             services.AddSingleton<IRegistroPartidasDao, RegistroPartidasDao>();
             services.AddSingleton<IRegistroJugadoresDao, RegistroJugadoresDao>();
             services.AddTransient<IRegistroNotificador, RegistroNotificador>();
-            services.AddTransient<ITareasTorneo, ProcesadorPartidas>();
+            
             services.AddTransient<IDirectorTorneo, DirectorTorneo>();
             services.AddTransient<IFabricaRobotAsync, FabricaRobotAsync>();
             services.AddTransient<IJuegoFactory, JuegoFactory>();
 
             services.AddTransient<Func<IJuego2v2>>(x => () => x.GetService<IJuego2v2>());
+
+            services.AddSingleton<ITareasTorneo, TareasTorneo>();
+            services.AddHostedService<ProcesadorPartidasWorker>();
+            services.AddTransient<IProcesadorPartidas, ProcesadorPartidas>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
