@@ -11,6 +11,7 @@ using Automaton.Web.Hubs;
 using Automaton.Web.Logica;
 using Automaton.Web.MappingProfiles;
 using Automaton.Web.Middlewares;
+using Automaton.Workers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -101,7 +102,7 @@ namespace Automaton.Web
             services.AddSingleton<IRegistroPartidasDao, RegistroPartidasDao>();
             services.AddSingleton<IRegistroJugadoresDao, RegistroJugadoresDao>();
             services.AddTransient<IRegistroNotificador, RegistroNotificador>();
-            services.AddTransient<ITareasTorneo, TareasTorneo>();
+            services.AddTransient<ITareasTorneo, ProcesadorPartidas>();
             services.AddTransient<IDirectorTorneo, DirectorTorneo>();
             services.AddTransient<IFabricaRobotAsync, FabricaRobotAsync>();
             services.AddTransient<IJuegoFactory, JuegoFactory>();

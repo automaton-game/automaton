@@ -1,6 +1,4 @@
-﻿using Automaton.Logica.Dtos;
-using Automaton.Logica.Registro;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
