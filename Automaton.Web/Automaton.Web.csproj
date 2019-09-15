@@ -52,11 +52,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Automaton.Compilador\Automaton.Compilador.csproj" />
-    <ProjectReference Include="..\Automaton.Logica.Torneo\Automaton.Logica.Torneo.csproj" />
     <ProjectReference Include="..\Automaton.Logica\Automaton.Logica.csproj" />
     <ProjectReference Include="..\Automaton.ProfileMapping\Automaton.ProfileMapping.csproj" />
-    <ProjectReference Include="..\Automaton.Workers\Automaton.Workers.csproj" />
+    <ProjectReference Include="..\Automaton.Web.Dependencies\Automaton.Web.Dependencies.csproj" />
     <ProjectReference Include="..\Tools.Documentador\Tools.Documentador.csproj" />
   </ItemGroup>
 

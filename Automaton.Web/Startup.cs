@@ -7,6 +7,7 @@ using Automaton.Logica.Factories;
 using Automaton.Logica.Registro;
 using Automaton.Logica.Torneo;
 using Automaton.ProfileMapping;
+using Automaton.Web.Dependencies;
 using Automaton.Web.Hubs;
 using Automaton.Web.Logica;
 using Automaton.Web.MappingProfiles;
@@ -79,39 +80,14 @@ namespace Automaton.Web
                 return mapper;
             });
 
-            services.AddTransient<IJuego2v2, Juego2v2>();
-            services.AddTransient<IJuegoTurno, JuegoTurno>();
-            services.AddTransient<IDirectorJuego, DirectorJuego>();
             services.AddTransient<IFabricaTablero, FabricaTablero>();
-            services.AddTransient<IFabricaRobot, FabricaRobot>();
-            services.AddTransient(f => ReaderFactory.Create());
-
-            services.AddTransient<IRegistroNotificador, RegistroNotificador>();
-
+            services.AddTransient<IDirectorJuego, DirectorJuego>();
             services.AddTransient<ErrorHandlingMiddleware>();
-
-            services.AddScoped<ITempFileManager, TempFileManager>();
-            services.AddScoped<IDomainFactory, DomainFactory>();
+            services.AddTransient<IRegistroNotificador, RegistroNotificador>();
+            services.AddSingleton<IRegistroJuegosManuales, RegistroJuegosManuales>();
             services.AddLogging(ConfigureLogging);
 
-            services.AddSingleton<IRegistroVictorias, RegistroVictorias>();
-            services.AddSingleton<IRegistroJuegosManuales, RegistroJuegosManuales>();
-            services.AddSingleton<IMetadataFactory, MetadataFactory>();
-
-            services.AddTransient<IRegistroPartidas, RegistroPartidas>();
-            services.AddSingleton<IRegistroPartidasDao, RegistroPartidasDao>();
-            services.AddSingleton<IRegistroJugadoresDao, RegistroJugadoresDao>();
-            services.AddTransient<IRegistroNotificador, RegistroNotificador>();
-            
-            services.AddTransient<IDirectorTorneo, DirectorTorneo>();
-            services.AddTransient<IFabricaRobotAsync, FabricaRobotAsync>();
-            services.AddTransient<IJuegoFactory, JuegoFactory>();
-
-            services.AddTransient<Func<IJuego2v2>>(x => () => x.GetService<IJuego2v2>());
-
-            services.AddSingleton<ITareasTorneo, TareasTorneo>();
-            services.AddHostedService<ProcesadorPartidasWorker>();
-            services.AddTransient<IProcesadorPartidas, ProcesadorPartidas>();
+            services.AutomatonDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
