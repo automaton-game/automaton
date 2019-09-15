@@ -1,27 +1,32 @@
-import {  Inject, Injectable } from '@angular/core';
+import {  Inject, Injectable, OnDestroy } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { CasilleroTorneoModel } from './casilleroTorneo.model';
+import { SocketClientServiceFactory } from '../socketClientFactory.service';
+import { SocketClientService } from '../socketClient.service';
 
 @Injectable()
-export class TorneoService {
-    
+export class TorneoService implements OnDestroy {
+   
+  private socketConnection: SocketClientService;
+  private subj = new Subject<Array<Array<CasilleroTorneoModel>>>();
 
-	constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
-		
+  constructor(private http: HttpClient, private socketClientServiceFactory: SocketClientServiceFactory) {
   }
 
   Get(): Observable<Array<Array<CasilleroTorneoModel>>> {
-    let subj = new Subject<Array<Array<CasilleroTorneoModel>>>();
+    let self = this;
+
     this.http
       .get<{ partidos: Array<PartidoTorneoDto> }>("api/Torneo/Get")
       .subscribe(response => {
-        let mapeado = this.Map(response.partidos);
-        subj.next(mapeado);
+        self.Send(response);
+
+        self.connect();
       });
 
-    return subj.asObservable();
+    return this.subj.asObservable();
   }
 
   Post(logica1: string) {
@@ -95,6 +100,23 @@ export class TorneoService {
     }
     
     return casilleros;
+  }
+
+  Send(respuesta: { partidos: Array<PartidoTorneoDto> }) {
+    let mapeado = this.Map(respuesta.partidos);
+    this.subj.next(mapeado);
+  }
+
+  ngOnDestroy(): void {
+    this.socketConnection && this.socketConnection.ngOnDestroy();
+  }
+
+  private connect() {
+    if (this.socketConnection) return;
+
+    let self = this;
+    this.socketConnection = this.socketClientServiceFactory.connect("/torneo");
+    this.socketConnection.read<{ partidos: Array<PartidoTorneoDto> }>("NotificarUltimasPartidas").subscribe(rta => self.Send(rta));
   }
 }
 

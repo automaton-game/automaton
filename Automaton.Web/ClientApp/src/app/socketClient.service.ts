@@ -11,10 +11,10 @@ export class SocketClientService implements OnDestroy {
   ) {
   }
 
-  read<T>() {
+  read<T>(action: string) {
     let subject = new Subject<T>();
 
-    this.hubConnection.on("FinTurno", (response: T) => {
+    this.hubConnection.on(action, (response: T) => {
       this.zone.run(() => {
         subject.next(response);
 

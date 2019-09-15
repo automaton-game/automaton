@@ -113,6 +113,7 @@ namespace Automaton.Web
             app.UseSignalR(routes =>
             {
                 routes.MapHub<TurnoHub>(new PathString("/turno"));
+                routes.MapHub<RegistroNotificadorHub>(new PathString("/torneo"));
             });
 
             app.UseMvc(routes =>

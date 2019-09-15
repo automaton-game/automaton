@@ -92,7 +92,7 @@ export class JuegoManualComponent implements OnInit, OnDestroy {
   private connect() {
     this.socketConnection = this.socketClientServiceFactory.connect("/turno");
 
-    this.socketConnection.read<{ juego: JuegoManualResponse, hashRobot: string }>().subscribe(resp => {
+    this.socketConnection.read<{ juego: JuegoManualResponse, hashRobot: string }>("FinTurno").subscribe(resp => {
       if (this.idTablero == resp.juego.idTablero && this.idJugador != resp.hashRobot) {
         this.juegoManualResponse = resp.juego;
       }
