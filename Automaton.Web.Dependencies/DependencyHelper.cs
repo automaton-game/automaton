@@ -34,7 +34,8 @@ namespace Automaton.Web.Dependencies
             services.AddSingleton<IMetadataFactory, MetadataFactory>();
 
             services.AddTransient<IRegistroPartidas, RegistroPartidas>();
-            services.AddSingleton<IRegistroPartidasDao, RegistroPartidasDao>();
+            services.AddSingleton<IRegistroPartidasDeleteDao, RegistroPartidasDao>();
+            services.AddSingleton<IRegistroPartidasDao>(c => c.GetService<IRegistroPartidasDeleteDao>());
             services.AddSingleton<IRegistroJugadoresDao, RegistroJugadoresDao>();
             
 
