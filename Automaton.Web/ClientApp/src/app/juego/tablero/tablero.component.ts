@@ -22,7 +22,7 @@ export class TableroComponent implements OnInit {
   public colorTablero: string;
   public actual: number;
   public ganador: string;
-  public motivo: string;
+  public motivos: Array<string>;
   public animacion: Subscription;
 
   @Input()
@@ -33,7 +33,7 @@ export class TableroComponent implements OnInit {
     this._juegoResponse = juegoResponse;
     this.actual = 0;
     this.ganador = juegoResponse.ganador;
-    this.motivo = juegoResponse.motivoDerrota;
+    this.motivos = juegoResponse.motivoDerrota.split('\n');
 
     if (!this.juegoResponse.tableros) {
       return;

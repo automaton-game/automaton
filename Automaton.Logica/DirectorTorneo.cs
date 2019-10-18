@@ -6,6 +6,7 @@ using Automaton.Logica.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Automaton.Logica
@@ -48,11 +49,14 @@ namespace Automaton.Logica
                 catch (ExcepcionCompilacion ex)
                 {
                     var errCompilacion = string.Join(Environment.NewLine, ex.ErroresCompilacion);
+                    var derrota = new StringBuilder();
+                    derrota.AppendLine($" Error de compilación para el bot {logicaRobotDto.Usuario}: ");
+                    derrota.Append(errCompilacion);
                     return new PartidaResueltaDto
                     {
                         Ganador = logicaRobotDtos.Where(f => f != logicaRobotDto).Select(s => s.Usuario).First(),
                         Jugadores = logicaRobotDtos.Select(j => j.Usuario).ToArray(),
-                        MotivoDerrota = $" Error de compilación para el bot {logicaRobotDto.Usuario}: {errCompilacion}"
+                        MotivoDerrota = derrota.ToString()
                     };
                 }
             }

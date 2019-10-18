@@ -24,7 +24,10 @@
   <div *ngIf="ganador" class="panel panel-default">
     <div class="panel-heading"><label>Ganador de la partida</label></div>
     <div class="panel-body">
-      <input type="text" readonly [(ngModel)]="ganador" /><p>{{motivo}}</p>
+      <input type="text" readonly [(ngModel)]="ganador" />
+      <div *ngFor="let motivo of motivos">
+        <p>{{motivo}}</p>
+      </div>
     </div>
   </div>
 </div>
