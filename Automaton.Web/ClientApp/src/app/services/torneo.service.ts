@@ -35,6 +35,10 @@ export class TorneoService implements OnDestroy {
       .post<void>("api/Torneo/Post", { logica: logica1 })
       .subscribe(() => {
         subj.next();
+      }, (err: HttpErrorResponse) => {
+          if (err.error && err.error.errors) {
+            subj.error(err.error.errors.map(m => m.message));
+          }
       });
 
     return subj.asObservable();

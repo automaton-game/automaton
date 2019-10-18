@@ -21,10 +21,8 @@ export class InscripcionComponent implements OnInit {
 
   enviarLogica() {
     this.torneoService.Post(this.logica1).subscribe(() =>
-      this.router.navigate(["/torneo"]), (err: HttpErrorResponse) => {
-        if (err.error && err.error.errors) {
-          this.errores = err.error.errors.map(m => m.message)
-        }
+      this.router.navigate(["/torneo"]), (errors: Array<string> ) => {
+        this.errores = errors;
       });
   }
 
