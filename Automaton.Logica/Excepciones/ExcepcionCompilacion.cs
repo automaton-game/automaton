@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Automaton.Compilador.Excepciones
+namespace Automaton.Logica.Excepciones
 {
     public class ExcepcionCompilacion : Exception
     {

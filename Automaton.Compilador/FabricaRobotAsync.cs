@@ -14,14 +14,14 @@ namespace Automaton.Compilador
             this.fabricaRobot = fabricaRobot;
         }
 
-        public Task<IRobot> ObtenerRobotAsync(Type tipo)
+        public async Task<IRobot> ObtenerRobotAsync(Type tipo)
         {
-            return Task.FromResult(fabricaRobot.ObtenerRobot(tipo));
+            return await Task.FromResult(fabricaRobot.ObtenerRobot(tipo));
         }
 
-        public Task<IRobot> ObtenerRobotAsync(string tipo)
+        public async Task<IRobot> ObtenerRobotAsync(string tipo)
         {
-            return Task.FromResult(fabricaRobot.ObtenerRobot(tipo));
+            return await Task.FromResult(fabricaRobot.ObtenerRobot(tipo));
         }
     }
 }

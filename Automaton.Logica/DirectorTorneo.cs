@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Automaton.Contratos.Entorno;
 using Automaton.Logica.Dtos;
 using Automaton.Logica.Dtos.Model;
+using Automaton.Logica.Excepciones;
 using Automaton.Logica.Factories;
-using Automaton.Logica.Registro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,9 +39,22 @@ namespace Automaton.Logica
 
             foreach (var logicaRobotDto in logicaRobotDtos)
             {
-                var r = await fabricaRobot.ObtenerRobotAsync(logicaRobotDto.Logica);
-                var tipo = r.GetType();
-                juego.AgregarRobot(logicaRobotDto.Usuario, r);
+                try
+                {
+                    var r = await fabricaRobot.ObtenerRobotAsync(logicaRobotDto.Logica);
+                    var tipo = r.GetType();
+                    juego.AgregarRobot(logicaRobotDto.Usuario, r);
+                }
+                catch (ExcepcionCompilacion ex)
+                {
+                    var errCompilacion = string.Join(Environment.NewLine, ex.ErroresCompilacion);
+                    return new PartidaResueltaDto
+                    {
+                        Ganador = logicaRobotDtos.Where(f => f != logicaRobotDto).Select(s => s.Usuario).First(),
+                        Jugadores = logicaRobotDtos.Select(j => j.Usuario).ToArray(),
+                        MotivoDerrota = $" Error de compilación para el bot {logicaRobotDto.Usuario}: {errCompilacion}"
+                    };
+                }
             }
 
             var partida = GetPartidaResuelta(juego);

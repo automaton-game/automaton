@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
-using Automaton.Compilador.Excepciones;
+using Automaton.Logica.Excepciones;
 using Automaton.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;

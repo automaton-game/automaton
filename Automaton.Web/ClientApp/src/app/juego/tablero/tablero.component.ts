@@ -34,6 +34,11 @@ export class TableroComponent implements OnInit {
     this.actual = 0;
     this.ganador = juegoResponse.ganador;
     this.motivo = juegoResponse.motivoDerrota;
+
+    if (!this.juegoResponse.tableros) {
+      return;
+    }
+
     this.actualizarTablero();
 
     if (this.mostrarAnimacion) {
@@ -84,6 +89,10 @@ export class TableroComponent implements OnInit {
   }
 
   actualizarTablero() {
+    if (this.juegoResponse.tableros.length <= 0) {
+      return;
+    }
+
     this.tablero = this.juegoResponse.tableros[this.actual];
     if (this.tablero.turnoRobot) {
       this.colorTablero = this.colorService.getColor(this.tablero.turnoRobot);

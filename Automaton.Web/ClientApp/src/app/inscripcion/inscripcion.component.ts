@@ -55,12 +55,12 @@ export class InscripcionComponent implements OnInit {
 
 
 						
-						return MovimientoEjemplo1();
-						//return MovimientoEjemplo2();
-						//return MovimientoEjemplo3();
+						return MovimientoEjemplo1(console);
+						//return MovimientoEjemplo2(console);
+						//return MovimientoEjemplo3(console);
 				}
 
-				private AccionRobotDto MovimientoEjemplo1()
+				private AccionRobotDto MovimientoEjemplo1(IConsole console)
 				{
 						console.WriteLine("Turno {0} de MovimientoEjemplo1", cont++);        
 
@@ -88,7 +88,7 @@ export class InscripcionComponent implements OnInit {
 						return null;
 				}
 
-				private AccionRobotDto MovimientoEjemplo2()
+				private AccionRobotDto MovimientoEjemplo2(IConsole console)
 				{
 						console.WriteLine("Turno {0} de MovimientoEjemplo2", cont++);  
 
@@ -116,7 +116,7 @@ export class InscripcionComponent implements OnInit {
 						return null;
 				}
 
-				private AccionRobotDto MovimientoEjemplo3()
+				private AccionRobotDto MovimientoEjemplo3(IConsole console)
 				{
 						console.WriteLine("Turno {0} de MovimientoEjemplo3", cont++);
 

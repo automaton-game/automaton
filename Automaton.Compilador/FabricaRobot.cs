@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Loader;
-using Automaton.Compilador.Excepciones;
 using Automaton.Contratos.Robots;
 using Automaton.Logica;
+using Automaton.Logica.Excepciones;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
