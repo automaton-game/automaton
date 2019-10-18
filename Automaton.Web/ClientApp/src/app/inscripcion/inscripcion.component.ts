@@ -53,7 +53,7 @@ export class InscripcionComponent implements OnInit {
 						/// -------------------------------------
 						/// Prueba distintos ejemplos de movimiento --->
 
-						console.WriteLine("Turno {0}", cont++);
+
 						
 						return MovimientoEjemplo1();
 						//return MovimientoEjemplo2();
@@ -62,6 +62,8 @@ export class InscripcionComponent implements OnInit {
 
 				private AccionRobotDto MovimientoEjemplo1()
 				{
+						console.WriteLine("Turno {0} de MovimientoEjemplo1", cont++);        
+
 						// Obtengo el casillero donde estoy parado
 						var casillero = this.GetPosition();
 
@@ -88,6 +90,8 @@ export class InscripcionComponent implements OnInit {
 
 				private AccionRobotDto MovimientoEjemplo2()
 				{
+						console.WriteLine("Turno {0} de MovimientoEjemplo2", cont++);  
+
 						// Obtengo el casillero donde estoy parado
 						var casillero = this.GetPosition();
 
@@ -114,6 +118,8 @@ export class InscripcionComponent implements OnInit {
 
 				private AccionRobotDto MovimientoEjemplo3()
 				{
+						console.WriteLine("Turno {0} de MovimientoEjemplo3", cont++);
+
 						// Obtengo el casillero donde estoy parado
 						var casillero = this.GetPosition();
 
