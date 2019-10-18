@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using Automaton.Logica.Dtos;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,21 +8,21 @@ namespace Automaton.Logica.Registro
 {
     public class TareasTorneo : ITareasTorneo
     {
-        private ConcurrentQueue<ICollection<LogicaRobotDto>> partidas = new ConcurrentQueue<ICollection<LogicaRobotDto>>();
+        private ConcurrentQueue<ICollection<IJugadorRobotDto>> partidas = new ConcurrentQueue<ICollection<IJugadorRobotDto>>();
         private SemaphoreSlim semaphoreSlim = new SemaphoreSlim(0);
 
-        public Task RegistrarPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public Task RegistrarPartidaAsync(ICollection<IJugadorRobotDto> logicaRobotDtos)
         {
             return Task.Run(() => RegistrarPartida(logicaRobotDtos));
         }
 
-        public void RegistrarPartida(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public void RegistrarPartida(ICollection<IJugadorRobotDto> logicaRobotDtos)
         {
             partidas.Enqueue(logicaRobotDtos);
             semaphoreSlim.Release();
         }
 
-        public async Task<ICollection<LogicaRobotDto>> ObtenerLogicas(CancellationToken cancellationToken)
+        public async Task<ICollection<IJugadorRobotDto>> ObtenerLogicas(CancellationToken cancellationToken)
         {
             await semaphoreSlim.WaitAsync();
 

@@ -1,6 +1,6 @@
 ﻿namespace Automaton.Logica.Dtos
 {
-    public class RegistroJugadorDto : LogicaRobotDto
+    public class RegistroJugadorDto : JugadorRobotDto
     {
         public int Version { get; set; }
     }

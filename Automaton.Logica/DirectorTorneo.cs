@@ -27,44 +27,26 @@ namespace Automaton.Logica
             this.mapper = mapper;
         }
 
-        public PartidaResueltaDto ResolverPartida(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public PartidaResueltaDto ResolverPartida(ICollection<IJugadorRobotDto> logicaRobotDtos)
         {
             var task = ResolverPartidaAsync(logicaRobotDtos);
             task.Wait();
             return task.Result;
         }
 
-        public async Task<PartidaResueltaDto> ResolverPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos)
+        public async Task<PartidaResueltaDto> ResolverPartidaAsync(ICollection<IJugadorRobotDto> logicaRobotDtos)
         {
             var juego = juegoFactory.CreateJuego2V2();
 
             foreach (var logicaRobotDto in logicaRobotDtos)
             {
-                try
-                {
-                    var r = await fabricaRobot.ObtenerRobotAsync(logicaRobotDto.Logica);
-                    var tipo = r.GetType();
-                    juego.AgregarRobot(logicaRobotDto.Usuario, r);
-                }
-                catch (ExcepcionCompilacion ex)
-                {
-                    var errCompilacion = string.Join(Environment.NewLine, ex.ErroresCompilacion);
-                    var derrota = new StringBuilder();
-                    derrota.AppendLine($" Error de compilación para el bot {logicaRobotDto.Usuario}: ");
-                    derrota.Append(errCompilacion);
-                    return new PartidaResueltaDto
-                    {
-                        Ganador = logicaRobotDtos.Where(f => f != logicaRobotDto).Select(s => s.Usuario).First(),
-                        Jugadores = logicaRobotDtos.Select(j => j.Usuario).ToArray(),
-                        MotivoDerrota = derrota.ToString()
-                    };
-                }
+                juego.AgregarRobot(logicaRobotDto.Usuario, logicaRobotDto.Robot);
             }
 
             var partida = GetPartidaResuelta(juego);
             partida.Jugadores = logicaRobotDtos.Select(j => j.Usuario).ToArray();
 
-            return partida;
+            return await Task.FromResult(partida);
         }
 
         private PartidaResueltaDto GetPartidaResuelta(IJuego2v2 juego)

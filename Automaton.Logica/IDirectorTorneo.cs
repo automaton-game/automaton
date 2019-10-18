@@ -6,8 +6,8 @@ namespace Automaton.Logica
 {
     public interface IDirectorTorneo
     {
-        PartidaResueltaDto ResolverPartida(ICollection<LogicaRobotDto> logicaRobotDtos);
+        PartidaResueltaDto ResolverPartida(ICollection<IJugadorRobotDto> logicaRobotDtos);
 
-        Task<PartidaResueltaDto> ResolverPartidaAsync(ICollection<LogicaRobotDto> logicaRobotDtos);
+        Task<PartidaResueltaDto> ResolverPartidaAsync(ICollection<IJugadorRobotDto> logicaRobotDtos);
     }
 }
