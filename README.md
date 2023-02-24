@@ -10,3 +10,5 @@ https://app.azure.com/4634ce66-e259-4e96-8435-50f026392b5c/subscriptions/3f63054
 ## Editor de torneo online
 
 [https://stackblitz.com/edit/hackabot-torneo?file=app%2Fapp.component.ts](https://stackblitz.com/edit/hackabot-torneo?file=app/app.component.ts)
+
+![image](https://user-images.githubusercontent.com/7032154/221316181-39a909ca-8b6d-4471-bdcc-8271de26e4ed.png)
